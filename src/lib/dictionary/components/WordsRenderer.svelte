@@ -18,7 +18,7 @@
     page.size = $wordsToRenderStore.length;
   };
 
-  wordsToRenderStore.subscribe(updatePaginatorPageSize);
+  const unsubscribeUpdatePaginatorPageSize = wordsToRenderStore.subscribe(updatePaginatorPageSize);
 
   let paginatedSource: Word[];
 
@@ -46,7 +46,7 @@
   });
 
   onDestroy(() => {
-    wordsToRenderStore.unsubscribe(updatePaginatorPageSize);
+    unsubscribeUpdatePaginatorPageSize();
   });
 </script>
 
