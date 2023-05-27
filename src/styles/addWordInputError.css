@@ -1,0 +1,17 @@
+.input-error {
+  @apply !border-red-300;
+}
+
+.input-error input {
+  @apply !bg-red-300;
+  @apply !border-red-400;
+}
+
+.input-error input::placeholder {
+  @apply text-red-900;
+}
+
+.input-error+button {
+  @apply !bg-red-300;
+  @apply border-red-400;
+}

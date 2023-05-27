@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
-  import routerStore from "./routerStore";
+  import routerStore from "/src/lib/router/routerStore.js";
 </script>
 
 <ListBox rounded='rounded-0'>

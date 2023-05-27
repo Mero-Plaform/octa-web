@@ -1,0 +1,22 @@
+:root {
+  --scrollbar-primary: rgb(204, 212, 218);
+  --scrollbar-secondary: rgb(128, 128, 128);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-secondary) var(--scrollbar-primary);
+}
+
+/* Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 0.8rem;
+  border-radius: 2rem;
+  background-color: var(--scrollbar-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background-color: var(--scrollbar-secondary);
+}

@@ -9,7 +9,17 @@ const config = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        "screen/2": "50vh",
+      },
+      maxWidth: {
+        "90%": "90%"
+      },
+      fontSize: {
+        "xss": "0.5rem"
+      }
+    },
   },
 
   plugins: [
