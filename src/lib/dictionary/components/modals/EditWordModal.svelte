@@ -1,22 +1,23 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { wordsStore } from "../../stores/wordsStore.js";
   import CustomInputChip from "../../../utils/components/customInputChip/CustomInputChip.svelte";
-  import { editWordIdStore } from '../../stores/editWordIdStore.js';
+  import { editWordIdStore } from "../../stores/editWordIdStore.js";
+  import { wordStore } from "../../stores/wordStore.js";
 
-  const chipsAddButtonBaseStyles = "bg-purple-300 hover:bg-purple-400 focus:bg-purple-400 border-2 border-purple-400 p-2 hover:brightness-100 active:scale-90 leading-3 text-center absolute -top-2 -right-2 rounded-md outline-none transition-all";
+  const chipsAddButtonBaseStyles =
+    "bg-purple-300 hover:bg-purple-400 focus:bg-purple-400 border-2 border-purple-400 p-2 hover:brightness-100 active:scale-90 leading-3 text-center absolute -top-2 -right-2 rounded-md outline-none transition-all";
   const chipsAddButtonErrorStyles = "!bg-red-300 border-red-400";
   const chipsAddButtonImageBaseStyles = "bg-white";
   const chipsAddButtonErrorImageStyle = "";
-  
-  let { 
-    variants: editableWordVariantsList, 
+
+  let {
+    variants: editableWordVariantsList,
     translations: editableWordTranslationsList,
-    description: editableWordDescription
-  } = wordsStore.getById($editWordIdStore)!;
+    description: editableWordDescription,
+  } = wordStore.getById($editWordIdStore)!;
 
   const onEditWord = () => {
-    wordsStore.editWord($editWordIdStore, {
+    wordStore.editWord($editWordIdStore, {
       variants: editableWordVariantsList,
       translations: editableWordTranslationsList,
       description: editableWordDescription.trim(),
@@ -25,8 +26,12 @@
   };
 </script>
 
-<div class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-purple-500">
-  <div class="bg-purple-400 text-white rounded-md p-2 cursor-default">Edit word</div>
+<div
+  class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-purple-500"
+>
+  <div class="bg-purple-400 text-white rounded-md p-2 cursor-default">
+    Edit word
+  </div>
   <CustomInputChip
     bind:list={editableWordVariantsList}
     buttonBaseStyles={chipsAddButtonBaseStyles}
@@ -67,7 +72,10 @@
     >
       save
     </button>
-    <button on:click={() => modalStore.close()} class="btn bg-purple-400 hover:bg-purple-500 focus:bg-purple-500 rounded-md text-white outline-none">
+    <button
+      on:click={() => modalStore.close()}
+      class="btn bg-purple-400 hover:bg-purple-500 focus:bg-purple-500 rounded-md text-white outline-none"
+    >
       cancel
     </button>
   </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import SearchInput from "/src/lib/utils/components/SearchInput/SearchInput.svelte";
-  import { wordsStore } from "/src/lib/dictionary/stores/wordsStore.js";
-  import { searchWordsTextStore } from "/src/lib/dictionary/stores/searchWordsTextStore.js";
-
+    import SearchInput from '../../utils/components/SearchInput/SearchInput.svelte';
+    import { wordStore } from '../stores/wordStore.js';
+    import { searchWordsTextStore } from '../stores/searchWordsTextStore.js';
+  
   let inputElem: HTMLInputElement;
 
   const onKeydown = ({ code }: { code: string }) => {
@@ -41,7 +41,7 @@
 
   let disableSearchOnEmptyDictionary: boolean;
 
-  $: disableSearchOnEmptyDictionary = !Boolean($wordsStore.size);
+  $: disableSearchOnEmptyDictionary = !Boolean($wordStore.size);
 </script>
 
 <SearchInput

@@ -1,4 +1,4 @@
-import { wordsStore } from '/src/lib/dictionary/stores/wordsStore.js';
+import { wordStore } from '/src/lib/dictionary/stores/wordStore.js';
 
 export const dictionaryMockFill = async (wordsCount: number) => {
   const newWord = {
@@ -16,7 +16,7 @@ export const dictionaryMockFill = async (wordsCount: number) => {
     newWord.translations = [`test translation ${currentWordIndex}`];
     newWord.description = `test description ${currentWordIndex}`;
 
-    wordsStore.update((wordsMap) => {
+    wordStore.update((wordsMap) => {
       return wordsMap.set(newWord.id, { ...newWord });
     });
   }
