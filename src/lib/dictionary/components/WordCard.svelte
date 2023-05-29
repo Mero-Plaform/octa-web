@@ -4,10 +4,10 @@
     popup,
     type PopupSettings,
   } from "@skeletonlabs/skeleton";
-  import type { Word } from "/src/lib/dictionary/interfaces/Word.js";
-  import { editWordIdStore } from "/src/lib/dictionary/stores/editWordIdStore.js";
-  import { removeWordIdStore } from "/src/lib/dictionary/stores/removeWordIdStore.js";
-  import { getIconMaskStyes } from "/src/lib/utils/helpers.js";
+  import { getIconMaskStyes } from '../../utils/helpers.js';
+  import { removeWordIdStore } from '../stores/removeWordIdStore.js';
+  import { editWordIdStore } from '../stores/editWordIdStore.js';
+  import type { Word } from '../interfaces/Word.js';
 
   export let word: Word;
 
@@ -32,7 +32,7 @@
     });
   };
 
-  const onWordEdit = (wordId: string) => {
+  const onWordEdit = (wordId: string) => { 
     editWordIdStore.set(wordId);
     modalStore.trigger({
       type: "component",

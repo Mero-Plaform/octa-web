@@ -1,7 +1,7 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { addWord } from "/src/lib/dictionary/stores/wordsStore.js";
-  import CustomInputChip from "/src/lib/utils/components/customInputChip/CustomInputChip.svelte";
+  import { wordsStore } from '../../stores/wordsStore.js';
+  import CustomInputChip from '../../../utils/components/customInputChip/CustomInputChip.svelte';
 
   const chipsAddButtonBaseStyles =
     "bg-cyan-300 hover:bg-cyan-400 focus:bg-cyan-400 border-2 border-cyan-400 brightness-100 active:scale-90 p-2 leading-3 text-center absolute -top-2 -right-2 rounded-md outline-none transition-all";
@@ -25,8 +25,8 @@
     descriptionElem.value = "";
   };
 
-  const onAddWord = () => {
-    addWord({
+  const onAddWord = () => { 
+    wordsStore.addWord({
       variants: newWordVariantsList,
       translations: newWordTranslationsList,
       description: newWordDescription.trim(),

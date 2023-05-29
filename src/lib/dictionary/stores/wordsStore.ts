@@ -1,21 +1,25 @@
-import { get, writable } from 'svelte/store';
-import type { Word } from './Word.js';
+import { writable } from 'svelte/store';
+import type { Word } from '../interfaces/Word.js';
+import { type CustomWritableStore, CustomWritableStoreFactory } from '../../utils/components/customInputChip/CustomStoreFactory.js';
+
+type WordsActionStoreAction = 'add' | 'edit' | 'delete';
 
 /**
- * contains all dictionary words
+ * broadcast last action in wordsStore (e.g. add, edit, delete)
  */
-export const wordsStore = writable(new Map<Word['id'], Word>());
+export const wordsActionStore = writable<[WordsActionStoreAction, Word['id']]>();
+
+const getById = (wordId: string): Word | undefined => {
+  return wordsStore.value.get(wordId);
+};
 
 type NewWordData = Omit<Word, 'learnSuccess' | 'id'>;
 type EditWordData = NewWordData;
 
-export const getWordById = (wordId: string) => {
-  return get(wordsStore).get(wordId);
-};
-
-export const addWord = (newWordData: NewWordData) => {
+const addWord = (newWordData: NewWordData) => {
+  const newWordId = String(new Date().getTime());
   const newWord = {
-    id: String(new Date().getTime()),
+    id: newWordId,
     learnSuccess: 0,
     ...newWordData,
   };
@@ -23,18 +27,27 @@ export const addWord = (newWordData: NewWordData) => {
   wordsStore.update((wordsMap) => {
     return wordsMap.set(newWord.id, newWord);
   });
+
+  wordsActionStore.set(['add', newWordId]);
 };
 
-export const editWord = (wordId: string, editWord: EditWordData) => {
-  const learnSuccess = getWordById(wordId)!.learnSuccess;
+const editWord = (wordId: string, editWord: EditWordData) => {
+  const learnSuccess = wordsStore.getById(wordId)!.learnSuccess;
   wordsStore.update((wordsMap) => {
     return wordsMap.set(wordId, { id: wordId, learnSuccess, ...editWord });
   });
 };
 
-export const removeWord = (wordId: string) => {
+const removeWord = (wordId: string) => {
   wordsStore.update((wordsMap) => {
     wordsMap.delete(wordId);
     return wordsMap;
   });
 };
+
+export const wordsStore = CustomWritableStoreFactory(new Map<Word['id'], Word>(), {
+  getById,
+  removeWord,
+  editWord,
+  addWord
+});

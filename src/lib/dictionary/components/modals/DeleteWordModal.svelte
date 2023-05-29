@@ -1,14 +1,14 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { removeWordIdStore } from '/src/lib/dictionary/stores/removeWordIdStore.js';
-  import { removeWord, wordsStore } from '/src/lib/dictionary/stores/wordsStore.js';
+  import { wordsStore } from '../../stores/wordsStore.js';
+  import { removeWordIdStore } from '../../stores/removeWordIdStore.js';
 
   const { variants, translations, description } = $wordsStore.get($removeWordIdStore)!;
   let isRemoving = false;
 
   const onDelete = () => {
     isRemoving = true;
-    removeWord($removeWordIdStore);
+    wordsStore.removeWord($removeWordIdStore);
     modalStore.close();
   };
 </script>

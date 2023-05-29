@@ -1,22 +1,22 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { editWord, getWordById } from "/src/lib/dictionary/stores/wordsStore.js";
-  import CustomInputChip from "/src/lib/utils/components/customInputChip/CustomInputChip.svelte";
-  import { editWordIdStore } from '/src/lib/dictionary/stores/editWordIdStore.js';
+  import { wordsStore } from "../../stores/wordsStore.js";
+  import CustomInputChip from "../../../utils/components/customInputChip/CustomInputChip.svelte";
+  import { editWordIdStore } from '../../stores/editWordIdStore.js';
 
   const chipsAddButtonBaseStyles = "bg-purple-300 hover:bg-purple-400 focus:bg-purple-400 border-2 border-purple-400 p-2 hover:brightness-100 active:scale-90 leading-3 text-center absolute -top-2 -right-2 rounded-md outline-none transition-all";
   const chipsAddButtonErrorStyles = "!bg-red-300 border-red-400";
   const chipsAddButtonImageBaseStyles = "bg-white";
   const chipsAddButtonErrorImageStyle = "";
-
+  
   let { 
     variants: editableWordVariantsList, 
     translations: editableWordTranslationsList,
     description: editableWordDescription
-  } = getWordById($editWordIdStore)!;
+  } = wordsStore.getById($editWordIdStore)!;
 
   const onEditWord = () => {
-    editWord($editWordIdStore, {
+    wordsStore.editWord($editWordIdStore, {
       variants: editableWordVariantsList,
       translations: editableWordTranslationsList,
       description: editableWordDescription.trim(),
