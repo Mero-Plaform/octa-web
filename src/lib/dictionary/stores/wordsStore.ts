@@ -1,13 +1,6 @@
-import { writable } from 'svelte/store';
 import type { Word } from '../interfaces/Word.js';
 import { CustomWritableStoreFactory } from '../../utils/components/customInputChip/CustomStoreFactory.js';
-
-type WordsActionStoreAction = 'add' | 'edit' | 'delete';
-
-/**
- * broadcast last action in wordsStore (e.g. add, edit, delete)
- */
-export const wordsActionStore = writable<[WordsActionStoreAction, Word['id']]>();
+import { wordsActionStore } from './wordsActionStore.js';
 
 const getById = (wordId: string): Word | undefined => {
   return wordsStore.value.get(wordId);
