@@ -1,4 +1,4 @@
-type Callback<T, R = unknown> = (value: T) => R;
+export type Callback<T, R = void> = (value: T) => R;
 
 export class CustomWritableStore<T>  {
   value: T;
@@ -23,17 +23,17 @@ export class CustomWritableStore<T>  {
     this.broadcast();
   }
 
-  private broadcast() {
+  protected broadcast() {
     this.subscriptions.forEach(subscriptionCallback => subscriptionCallback(this.value));
   }
 
-  private unsubscribe(callback: Callback<T>) {
+  protected unsubscribe(callback: Callback<T>) {
     this.subscriptions = this.subscriptions.filter(subscriptionCallback => subscriptionCallback !== callback);
   }
 }
 
-export const CustomWritableStoreFactory = <T, I>(initialValue: T, storeInterface?: I) => {
-  const store = new CustomWritableStore<T>(initialValue);
+export const CustomWritableStoreFactory = <T, I = unknown>(initialValue?: T, storeInterface?: I) => {
+  const store = new CustomWritableStore<T>(initialValue as T);
   Object.assign(store, storeInterface);
   return store as CustomWritableStore<T> & I;
 };
