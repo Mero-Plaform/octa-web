@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import type { Word } from '../interfaces/Word.js';
-import { type CustomWritableStore, CustomWritableStoreFactory } from '../../utils/components/customInputChip/CustomStoreFactory.js';
+import { CustomWritableStoreFactory } from '../../utils/components/customInputChip/CustomStoreFactory.js';
 
 type WordsActionStoreAction = 'add' | 'edit' | 'delete';
 
