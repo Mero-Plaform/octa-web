@@ -1,5 +1,5 @@
+import { CustomWritableStoreFactory } from '../../utils/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';
-import { CustomWritableStoreFactory } from '../../utils/components/customInputChip/CustomStoreFactory.js';
 import { wordsActionStore } from './wordsActionStore.js';
 
 const getById = (wordId: string): Word | undefined => {
@@ -21,14 +21,17 @@ const addWord = (newWordData: NewWordData) => {
     return wordsMap.set(newWord.id, newWord);
   });
 
-  wordsActionStore.set(['add', newWordId]);
+  wordsActionStore.set(['add', newWord]);
 };
 
-const editWord = (wordId: string, editWord: EditWordData) => {
+const editWord = (wordId: string, editedWordData: EditWordData) => {
   const learnSuccess = wordStore.getById(wordId)!.learnSuccess;
+  const editedWord = { id: wordId, learnSuccess, ...editedWordData };
   wordStore.update((wordsMap) => {
-    return wordsMap.set(wordId, { id: wordId, learnSuccess, ...editWord });
+    return wordsMap.set(wordId, editedWord);
   });
+
+  wordsActionStore.set(['edit', editedWord]);
 };
 
 const removeWord = (wordId: string) => {
@@ -36,6 +39,8 @@ const removeWord = (wordId: string) => {
     wordsMap.delete(wordId);
     return wordsMap;
   });
+
+  wordsActionStore.set(['delete', wordId]);
 };
 
 export const wordStore = CustomWritableStoreFactory(new Map<Word['id'], Word>(), {

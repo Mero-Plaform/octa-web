@@ -1,9 +1,10 @@
-import { writable } from 'svelte/store';
-import type { Word } from '../interfaces/Word.js';
+import { CustomWritableStoreWithoutInitialCallFactory } from '../../utils/CustomWritableStoreWithoutInitialCallFactory.js';
 
-type WordsActionStoreAction = 'add' | 'edit' | 'delete';
+export type WordActionStoreAction = 'add' | 'edit' | 'delete';
+
+export type WordActionStoreData = [WordActionStoreAction, unknown];
 
 /**
  * broadcast last action in wordStore (e.g. add, edit, delete)
  */
-export const wordsActionStore = writable<[WordsActionStoreAction, Word['id']]>();
+export const wordsActionStore = CustomWritableStoreWithoutInitialCallFactory<WordActionStoreData>();
