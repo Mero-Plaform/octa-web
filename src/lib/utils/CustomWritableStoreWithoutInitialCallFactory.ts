@@ -1,4 +1,4 @@
-import { CustomWritableStore, type Callback } from './CustomStoreFactory.js';
+import { CustomWritableStore, type Callback } from './CustomWritableStoreFactory.js';
 
 export class CustomWritableStoreWithoutInitialCall<T> extends CustomWritableStore<T>  {
   subscribe(callback: Callback<T>) {
