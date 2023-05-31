@@ -7,7 +7,7 @@ const getById = (wordId: string): Word | undefined => {
 };
 
 type NewWordData = Omit<Word, 'learnSuccess' | 'id'>;
-type EditWordData = NewWordData;
+type EditWordData = Omit<Word, 'id'>;
 
 const addWord = (newWordData: NewWordData) => {
   const newWordId = String(new Date().getTime());
@@ -25,8 +25,7 @@ const addWord = (newWordData: NewWordData) => {
 };
 
 const editWord = (wordId: string, editedWordData: EditWordData) => {
-  const learnSuccess = wordStore.getById(wordId)!.learnSuccess;
-  const editedWord = { id: wordId, learnSuccess, ...editedWordData };
+  const editedWord = { id: wordId, ...editedWordData };
   wordStore.update((wordsMap) => {
     return wordsMap.set(wordId, editedWord);
   });
