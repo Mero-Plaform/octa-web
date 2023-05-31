@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { searchWordsTextStore } from "/src/lib/dictionary/stores/searchWordsTextStore.js";
-  import { wordsToRenderStore } from "/src/lib/dictionary/stores/wordsToRenderStore.js";
-  import WordCard from "/src/lib/dictionary/components/WordCard.svelte";
   import { crossfade } from "svelte/transition";
   import { flip } from 'svelte/animate';
   import { onDestroy } from "svelte";
   import { quintOut } from 'svelte/easing';
-
+  import { searchWordsTextStore } from '../stores/searchWordsTextStore.js';
+  import { wordsToRenderStore } from '../stores/wordsToRenderStore.js';
+  import type { Word } from '../interfaces/Word.js';
+  import WordCard from './WordCard.svelte';
+  
   export let page = {
     offset: 0,
     limit: 10,
