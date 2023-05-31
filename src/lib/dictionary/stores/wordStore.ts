@@ -1,4 +1,4 @@
-import { CustomWritableStoreFactory } from '../../utils/CustomWritableStoreFactory.js';
+import { type CustomWritableStore, CustomWritableStoreFactory } from '../../utils/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';
 import { wordsActionStore } from './wordsActionStore.js';
 
@@ -43,9 +43,20 @@ const removeWord = (wordId: string) => {
   wordsActionStore.set(['delete', wordId]);
 };
 
-export const wordStore = CustomWritableStoreFactory(new Map<Word['id'], Word>(), {
-  getById,
-  removeWord,
-  editWord,
-  addWord
-});
+type WordStore = CustomWritableStore<Map<string, Word>> & {
+  getById: (wordId: string) => Word | undefined;
+  removeWord: (wordId: string) => void;
+  editWord: (wordId: string, editedWordData: EditWordData) => void;
+  addWord: (newWordData: NewWordData) => void;
+};
+
+export const createWordStore = (storeValue: Map<Word['id'], Word>) => {
+  wordStore = CustomWritableStoreFactory(storeValue, {
+    getById,
+    removeWord,
+    editWord,
+    addWord
+  });
+};
+
+export let wordStore: WordStore;
