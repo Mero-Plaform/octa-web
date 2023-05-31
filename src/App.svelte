@@ -13,8 +13,6 @@
 
 <Modal components={modalComponentRegistry}/>
 
-<Dictionary />
-
 <Router />
 
 <Popups />

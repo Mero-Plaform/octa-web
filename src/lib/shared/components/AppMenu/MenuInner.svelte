@@ -6,14 +6,10 @@
 <ListBox rounded='rounded-0'>
 	<ListBoxItem on:click bind:group={$routerStore} name="medium" value="/">
     <svelte:fragment slot="lead"><img src="/vite.svg" alt="vite icon" /></svelte:fragment>
-	  Home
+	  Dictionary
   </ListBoxItem>
 	<ListBoxItem on:click bind:group={$routerStore} name="medium" value="/link1">
     <svelte:fragment slot="lead"><img src="/vite.svg" alt="vite icon" /></svelte:fragment>
-	  Link 1
-  </ListBoxItem>
-	<ListBoxItem on:click bind:group={$routerStore} name="medium" value="/link2">
-    <svelte:fragment slot="lead"><img src="/vite.svg" alt="vite icon" /></svelte:fragment>
-	  Link 2
+	  Pracitce
   </ListBoxItem>
 </ListBox>
