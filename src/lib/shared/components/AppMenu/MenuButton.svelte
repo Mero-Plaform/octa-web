@@ -1,6 +1,6 @@
 <script lang="ts">
   import { drawerStore, type DrawerSettings } from "@skeletonlabs/skeleton";
-  import { getIconMaskStyes } from '../utils/helpers.js';
+  import { getIconMaskStyes } from '../../../utils/helpers.js';
   
   const drawerSettings: DrawerSettings = {
     id: "main",

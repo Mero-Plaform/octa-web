@@ -2,7 +2,7 @@
   import {
     Modal,
   } from "@skeletonlabs/skeleton";
-  import Menu from "./lib/AppMenu/Menu.svelte";
+  import Menu from "./lib/shared/components/AppMenu/Menu.svelte";
   import Dictionary from "./lib/dictionary/components/Dictionary.svelte";
   import Popups from "./lib/shared/components/Popups.svelte";
   import { modalComponentRegistry } from "./lib/shared/modalComponentRegistry.js";
