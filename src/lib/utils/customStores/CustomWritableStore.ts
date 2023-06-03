@@ -23,6 +23,10 @@ export class CustomWritableStore<T>  {
     this.broadcast();
   }
 
+  get() {
+    return this.value;
+  }
+
   protected broadcast() {
     this.subscriptions.forEach(subscriptionCallback => subscriptionCallback(this.value));
   }
@@ -31,9 +35,3 @@ export class CustomWritableStore<T>  {
     this.subscriptions = this.subscriptions.filter(subscriptionCallback => subscriptionCallback !== callback);
   }
 }
-
-export const CustomWritableStoreFactory = <T, I = unknown>(initialValue?: T, storeInterface?: I) => {
-  const store = new CustomWritableStore<T>(initialValue as T);
-  Object.assign(store, storeInterface);
-  return store as CustomWritableStore<T> & I;
-};
