@@ -6,15 +6,22 @@ import { storePopup } from '@skeletonlabs/skeleton';
 import '@skeletonlabs/skeleton/styles/skeleton.css';
 import { initDB } from './lib/DB/main.js';
 import "/src/styles/main";
+import { dictionaryMockFill } from './lib/mockData/dictionaryMockFill.js';
+import type { Word } from './lib/dictionary/interfaces/Word.js';
+import { createWordStore } from './lib/dictionary/stores/wordStore.js';
+import { createSettingsStore } from './lib/practice/stores/settingsStore.js';
 
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
-// dictionaryMockFill(1_000);
 
 let app;
 
 initDB()
-  .then(async () => {
+  .then(async ([dictionaryArr, practiceData]) => {
+    createWordStore(dictionaryArr);
+    createSettingsStore(practiceData);
+    
+    dictionaryMockFill(10_000);
+
     const App = (await import("./App.svelte")).default;
 
     app = new App({
