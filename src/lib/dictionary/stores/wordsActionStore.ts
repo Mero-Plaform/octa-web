@@ -1,4 +1,4 @@
-import { CustomWritableStoreWithoutInitialCallFactory } from '../../utils/CustomWritableStoreWithoutInitialCallFactory.js';
+import { CustomWritableStoreWithoutInitialCallFactory } from '../../utils/customStores/CustomWritableStoreWithoutInitialCallFactory.js';
 
 export type WordActionStoreAction = 'add' | 'edit' | 'delete';
 
