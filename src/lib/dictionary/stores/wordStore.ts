@@ -1,4 +1,5 @@
-import { type CustomWritableStore, CustomWritableStoreFactory } from '../../utils/CustomWritableStoreFactory.js';
+import type { CustomWritableStore } from '../../utils/customStores/CustomWritableStore.js';
+import { CustomWritableStoreFactory } from '../../utils/customStores/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';
 import { wordsActionStore } from './wordsActionStore.js';
 
@@ -49,8 +50,16 @@ type WordStore = CustomWritableStore<Map<string, Word>> & {
   addWord: (newWordData: NewWordData) => void;
 };
 
-export const createWordStore = (storeValue: Map<Word['id'], Word>) => {
-  wordStore = CustomWritableStoreFactory(storeValue, {
+/**
+ * creating word store from DB's dictionary 
+ */
+export const createWordStore = (dictionaryArr: Word[]) => {
+  const wordsMap = new Map<Word['id'], Word>();
+  dictionaryArr.forEach(({ id, ...properties }) => {
+    wordsMap.set(id, { id, ...properties });
+  });
+
+  wordStore = CustomWritableStoreFactory(wordsMap, {
     getById,
     removeWord,
     editWord,
