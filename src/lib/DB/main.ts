@@ -1,14 +1,24 @@
-import type { Word } from '../dictionary/interfaces/Word.js';
-import { createWordStore } from '../dictionary/stores/wordStore.js';
-import { getAllDictionaryAsArray } from './utils.js';
+import { getDictionaryDataAsArray, getPracticeData, initPracticeData } from './utils.js';
 import { initDBWordStoreActionsListener } from './wordStoreActionsListener.js';
 
+const practiceInitialValues = {
+  practiceTarget: "original",
+  practiceType: "section",
+  lastSectionWordIndex: 0,
+  sectionSize: 10,
+} as const;  
+
 export const initDB = async () => {
-  const dictionaryArr = await getAllDictionaryAsArray()
-  const wordsMap = new Map<Word['id'], Word>();
-  dictionaryArr.forEach(({ id, ...properties }) => {
-    wordsMap.set(id, { id, ...properties });
-  });
-  createWordStore(wordsMap);
+  // loading saved previously dictionary
+  const dictionaryArr = await getDictionaryDataAsArray();
+  const practiceData = await getPracticeData();
+  
   initDBWordStoreActionsListener();
+
+  if (practiceData === undefined) {
+    initPracticeData(practiceInitialValues);
+    return [dictionaryArr, practiceInitialValues!] as const;
+  }
+  
+  return [dictionaryArr, practiceData!] as const;
 };
