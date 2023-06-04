@@ -1,4 +1,4 @@
-import { wordStore } from '/src/lib/dictionary/stores/wordStore.js';
+import { wordStore } from '../dictionary/stores/wordStore.js';
 
 export const dictionaryMockFill = async (wordsCount: number) => {
   const newWord = {
