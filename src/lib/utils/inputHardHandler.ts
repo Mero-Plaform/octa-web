@@ -6,13 +6,13 @@ type CallbackParams = {
 
 export type ConstructorParams = {
   checker: (value: string) => boolean;
-  prevValue?: string;
+  prevValue: string;
   resolveCallback?: (data: CallbackParams) => void;
   rejectCallback?: (data: CallbackParams) => void;
 };
 
 export class InputHardHandler {
-  prevValue: NonNullable<ConstructorParams["prevValue"]>;
+  prevValue: ConstructorParams["prevValue"];
   checker: ConstructorParams["checker"];
   resolveCallback?: ConstructorParams["resolveCallback"];
   rejectCallback?: ConstructorParams["rejectCallback"];

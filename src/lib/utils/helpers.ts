@@ -18,7 +18,7 @@ export function* createIteratorFromArr<T = unknown>(arr: T[]) {
 
 type InputHardHandlerCreatorParams = {
   checker: ConstructorParams["checker"],
-  prevValue?: string,
+  prevValue: string,
 };
 
 export const inputHardHandlerCreator = (params: InputHardHandlerCreatorParams) => new InputHardHandler(params);
