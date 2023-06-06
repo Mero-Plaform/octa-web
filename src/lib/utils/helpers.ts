@@ -1,3 +1,5 @@
+import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
+
 export const getIconMaskStyes = (iconSrc: string) => {
   return `-webkit-mask: url(${iconSrc}) no-repeat center / contain; mask: url(${iconSrc}) no-repeat center / contain`;
 };
@@ -13,3 +15,10 @@ export function* createIteratorFromArr<T = unknown>(arr: T[]) {
     yield arr[curItemIndex];
   }
 }
+
+type InputHardHandlerCreatorParams = {
+  checker: ConstructorParams["checker"],
+  prevValue?: string,
+};
+
+export const inputHardHandlerCreator = (params: InputHardHandlerCreatorParams) => new InputHardHandler(params);
