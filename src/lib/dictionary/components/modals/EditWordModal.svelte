@@ -14,12 +14,10 @@
     variants: editableWordVariantsList,
     translations: editableWordTranslationsList,
     description: editableWordDescription,
-    learnSuccess
   } = wordStore.getById($editWordIdStore)!;
 
   const onEditWord = () => {
     wordStore.editWord($editWordIdStore, {
-      learnSuccess,
       variants: editableWordVariantsList,
       translations: editableWordTranslationsList,
       description: editableWordDescription.trim(),
