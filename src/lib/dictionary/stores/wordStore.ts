@@ -56,15 +56,18 @@ const removeWord = (wordId: string) => {
   wordsActionStore.set(['delete', wordId]);
 };
 
+const floatPracticePrecision = 2;
+
 const onUnsuccessfulPractice = (wordId: Word["id"]) => {
   const word = getById(wordId)!;
   const updatedPracticeCount = word.practiceCount + 1;
   const updatedLearnSuccess = (word.successfulPracticeCount * 100) / updatedPracticeCount;
+  const roundedLearnSuccess = Number(updatedLearnSuccess.toFixed(floatPracticePrecision));
 
   const updatedWord = {
     ...word,
     practiceCount: updatedPracticeCount,
-    learnSuccess: updatedLearnSuccess,
+    learnSuccess: roundedLearnSuccess,
   };
 
   updateWord(updatedWord);
@@ -76,12 +79,13 @@ const onSuccessfulPractice = (wordId: Word["id"]) => {
   const updatedPracticeCount = word.practiceCount + 1;
   const updatedSuccessPracticeCount = word.successfulPracticeCount + 1;
   const updatedLearnSuccess = (updatedSuccessPracticeCount * 100) / updatedPracticeCount;
+  const roundedLearnSuccess = Number(updatedLearnSuccess.toFixed(floatPracticePrecision));
 
   const updatedWord = {
     ...word,
     practiceCount: updatedPracticeCount,
     successfulPracticeCount: updatedSuccessPracticeCount,
-    learnSuccess: updatedLearnSuccess,
+    learnSuccess: roundedLearnSuccess,
   };
 
   updateWord(updatedWord);
