@@ -2,7 +2,7 @@ export type Callback<T, R = void> = (value: T) => R;
 
 export class CustomWritableStore<T>  {
   value: T;
-  subscriptions: Callback<T>[] = [];
+  protected subscriptions: Callback<T>[] = [];
 
   constructor(value: T) {
     this.value = value;
