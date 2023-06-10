@@ -14,9 +14,9 @@
   const getLearnSuccessStyles = () => {
     if (word.learnSuccess === 0) {
       return "bg-slate-300 hover:bg-slate-400";
-    } else if (word.learnSuccess < 33) {
+    } else if (word.learnSuccess < 40) {
       return "bg-orange-300 hover:bg-orange-400";
-    } else if (word.learnSuccess < 66) {
+    } else if (word.learnSuccess < 75) {
       return "bg-amber-300 hover:bg-amber-400";
     } else {
       return "bg-green-300 hover:bg-green-400";
