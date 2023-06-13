@@ -6,13 +6,13 @@
   import Dictionary from "../dictionary/components/Dictionary.svelte";  
   import Practice from "../practice/components/Practice.svelte";  
 
-  const handlers = new Map<string, null | ComponentType>([
+  const routerData = new Map<string, null | ComponentType>([
     ["/", Dictionary],
     ["/link1", Practice],
     ["/link2", Link2Handler],
   ]);
 
-  $: routeHandler = handlers.get($routerStore);
+  $: routeComponent = routerData.get($routerStore);
 </script>
 
-<svelte:component this={routeHandler} />
+<svelte:component this={routeComponent} />
