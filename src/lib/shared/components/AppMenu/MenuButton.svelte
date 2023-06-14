@@ -1,6 +1,7 @@
 <script lang="ts">
   import { drawerStore, type DrawerSettings } from "@skeletonlabs/skeleton";
   import { getIconMaskStyes } from '../../../utils/helpers.js';
+  import octopusWhiteImageUrl from "/src/assets/icons/octopus-white.svg";
   
   const drawerSettings: DrawerSettings = {
     id: "main",
@@ -19,6 +20,6 @@
 >
   <div
     class="h-10 w-10 p-2 bg-cyan-500"
-    style={getIconMaskStyes("src/assets/icons/octopus-white.svg")}
+    style={getIconMaskStyes(octopusWhiteImageUrl)}
   />
 </button>
