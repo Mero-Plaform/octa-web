@@ -1,6 +1,7 @@
 <script lang='ts'>
   import { InputChip } from "@skeletonlabs/skeleton";
-    import { getIconMaskStyes } from '../../helpers.js';
+  import { getIconMaskStyes } from '../../helpers.js';
+  import plusImageUrl from "/src/assets/icons/plus.svg";
 
   export let placeholder = "";
   export let rounded = "";
@@ -52,6 +53,6 @@
     class="{buttonBaseStyles} {buttonError && buttonErrorStyles}"
     on:click={ onAddButtonClick }
   >
-    <div class="h-4 w-4 m-auto {buttonImageBaseStyles} {buttonError && buttonImageErrorStyles}" style={getIconMaskStyes("/src/assets/icons/plus.svg")}></div>
+    <div class="h-4 w-4 m-auto {buttonImageBaseStyles} {buttonError && buttonImageErrorStyles}" style={getIconMaskStyes(plusImageUrl)}></div>
   </button>
 </div>
