@@ -8,6 +8,8 @@
   import { removeWordIdStore } from '../stores/removeWordIdStore.js';
   import { editWordIdStore } from '../stores/editWordIdStore.js';
   import type { Word } from '../interfaces/Word.js';
+  import editImageUrl from "/src/assets/icons/edit.svg";
+  import deleteImageUrl from "/src/assets/icons/delete.svg";
 
   export let word: Word;
 
@@ -96,7 +98,7 @@
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-purple-500"
-        style={getIconMaskStyes("/src/assets/icons/edit.svg")}
+        style={getIconMaskStyes(editImageUrl)}
       />
     </button>
     <button
@@ -106,7 +108,7 @@
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-red-500"
-        style={getIconMaskStyes("/src/assets/icons/delete.svg")}
+        style={getIconMaskStyes(deleteImageUrl)}
       />
     </button>
   </div>

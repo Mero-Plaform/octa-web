@@ -2,6 +2,7 @@
   import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
   import { onDestroy, onMount } from "svelte";
   import { getIconMaskStyes } from "../../utils/helpers.js";
+  import plusImageUrl from "/src/assets/icons/plus.svg";
 
   const modal: ModalSettings = {
     type: "component",
@@ -54,6 +55,6 @@
 >
   <div
     class="h-full w-full bg-white"
-    style={getIconMaskStyes("/src/assets/icons/plus.svg")}
+    style={getIconMaskStyes(plusImageUrl)}
   />
 </button>
