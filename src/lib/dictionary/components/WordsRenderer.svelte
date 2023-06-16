@@ -62,10 +62,10 @@
 {:else}
   <div class="h-full flex flex-col items-center justify-center grow">
     <div
-      class="text-center text-slate-300 text-4xl cursor-default tracking-[2rem] translate-x-3 -translate-y-7"
+      class="text-center text-slate-300 text-4xl cursor-default tracking-[2rem] translate-x-3 -translate-y-7 leading-loose max-w-90wv"
     >
       {#if $searchWordsTextStore}
-        NO <br class="hidden max-sm:block" /><br class="hidden max-sm:block" /> RESULTS
+        NO RESULTS
       {:else}
         EMPTY
       {/if}
