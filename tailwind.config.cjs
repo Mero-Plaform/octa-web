@@ -14,14 +14,17 @@ const config = {
         "screen/2": "50vh",
       },
       maxWidth: {
-        "90%": "90%"
+        "90%": "90%",
+        "90wv": "90vw"
       },
       fontSize: {
         "xss": "0.5rem"
-      }
+      },
+      screens: {
+        'm-sm': { 'max': '500px' },
+      },
     },
   },
-
   plugins: [
     ...require('@skeletonlabs/skeleton/tailwind/skeleton.cjs')()
   ],
