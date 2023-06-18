@@ -4,7 +4,7 @@ import { initDBWordStoreActionsListener } from './wordStoreActionsListener.js';
 const practiceInitialValues = {
   practiceTarget: "original",
   practiceType: "section",
-  lastSectionWordIndex: 0,
+  sectionLastWordId: null,
   sectionSize: 10,
 } as const;  
 
