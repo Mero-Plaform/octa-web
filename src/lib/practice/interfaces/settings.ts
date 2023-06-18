@@ -1,10 +1,12 @@
+import type { Word } from '../../dictionary/interfaces/Word.js';
+
 export type PracticeTarget = "original" | "translation";
 export type PracticeType = "random" | "worst" | "section";
 export type SectionSize = number;
-export type LastSectionWordIndex = number;
+export type SectionLastWordId = Word["id"] | null;
 
 export type SettingsStore = {
-  lastSectionWordIndex: LastSectionWordIndex;
+  sectionLastWordId: SectionLastWordId;
   sectionSize: SectionSize;
   practiceTarget: PracticeTarget;
   practiceType: PracticeType;

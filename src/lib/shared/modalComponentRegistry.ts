@@ -1,7 +1,8 @@
-import AddWordModal from '/src/lib/dictionary/components/modals/AddWordModal.svelte';
-import EditWordModal from '/src/lib/dictionary/components/modals/EditWordModal.svelte';
-import DeleteWordModal from '/src/lib/dictionary/components/modals/DeleteWordModal.svelte';
 import { type ModalComponent } from "@skeletonlabs/skeleton";
+import AddWordModal from '../dictionary/components/modals/AddWordModal.svelte';
+import DeleteWordModal from '../dictionary/components/modals/DeleteWordModal.svelte';
+import EditWordModal from '../dictionary/components/modals/EditWordModal.svelte';
+import Loading from './Loading.svelte';
 
 export const modalComponentRegistry: Record<string, ModalComponent> = {
   addWord: {
