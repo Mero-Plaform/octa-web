@@ -4,20 +4,30 @@
 import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { storePopup } from '@skeletonlabs/skeleton';
 import '@skeletonlabs/skeleton/styles/skeleton.css';
-import { initDB } from './lib/DB/main.js';
-import { createWordStore } from './lib/dictionary/stores/wordStore.js';
-import { createSettingsStore } from './lib/practice/stores/settingsStore.js';
-import { dictionaryMockFill } from './lib/utils/dev/mockData/dictionaryMockFill.js';
+import { getDBData } from './lib/DB/main.js';
+import { initDBPracticeSettingsStoreListener } from './lib/DB/practiceSettingsStoreListener.js';
+import { initDBStatisticStoreListener } from './lib/DB/statisticStoreListener.js';
+import { initDBWordStoreActionsListener } from './lib/DB/wordStoreActionsListener.js';
+import { createWordStore } from './lib/pages/dictionary/stores/wordStore.js';
+import { createSettingsStore } from './lib/pages/practice/stores/settingsStore.js';
+import { createStatisticStore } from './lib/pages/statistic/stores/statisticStore/statisticStore.js';
+import { initStatisticStoreListeners } from './lib/pages/statistic/stores/statisticStore/statisticStoreUtils.js';
 import "/src/styles/main";
 
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
 let app;
 
-initDB()
-  .then(async ([dictionaryArr, practiceData]) => {
+getDBData()
+  .then(async ([dictionaryArr, practiceData, statisticArr]) => {
     createWordStore(dictionaryArr);
     createSettingsStore(practiceData);
+    createStatisticStore(statisticArr);
+    initStatisticStoreListeners();
+
+    initDBWordStoreActionsListener();
+    initDBPracticeSettingsStoreListener();
+    initDBStatisticStoreListener();
 
     // dictionaryMockFill(10_000);
 

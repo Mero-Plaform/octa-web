@@ -1,4 +1,4 @@
-import { CustomStoreFactory } from '../utils/components/customInputChip/CustomStoreFactory.js';
+import { CustomStoreFactory } from '../utils/customStores/CustomWritableStoreFactory.js';
 
 // methods 'open' & 'close' can use 'loadingScreenStore'
 // coz they will be used only after store created('loadingScreenStore' initialized)

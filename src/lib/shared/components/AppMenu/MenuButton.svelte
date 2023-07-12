@@ -5,12 +5,12 @@
   
   const drawerSettings: DrawerSettings = {
     id: "main",
-    bgDrawer: "bg-cyan-900 text-white ",
-    bgBackdrop: "bg-yellow-200 !z-30",
-    width: "w-[250px] md:w-[250px]",
+    bgDrawer: "text-white",
+    bgBackdrop: "bg-teal-200 bg-opacity-50 !z-30",
+    width: "w-[150px] md:w-[250px]",
     height: "h-max",
     padding: "p-4",
-    rounded: "rounded-xl",
+    rounded: "rounded-md"
   };
 </script>
 

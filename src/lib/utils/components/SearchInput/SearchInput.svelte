@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getIconMaskStyes } from '/src/lib/utils/helpers.js';
+  import { getIconMaskStyes } from '../../helpers.js';
 
   export let disabled = false;
   export let value = "";
@@ -8,7 +8,7 @@
   export let inputStyles = "";
   export let iconSrc = "";
   export let iconStyles = "";
-  export let buttonStyles = ""
+  export let buttonStyles = "";
   export let buttonClickHandler: (event: MouseEvent) => void | undefined = undefined!;
   export let inputElem;
 </script>

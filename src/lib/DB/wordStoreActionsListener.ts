@@ -1,7 +1,7 @@
-import { wordsActionStore, type WordActionStoreAction, type WordActionStoreData } from '../dictionary/stores/wordsActionStore.js';
+import { wordActionStore, type WordActionStoreActions, type WordActionStoreData } from '../pages/dictionary/stores/wordActionStore.js';
 import { onAddWord, onDeleteWord, onEditWord } from './utils.js';
 
-type WordStoreActionsHandlers = Record<WordActionStoreAction, Function>;
+type WordStoreActionsHandlers = Record<WordActionStoreActions, Function>;
 
 const handlers: WordStoreActionsHandlers = {
   add: onAddWord,
@@ -14,5 +14,5 @@ const wordStoreActionsListener = ([action, wordId]: WordActionStoreData) => {
 };
 
 export const initDBWordStoreActionsListener = () => {
-  wordsActionStore.subscribe(wordStoreActionsListener);
+  wordActionStore.subscribe(wordStoreActionsListener);
 };

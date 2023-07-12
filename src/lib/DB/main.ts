@@ -1,24 +1,19 @@
-import { getDictionaryDataAsArray, getPracticeData, initPracticeData } from './utils.js';
-import { initDBWordStoreActionsListener } from './wordStoreActionsListener.js';
+import { getDictionaryDataAsArray, getPracticeData, getStatisticDataAsArray, initPracticeData } from './utils.js';
 
 const practiceInitialValues = {
   practiceTarget: "original",
   practiceType: "section",
   sectionLastWordId: null,
   sectionSize: 10,
-} as const;  
+} as const;
 
-export const initDB = async () => {
-  // loading saved previously dictionary
-  const dictionaryArr = await getDictionaryDataAsArray();
-  const practiceData = await getPracticeData();
-  
-  initDBWordStoreActionsListener();
+export const getDBData = async () => {
+  let [dictionaryArr, practiceData, statisticArr] = await Promise.all([getDictionaryDataAsArray(), getPracticeData(), getStatisticDataAsArray()]);
 
   if (practiceData === undefined) {
+    practiceData = practiceInitialValues;
     initPracticeData(practiceInitialValues);
-    return [dictionaryArr, practiceInitialValues!] as const;
   }
-  
-  return [dictionaryArr, practiceData!] as const;
+
+  return [dictionaryArr, practiceData!, statisticArr] as const;
 };

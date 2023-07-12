@@ -7,7 +7,7 @@
   import MenuInner from "./MenuInner.svelte";
 </script>
 
-<Drawer >
+<Drawer>
   <MenuInner on:click={() => drawerStore.close()} />
 </Drawer>
 

@@ -14,7 +14,6 @@ const config = {
         "screen/2": "50vh",
       },
       maxWidth: {
-        "90%": "90%",
         "90wv": "90vw"
       },
       fontSize: {
@@ -23,6 +22,9 @@ const config = {
       screens: {
         'm-sm': { 'max': '500px' },
       },
+      spacing: {
+        "90%": "90%",
+      }
     },
   },
   plugins: [
