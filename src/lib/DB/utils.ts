@@ -1,7 +1,11 @@
 import type { Word } from '../pages/dictionary/interfaces/Word.js';
 import type { SettingsStore } from '../pages/practice/interfaces/settings.js';
-import type { StatisticStoreValues, Year } from '../pages/statistic/interfaces/StatisticStore.js';
+import type { YearData } from '../pages/statistic/interfaces/StatisticStore.js';
 import { appDB } from './AppDB.js';
+
+/* -------------------------------------------------------------------------- */
+/*                                 dictionary                                 */
+/* -------------------------------------------------------------------------- */
 
 export const onAddWord = (newWord: Word) => {
   appDB.dictionary.add({
@@ -21,6 +25,10 @@ export const getDictionaryDataAsArray = () => {
   return appDB.dictionary.toArray();
 };
 
+/* -------------------------------------------------------------------------- */
+/*                                  practice                                  */
+/* -------------------------------------------------------------------------- */
+
 export const getPracticeData = () => {
   return appDB.practice.get({ id: 1 });
 };
@@ -39,10 +47,20 @@ export const updatePracticeData = (practiceData: SettingsStore) => {
   appDB.practice.update(practiceDataKey, practiceData);
 };
 
-export const updateStatistic = (yearData: StatisticStoreValues) => {
+/* -------------------------------------------------------------------------- */
+/*                                  statistic                                 */
+/* -------------------------------------------------------------------------- */
+
+export const updateStatistic = (yearData: YearData) => {
   appDB.statistic.put(yearData);
 };
 
 export const getStatisticDataAsArray = () => {
   return appDB.statistic.toArray();
+};
+
+export const initStatisticData = (statisticInitialValues: YearData) => {
+  appDB.statistic.add({
+    ...statisticInitialValues
+  });
 };

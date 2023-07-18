@@ -1,17 +1,8 @@
+import { MONTHS } from '../../../utils/helpers.js';
+
 export type Year = string;
 
-export type Month = "January"
-  | "February"
-  | "March"
-  | "April"
-  | "May"
-  | "June"
-  | "July"
-  | "August"
-  | "September"
-  | "October"
-  | "November"
-  | "December";
+export type Month = typeof MONTHS[number];
 
 export type MonthData = {
   totalWordsAmount: number;
@@ -25,6 +16,6 @@ export type MonthData = {
   unsuccessfulPracticeCount: number;
 };
 
-export type StatisticStoreValues = Record<Month, MonthData> & { year: Year; };
+export type YearData = Record<Month, MonthData> & { year: Year; };
 
-export type StatisticStore = Map<Year, StatisticStoreValues>;
+export type StatisticStore = Map<Year, YearData>;

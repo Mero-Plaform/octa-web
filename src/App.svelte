@@ -8,7 +8,7 @@
   import routerStore from './lib/router/routerStore.js';
 
   // initial page
-  $routerStore = '/dictionary';
+  $routerStore = '/statistic';
 </script>
 
 <Menu/>

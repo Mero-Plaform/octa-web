@@ -1,11 +1,6 @@
-import { getDictionaryDataAsArray, getPracticeData, getStatisticDataAsArray, initPracticeData } from './utils.js';
-
-const practiceInitialValues = {
-  practiceTarget: "original",
-  practiceType: "section",
-  sectionLastWordId: null,
-  sectionSize: 10,
-} as const;
+import { practiceInitialValues } from './initialData/practiceInitialValues.js';
+import { statisticInitialValues } from './initialData/statisticInitialValues.js';
+import { getDictionaryDataAsArray, getPracticeData, getStatisticDataAsArray, initPracticeData, initStatisticData } from './utils.js';
 
 export const getDBData = async () => {
   let [dictionaryArr, practiceData, statisticArr] = await Promise.all([getDictionaryDataAsArray(), getPracticeData(), getStatisticDataAsArray()]);
@@ -13,6 +8,11 @@ export const getDBData = async () => {
   if (practiceData === undefined) {
     practiceData = practiceInitialValues;
     initPracticeData(practiceInitialValues);
+  }
+
+  if (statisticArr.length === 0) {
+    statisticArr = statisticInitialValues();
+    initStatisticData(statisticArr[0]);
   }
 
   return [dictionaryArr, practiceData!, statisticArr] as const;

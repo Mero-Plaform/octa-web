@@ -1,9 +1,10 @@
+import { MONTHS } from '../../../../utils/helpers.js';
 import { wordActionStore, type WordActionStoreActions, type WordActionStoreData } from '../../../dictionary/stores/wordActionStore.js';
 import { wordStore } from '../../../dictionary/stores/wordStore.js';
 import type { PracticeTarget, SettingsStore } from '../../../practice/interfaces/settings.js';
 import { practiceActionStore, type PracticeActionStoreActions } from '../../../practice/stores/practiceActionStore.js';
 import { settingsStore } from '../../../practice/stores/settingsStore.js';
-import type { Month, StatisticStore, StatisticStoreValues, Year } from '../../interfaces/StatisticStore.js';
+import type { Month, StatisticStore, Year, YearData } from '../../interfaces/StatisticStore.js';
 import { statisticUpdateStore } from '../statisticUpdateStore.js';
 import { MonthData } from './MonthData.js';
 import { statisticStore } from './statisticStore.js';
@@ -22,23 +23,8 @@ const settingsStoreListener = ({ practiceTarget: practiceTargetValue }: Settings
 /*                                   helpers                                  */
 /* -------------------------------------------------------------------------- */
 
-const MONTHS = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-] as const;
-
 const createInitialYearData = (curYear: Year) => {
-  const yearData = {} as StatisticStoreValues;
+  const yearData = {} as YearData;
   MONTHS.forEach((month) => {
     yearData[month] = new MonthData();
   });
@@ -131,6 +117,9 @@ const onPracticeProgress = (type: PracticeActionStoreActions) => {
   });
 };
 
+/**
+ * updating statisticUpdateStore to notify AppDB
+ */
 export const initStatisticStoreListeners = () => {
   settingsStore.subscribe(settingsStoreListener);
   wordActionStore.subscribe(wordActionStoreListener);

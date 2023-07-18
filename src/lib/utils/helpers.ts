@@ -41,3 +41,18 @@ export const getLearnSuccessActiveStyles = (learnSuccess: number) => {
     return "bg-green-300 hover:bg-green-400 focus:bg-green-400";
   }
 };
+
+export const MONTHS = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+] as const;
