@@ -2,11 +2,11 @@
   import { RadioGroup, RadioItem } from "@skeletonlabs/skeleton";
   import { fade } from "svelte/transition";
   import type { Word } from "../../dictionary/interfaces/Word.js";
-  import type { ClickHandler } from "../../shared/interfaces/basic.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import TaskProgress from "./TaskProgress.svelte";
   import WordData from "./WordData.svelte";
   import WordDataViewToggle from "./WordDataViewToggle.svelte";
+  import type { ClickHandler } from '../../../shared/interfaces/basic.js';
 
   export let variants: Word["variants"];
   export let translations: Word["translations"];

@@ -1,19 +1,23 @@
 <script lang="ts">
-  import {
-    Modal, Toast,
-  } from "@skeletonlabs/skeleton";
+  import { Modal, Toast } from "@skeletonlabs/skeleton";
+  import Router from "./lib/router/Router.svelte";
+  import routerStore from "./lib/router/routerStore.js";
   import Menu from "./lib/shared/components/AppMenu/Menu.svelte";
+  import Drawer from "./lib/shared/components/Drawer/Drawer.svelte";
+  import Popups from "./lib/shared/components/Popups.svelte";
   import { modalComponentRegistry } from "./lib/shared/modalComponentRegistry.js";
-  import Router from './lib/router/Router.svelte';
-  import routerStore from './lib/router/routerStore.js';
 
   // initial page
-  $routerStore = '/statistic';
+  $routerStore = "/settings";
 </script>
 
-<Menu/>
+<Popups />
 
-<Modal components={modalComponentRegistry}/>
+<Drawer />
+
+<Menu />
+
+<Modal components={modalComponentRegistry} />
 
 <Router />
 

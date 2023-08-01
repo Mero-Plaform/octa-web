@@ -1,11 +1,13 @@
+import { utilsWithCatch, type GetDictionaryDataAsArray } from '../../../DB/utils.js';
 import type { CustomWritableStore } from '../../../utils/customStores/CustomWritableStore.js';
 import { CustomWritableStoreFactory } from '../../../utils/customStores/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';
 import { wordActionStore } from './wordActionStore.js';
 
-/**
- * resetting word practice data
- */
+/* -------------------------------------------------------------------------- */
+/*                                 store utils                                */
+/* -------------------------------------------------------------------------- */
+
 const resetWordPractice = (word: Word) => {
   const practiceNulledWord = {
     ...word,
@@ -107,34 +109,55 @@ const onSuccessfulPractice = (wordId: Word["id"]) => {
   wordActionStore.set(['edit', updatedWord]);
 };
 
+const clear = () => {
+  wordStore.value.clear();
+};
+
 type WordStore = CustomWritableStore<Map<string, Word>> & {
-  getById: (wordId: string) => Word | undefined;
-  removeWord: (wordId: string) => void;
-  resetWordPractice: (word: Word) => void;
-  editWord: (word: Word, editedWordData: EditWordData) => void;
-  addWord: (newWordData: NewWordData) => void;
-  onUnsuccessfulPractice: (wordId: Word["id"]) => void;
-  onSuccessfulPractice: (wordId: Word["id"]) => void;
+  getById: typeof getById;
+  removeWord: typeof removeWord;
+  resetWordPractice: typeof resetWordPractice;
+  editWord: typeof editWord;
+  addWord: typeof addWord;
+  onUnsuccessfulPractice: typeof onUnsuccessfulPractice;
+  onSuccessfulPractice: typeof onSuccessfulPractice;
+  clear: typeof clear;
+};
+
+export const reInitWordStoreFromDB = async () => {
+  const dictionaryArr = await (<GetDictionaryDataAsArray>utilsWithCatch.get("getDictionaryDataAsArray")!)();
+  wordStore.value = createWordStoreValue(dictionaryArr);
+};
+
+const createWordStoreValue = (dictionaryArr: Word[]) => {
+  const wordsMap = new Map<Word['id'], Word>();
+  dictionaryArr.forEach(({ id, ...properties }) => {
+    wordsMap.set(id, { id, ...properties });
+  });
+
+  return wordsMap;
 };
 
 /**
  * creating word store from DB's dictionary 
  */
 export const createWordStore = (dictionaryArr: Word[]) => {
-  const wordsMap = new Map<Word['id'], Word>();
-  dictionaryArr.forEach(({ id, ...properties }) => {
-    wordsMap.set(id, { id, ...properties });
-  });
-
-  wordStore = CustomWritableStoreFactory(wordsMap, {
-    getById,
-    removeWord,
-    resetWordPractice,
-    editWord,
-    addWord,
-    onUnsuccessfulPractice,
-    onSuccessfulPractice
-  });
+  wordStore = CustomWritableStoreFactory(
+    createWordStoreValue(dictionaryArr),
+    {
+      getById,
+      removeWord,
+      resetWordPractice,
+      editWord,
+      addWord,
+      onUnsuccessfulPractice,
+      onSuccessfulPractice,
+      clear
+    });
 };
+
+/* -------------------------------------------------------------------------- */
+/*                                    store                                   */
+/* -------------------------------------------------------------------------- */
 
 export let wordStore: WordStore;

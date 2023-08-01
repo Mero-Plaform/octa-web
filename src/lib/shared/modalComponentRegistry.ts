@@ -3,6 +3,7 @@ import AddWordModal from '../pages/dictionary/components/modals/AddWordModal.sve
 import DeleteWordModal from '../pages/dictionary/components/modals/DeleteWordModal.svelte';
 import EditWordModal from '../pages/dictionary/components/modals/EditWordModal.svelte';
 import WordPracticeModal from '../pages/dictionary/components/modals/WordPracticeModal.svelte';
+import ConfirmModal from './components/ConfirmModal/ConfirmModal.svelte';
 
 export const modalComponentRegistry: Record<string, ModalComponent> = {
   addWord: {
@@ -20,4 +21,9 @@ export const modalComponentRegistry: Record<string, ModalComponent> = {
   wordPractice: {
     ref: WordPracticeModal,
   },
+
+  confirm: {
+    ref: ConfirmModal,
+    slot: "<span> Empty </span>"
+  }
 };

@@ -3,6 +3,7 @@
   import { createEventDispatcher } from "svelte";
   import { fade } from "svelte/transition";
   import { inputHardHandlerCreator } from "../../../utils/helpers.js";
+  import { practiceProgressStore } from "../stores/practiceProgressStore.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import infinityWhiteImageUrl from "/src/assets/icons/infinity-white.svg";
 
@@ -14,7 +15,6 @@
         ...settings,
         sectionSize: Number(data.curValue),
       }));
-      practiceProgressStore.set(["updateSettings", $settingsStore]);
     },
   }) as unknown as (
     event: Event & { currentTarget: EventTarget & HTMLInputElement }
@@ -28,7 +28,6 @@
 
   const onSectionSizeChange = () => {
     $settingsStore.practiceType = "section";
-    practiceProgressStore.set(["updateSettings", $settingsStore]);
   };
 </script>
 
@@ -41,7 +40,7 @@
           name="practiceTarget"
           rounded="rounded-md"
           value="original"
-          class="border-b-2 bg-orange-400 bg-opacity-20 border-orange-400 outline-none text-orange-500 transition-all hover:text-white hover:bg-orange-400 focus:bg-orange-400 focus:text-white"
+          class="select-none border-b-2 bg-orange-400 bg-opacity-20 border-orange-400 outline-none text-orange-500 transition-all hover:text-white hover:bg-orange-400 focus:bg-orange-400 focus:text-white"
           fill="bg-orange-500 !text-white !bg-opacity-100"
         >
           original
@@ -51,7 +50,7 @@
           name="practiceTarget"
           rounded="rounded-md"
           value="translation"
-          class="border-b-2 bg-green-400 bg-opacity-20 border-green-400 outline-none text-green-500 transition-all hover:text-white hover:bg-green-400 focus:bg-green-400 focus:text-white"
+          class="select-none border-b-2 bg-green-400 bg-opacity-20 border-green-400 outline-none text-green-500 transition-all hover:text-white hover:bg-green-400 focus:bg-green-400 focus:text-white"
           fill="bg-green-500 !text-white !bg-opacity-100"
         >
           translation
@@ -66,7 +65,7 @@
           name="practiceType"
           rounded="rounded-md"
           value="random"
-          class="border-b-2 py-2 bg-purple-400 bg-opacity-20 border-purple-400 outline-none text-purple-500 transition-all hover:text-white hover:bg-purple-400 focus:bg-purple-400 focus:text-white"
+          class="select-none border-b-2 py-2 bg-purple-400 bg-opacity-20 border-purple-400 outline-none text-purple-500 transition-all hover:text-white hover:bg-purple-400 focus:bg-purple-400 focus:text-white"
           fill="bg-purple-500 !text-white !bg-opacity-100"
         >
           random
@@ -81,7 +80,7 @@
           name="practiceType"
           rounded="rounded-md"
           value="worst"
-          class="border-b-2 py-2 bg-blue-500 bg-opacity-20 border-blue-400 outline-none text-blue-500 transition-all hover:text-white hover:bg-blue-400 focus:bg-blue-400 focus:text-white"
+          class="select-none border-b-2 py-2 bg-blue-500 bg-opacity-20 border-blue-400 outline-none text-blue-500 transition-all hover:text-white hover:bg-blue-400 focus:bg-blue-400 focus:text-white"
           fill="bg-blue-500 !text-white !bg-opacity-100"
         >
           worst
@@ -96,7 +95,7 @@
           name="practiceType"
           rounded="rounded-md"
           value="section"
-          class="border-b-2 bg-pink-500 bg-opacity-20 border-pink-400 outline-none text-pink-500 transition-all hover:text-white hover:bg-pink-400 focus:bg-pink-400 focus:text-white"
+          class="select-none border-b-2 bg-pink-500 bg-opacity-20 border-pink-400 outline-none text-pink-500 transition-all hover:text-white hover:bg-pink-400 focus:bg-pink-400 focus:text-white"
           fill="bg-pink-500 !text-white !bg-opacity-100"
         >
           section

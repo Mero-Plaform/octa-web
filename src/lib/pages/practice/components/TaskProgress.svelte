@@ -1,7 +1,7 @@
 <script lang="ts">
   import {
     practiceProgressStore,
-    type PracticeDataStore,
+    type PracticeProgressData,
   } from "../stores/practiceProgressStore.js";
 
   export let styleClasses = "";
@@ -12,7 +12,7 @@
   const updateSuccessCountStyles = ({
     totalCount: totalCountStoreValue,
     successCount: successCountStoreValue,
-  }: PracticeDataStore) => {
+  }: PracticeProgressData) => {
     totalCount = totalCountStoreValue;
     successCount = successCountStoreValue;
 

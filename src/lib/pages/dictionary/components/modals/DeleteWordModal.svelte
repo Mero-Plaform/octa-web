@@ -1,6 +1,5 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { onMount } from "svelte";
   import { removeWordStore } from "../../stores/removeWordStore.js";
   import { wordStore } from "../../stores/wordStore.js";
 
@@ -12,16 +11,10 @@
     wordStore.removeWord($removeWordStore!.id);
     modalStore.close();
   };
-
-  // fix auto-focus of "delete" btn
-  onMount(() => {
-    // @ts-ignore
-    document.activeElement.blur();
-  });
 </script>
 
 <div class="gap-5 max-w-90% flex flex-col text-center">
-  <div class="bg-red-400 rounded-md p-2 text-white cursor-default">
+  <div class="select-none bg-red-400 rounded-md p-2 text-white cursor-default">
     Delete word
   </div>
   <div class="p-2 rounded-md border-red-300 border-2">

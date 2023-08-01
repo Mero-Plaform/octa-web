@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onDestroy } from "svelte";
   import { flip } from "svelte/animate";
-  import { quintOut } from "svelte/easing";
-  import { crossfade, fade } from "svelte/transition";
+  import { fade } from "svelte/transition";
   import StateText from "../../../shared/components/StateText.svelte";
   import type { Word } from "../interfaces/Word.js";
   import { searchWordsTextStore } from "../stores/searchWordsTextStore.js";
@@ -31,35 +30,13 @@
     page.offset * page.limit + page.limit
   );
 
-  const [send, receive] = crossfade({
-    duration: (d) => Math.sqrt(d * 200),
-
-    fallback(node, params) {
-      const style = getComputedStyle(node);
-      const transform = style.transform === "none" ? "" : style.transform;
-
-      return {
-        duration: 200,
-        easing: quintOut,
-        css: (t) => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`,
-      };
-    },
-  });
-
   onDestroy(() => {
     unsubscribeUpdatePaginatorPageSize();
   });
 </script>
 
 {#each paginatedSource as word (word.id)}
-  <div
-    animate:flip={{ duration: 300 }}
-    in:receive={{ key: word.id }}
-    out:send={{ key: word.id }}
-  >
+  <div animate:flip={{ duration: 300 }}>
     <WordCard {word} />
   </div>
 {:else}

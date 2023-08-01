@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export type RouterStoreEnum = 'dictionary' | 'statistic' | 'practice';
+export type RouterStoreEnum = 'dictionary' | 'statistic' | 'practice' | 'settings';
 
 export type RouterStoreValue = `/${RouterStoreEnum}`;
 

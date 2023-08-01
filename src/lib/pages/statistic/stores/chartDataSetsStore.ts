@@ -1,6 +1,6 @@
 import { derived } from 'svelte/store';
-import type { ChartData } from '../components/statistic/ChartData.js';
-import { filterByData, filterByDate } from '../components/statistic/statisticUtils.js';
+import type { ChartData } from '../components/chart/ChartData.js';
+import { filterByData, filterByDate } from '../components/chart/statisticUtils.js';
 import type { YearData } from '../interfaces/StatisticStore.js';
 import { dataSelectStore } from './dataSelectStore.js';
 import { dateSelectStore } from './dateSelectStore.js';

@@ -1,5 +1,5 @@
-import type { Word } from '../../../dictionary/interfaces/Word.js';
-import { wordStore } from '../../../dictionary/stores/wordStore.js';
+import type { Word } from '../../../pages/dictionary/interfaces/Word.js';
+import { wordStore } from '../../../pages/dictionary/stores/wordStore.js';
 
 export const dictionaryMockFill = async (wordsCount: number) => {
   for (let currentWordIndex = 0; currentWordIndex < wordsCount; currentWordIndex += 1) {
@@ -13,8 +13,6 @@ export const dictionaryMockFill = async (wordsCount: number) => {
       description: `test description ${currentWordIndex}`,
     };
 
-    wordStore.update((wordsMap) => {
-      return wordsMap.set(newWord.id, { ...newWord });
-    });
+    wordStore.addWord(newWord);
   }
 };

@@ -4,7 +4,7 @@
   import octopusWhiteImageUrl from "/src/assets/icons/octopus-white.svg";
   
   const drawerSettings: DrawerSettings = {
-    id: "main",
+    id: "mainMenu",
     bgDrawer: "text-white",
     bgBackdrop: "bg-teal-200 bg-opacity-50 !z-30",
     width: "w-[150px] md:w-[250px]",

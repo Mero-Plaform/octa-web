@@ -4,6 +4,7 @@
   import { searchWordsTextStore } from "../stores/searchWordsTextStore.js";
   import { wordStore } from "../stores/wordStore.js";
   import clearImageUrl from "/src/assets/icons/clear.svg";
+  import { createDebounce } from '../../../utils/helpers.js';
 
   let inputElem: HTMLInputElement;
 
@@ -19,6 +20,12 @@
     $searchWordsTextStore = "";
   };
 
+  const onInputInput = () => {
+    $searchWordsTextStore = inputElem.value;
+  };
+
+  const onInputDebounce = createDebounce(onInputInput, 1000);
+
   const onInputFocus = () => {
     document.addEventListener("keydown", onKeydown);
   };
@@ -28,11 +35,13 @@
   };
 
   const addInputListener = () => {
+    inputElem.addEventListener("input", onInputDebounce);
     inputElem.addEventListener("focus", onInputFocus);
     inputElem.addEventListener("blur", onInputBlur);
   };
 
   const removeInputListener = () => {
+    inputElem.removeEventListener("focus", onInputDebounce);
     inputElem.removeEventListener("focus", onInputFocus);
     inputElem.removeEventListener("blur", onInputBlur);
   };
@@ -54,7 +63,6 @@
 <SearchInput
   bind:disabled={disableSearchOnEmptyDictionary}
   bind:inputElem
-  bind:value={$searchWordsTextStore}
   wrapStyles="max-w-md w-1/2 relative group"
   inputStyles="text-cyan-900 rounded-md p-2 w-full border-b-2 border-cyan-400 bg-white bg-opacity-50 group-hover:bg-opacity-100 focus:bg-opacity-100 selection:bg-cyan-500 selection:text-white outline-none pr-10 transition-all placeholder:text-cyan-700/70 disabled:bg-slate-400 disabled:bg-opacity-50 disabled:cursor-not-allowed"
   buttonStyles="rounded-md absolute top-2 right-2 outline-none"

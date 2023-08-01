@@ -2,7 +2,10 @@ import type { YearData } from '../../pages/statistic/interfaces/StatisticStore.j
 import { MonthData } from '../../pages/statistic/stores/statisticStore/MonthData.js';
 import { MONTHS } from '../../utils/helpers.js';
 
-export const statisticInitialValues = () => {
+/**
+ * returns new empty statistics for the current year
+ */
+export const getStatisticInitialValues = () => {
   const currentYear = String((new Date()).getFullYear());
   const yearData = {} as YearData;
   MONTHS.forEach((monthName) => {

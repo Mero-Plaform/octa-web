@@ -66,9 +66,9 @@
       {/each}
     </div>
     {#if word.description}
-      <div class="w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all">
+      <div class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all">
         <div
-          class="max-h-24 overflow-auto bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"
+          class="bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"
         >
           {word.description}
         </div>
