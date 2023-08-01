@@ -1,12 +1,12 @@
 <script lang="ts">
   import { RadioGroup, RadioItem } from "@skeletonlabs/skeleton";
   import { fade } from "svelte/transition";
+  import type { ClickHandler } from "../../../shared/interfaces/basic.js";
   import type { Word } from "../../dictionary/interfaces/Word.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import TaskProgress from "./TaskProgress.svelte";
   import WordData from "./WordData.svelte";
   import WordDataViewToggle from "./WordDataViewToggle.svelte";
-  import type { ClickHandler } from '../../../shared/interfaces/basic.js';
 
   export let variants: Word["variants"];
   export let translations: Word["translations"];
@@ -60,7 +60,7 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400 outline-none text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
         fill="bg-slate-500 !text-white"
         value={true}
       >
@@ -70,7 +70,7 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400 outline-none text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
         fill="bg-slate-500 !text-white"
         value={false}
       >
@@ -82,14 +82,14 @@
   <div>
     <button
       disabled={selectedTaskResult === null}
-      class="btn mr-2 text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400 outline-none"
+      class="btn mr-2 text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
       on:click={onNext}
       on:click={resetShowPracticeTarget}
     >
       next
     </button>
     <button
-      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400 outline-none"
+      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
       on:click|once={onSettings}
     >
       stop

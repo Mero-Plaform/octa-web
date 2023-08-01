@@ -40,13 +40,13 @@
   {/if}
   <div class="flex gap-2">
     <button
-      class="transition-all active:scale-90 p-2 grow bg-{color}-400 hover:bg-{color}-500 focus:bg-{color}-500 rounded-md outline-none"
+      class="transition-all active:scale-90 p-2 grow bg-{color}-400 hover:bg-{color}-500 focus:bg-{color}-500 rounded-md"
       on:click={onConfirm}
     >
       {okBtnText}
     </button>
     <button
-      class="transition-all active:scale-90 p-2 grow bg-{color}-400 hover:bg-{color}-500 focus:bg-{color}-500 rounded-md outline-none"
+      class="transition-all active:scale-90 p-2 grow bg-{color}-400 hover:bg-{color}-500 focus:bg-{color}-500 rounded-md"
       on:click={onReject}
     >
       {noBtnText}

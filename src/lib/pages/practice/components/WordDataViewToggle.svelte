@@ -13,7 +13,7 @@
   </span>
   <SlideToggle
     name="slide"
-    class="bg-slate-500 hover:brightness-95 focus:brightness-95 align-middle mx-2 outline-none"
+    class="bg-slate-500 hover:brightness-95 focus:brightness-95 align-middle mx-2 "
     active="bg-pink-500"
     bind:checked={showPracticeTarget}
     size="sm"

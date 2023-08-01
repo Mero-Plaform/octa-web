@@ -17,7 +17,7 @@
   </span>
   <SlideToggle
     name="passivePractice"
-    class="bg-gray-400 outline-none hover:!brightness-110 focus:brightness-110"
+    class="bg-gray-400  hover:!brightness-110 focus:brightness-110"
     active="bg-{mainColor}-500"
     bind:checked={$settingsStore.soundNotification}
   />

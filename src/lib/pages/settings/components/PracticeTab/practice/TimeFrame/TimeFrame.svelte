@@ -89,7 +89,7 @@
   <div>
     <button
       on:click={onAddTimeFrame}
-      class="btn bg-{mainColor}-500 text-white outline-none rounded-md focus:brightness-110"
+      class="btn bg-{mainColor}-500 text-white rounded-md focus:brightness-110"
     >
       Add time frame
     </button>
@@ -97,14 +97,14 @@
       bind:value={from}
       clearBtn={false}
       format="hh:ii"
-      inputClasses="p-2 w-16 text-white text-center outline-none rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
+      inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
     />
     -
     <SveltyPicker
       bind:value={to}
       clearBtn={false}
       format="hh:ii"
-      inputClasses="p-2 w-16 text-white text-center outline-none rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
+      inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
     />
     <div
       class="w-max mt-2 px-2 mx-auto bg-red-500 text-white rounded-md"

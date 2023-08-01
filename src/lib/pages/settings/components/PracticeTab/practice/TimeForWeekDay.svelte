@@ -48,7 +48,7 @@
     </span>
     <SlideToggle
       name="passivePractice"
-      class="bg-gray-400 outline-none hover:!brightness-110 focus:brightness-110 align-middle"
+      class="bg-gray-400  hover:!brightness-110 focus:brightness-110 align-middle"
       active="bg-{mainColor}-500"
       checked={enableDaySettings}
       on:change={onEnabledSlideChange}

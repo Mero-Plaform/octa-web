@@ -30,7 +30,7 @@
       text="cursor-default !mt-0"
       select="hidden"
       controlSeparator="gap-2"
-      buttonClasses="btn border-none bg-cyan-400 hover:!bg-cyan-600 focus:bg-cyan-600 disabled:bg-cyan-300 rounded-md text-white text-lg p-2 px-4 outline-none"
+      buttonClasses="btn border-none bg-cyan-400 hover:!bg-cyan-600 focus:bg-cyan-600 disabled:bg-cyan-300 rounded-md text-white text-lg p-2 px-4 "
       justify="justify-evenly"
       bind:settings={page}
     />

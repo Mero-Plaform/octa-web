@@ -66,7 +66,9 @@
       {/each}
     </div>
     {#if word.description}
-      <div class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all">
+      <div
+        class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all"
+      >
         <div
           class="bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"
         >
@@ -77,7 +79,7 @@
   </div>
   <div class="flex flex-col items-center gap-2">
     <button
-      class="rounded-md text-center text-xm px-2 leading-8 transition-all outline-none active:scale-90 {getLearnSuccessActiveStyles(
+      class="rounded-md text-center text-xm px-2 leading-8 transition-all active:scale-90 {getLearnSuccessActiveStyles(
         word.learnSuccess
       )}"
       on:click={onWordPractice}
@@ -90,7 +92,7 @@
     <button
       on:click={onWordEdit}
       type="button"
-      class="h-8 w-8 rounded-md bg-purple-200 hover:bg-purple-300 focus:bg-purple-300 transition-all active:scale-90 outline-none"
+      class="h-8 w-8 rounded-md bg-purple-200 hover:bg-purple-300 focus:bg-purple-300 transition-all active:scale-90"
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-purple-500"
@@ -100,7 +102,7 @@
     <button
       on:click={onWordRemove}
       type="button"
-      class="h-8 w-8 rounded-md bg-red-200 hover:bg-red-300 focus:bg-red-300 transition-all active:scale-90 outline-none"
+      class="h-8 w-8 rounded-md bg-red-200 hover:bg-red-300 focus:bg-red-300 transition-all active:scale-90"
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-red-500"

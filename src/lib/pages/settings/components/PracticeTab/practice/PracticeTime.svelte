@@ -56,7 +56,7 @@
       on:input={onIntervalPickerInput}
       clearBtn={false}
       format="hh:ii"
-      inputClasses="align-middle p-2 w-16 text-white text-center outline-none rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
+      inputClasses="align-middle p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
     />
   </div>
   <TimeFrame {settingKey} />

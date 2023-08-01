@@ -16,13 +16,13 @@
   <TaskProgress styleClasses="m-0 mb-10" />
   <div>
     <button
-      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400 outline-none"
+      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
       on:click={onRestart}
     >
       {restartBtnText}
     </button>
     <button
-      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400 outline-none"
+      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
       on:click={onSettings}
     >
       {settingsBtnText}

@@ -23,7 +23,7 @@
     >
       {#each variants as variant}
         <span
-          class="chip bg-orange-300 cursor-default hover:filter-none hover:bg-orange-400 focus:bg-orange-400 outline-none break-all whitespace-normal"
+          class="chip bg-orange-300 cursor-default hover:filter-none hover:bg-orange-400 focus:bg-orange-400 break-all whitespace-normal"
           >{variant}</span
         >
       {/each}
@@ -35,7 +35,7 @@
     >
       {#each translations as variant}
         <span
-          class="chip bg-green-300 cursor-default hover:filter-none hover:bg-green-400 focus:bg-green-400 outline-none break-all whitespace-normal"
+          class="chip bg-green-300 cursor-default hover:filter-none hover:bg-green-400 focus:bg-green-400 break-all whitespace-normal"
           >{variant}</span
         >
       {/each}
@@ -56,13 +56,13 @@
   {/if}
   <div>
     <button
-      class="btn bg-red-400 hover:bg-red-500 focus:bg-red-500 rounded-md text-white outline-none"
+      class="btn bg-red-400 hover:bg-red-500 focus:bg-red-500 rounded-md text-white"
       on:click={onDelete}
     >
       delete
     </button>
     <button
-      class="btn bg-red-400 hover:bg-red-500 focus:bg-red-500 rounded-md text-white outline-none"
+      class="btn bg-red-400 hover:bg-red-500 focus:bg-red-500 rounded-md text-white"
       on:click={() => modalStore.close()}
     >
       cancel

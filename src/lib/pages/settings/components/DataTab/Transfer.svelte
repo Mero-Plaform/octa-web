@@ -132,12 +132,12 @@
       <button
         on:click={onImportButtonClick}
         disabled={importDataDisabled}
-        class="btn grow bg-emerald-300 text-emerald-900 rounded-md outline-none focus:brightness-110"
+        class="btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110"
       >
         Import app data
       </button>
       <button
-        class="btn grow bg-emerald-300 text-emerald-900 rounded-md outline-none focus:brightness-110"
+        class="btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110"
         on:click={onExportAppData}
       >
         Export app data

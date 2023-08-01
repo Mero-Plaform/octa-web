@@ -51,7 +51,7 @@
 <button
   on:dragstart|preventDefault
   on:click={openModal}
-  class="btn h-10 w-10 p-2 bg-cyan-400 hover:bg-cyan-500 hover:filter-none rounded-md active:scale-90 active:bg-cyan-500 focus:bg-cyan-500 active:filter-none outline-none"
+  class="btn h-10 w-10 p-2 bg-cyan-400 hover:bg-cyan-500 hover:filter-none rounded-md active:scale-90 active:bg-cyan-500 focus:bg-cyan-500 active:filter-none"
 >
   <div class="h-full w-full bg-white" style={getIconMaskStyes(plusImageUrl)} />
 </button>

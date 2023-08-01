@@ -33,17 +33,17 @@
         labels: $chartLabelsStore,
         datasets: $chartDataSetsStore,
       },
-      options: {  
+      options: {
         plugins: {
           legend: {
             labels: {
-              usePointStyle: true
-            }
-          }
-        }
-      }
+              usePointStyle: true,
+            },
+          },
+        },
+      },
     });
-    
+
     return chartDataSetsStore.subscribe(onChartDataSetsStoreUpdate);
   });
 </script>
@@ -52,20 +52,28 @@
   transition:fade
   class="absolute flex flex-col justify-center items-center gap-5 h-screen w-screen"
 >
-  <select bind:value={$dateSelectStore} class="select mt-5 w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 outline-none focus:border-orange-500">
+  <select
+    bind:value={$dateSelectStore}
+    class="select mt-5 w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 focus:border-orange-500"
+  >
     <option value="all">all time</option>
     {#each [...$statisticStore.keys()] as year}
       <option value={year}>{year}</option>
     {/each}
   </select>
 
-  <select bind:value={$dataSelectStore} class="select w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 outline-none focus:border-orange-500">
+  <select
+    bind:value={$dataSelectStore}
+    class="select w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 focus:border-orange-500"
+  >
     {#each dataSelectEnum as data}
       <option value={data}>{data}</option>
     {/each}
   </select>
 
-  <div class="h-[calc(100%-10rem)] w-90% flex flex-col justify-center items-center">
-    <canvas bind:this={canvas} class="h-full w-full"/>
+  <div
+    class="h-[calc(100%-10rem)] w-90% flex flex-col justify-center items-center"
+  >
+    <canvas bind:this={canvas} class="h-full w-full" />
   </div>
 </div>
