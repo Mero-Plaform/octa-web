@@ -19,7 +19,7 @@
   class="hover:opacity-100 focus:opacity-100 opacity-50 fixed top-6 left-5 z-20 active:scale-90 rounded-full transition-all"
 >
   <div
-    class="h-10 w-10 p-2 bg-cyan-500"
+    class="h-10 w-10 p-2 bg-teal-500"
     style={getIconMaskStyes(octopusWhiteImageUrl)}
   />
 </button>

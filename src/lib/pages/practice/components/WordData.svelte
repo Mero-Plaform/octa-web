@@ -22,10 +22,10 @@
 <div class={wrapStyles}>
   {#each data as item, itemIndex (item)}
     <span class={chipStyles}>
-      <span 
+      <span
         class:translate-y-full={show}
-        class:h-full={hide} 
-        class:hidden={!hide} 
+        class:h-full={hide}
+        class:hidden={!hide}
         class={`${coverStyles} ${coverOpeningDelays[itemIndex]}`}
       >
         ?

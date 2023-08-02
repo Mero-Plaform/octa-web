@@ -1,6 +1,7 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import { flip } from "svelte/animate";
+  import { fade } from "svelte/transition";
   import {
     WEEK_DAYS_SHORTS,
     deleteAllInArray,
@@ -8,7 +9,7 @@
     type WEEK_DAYS_SHORTS_TYPE,
   } from "../../../../../utils/helpers.js";
   import type { PracticeStores } from "../../../interfaces/practiceStores.js";
-   import DaysChoice from "./DaysChoice.svelte";
+  import DaysChoice from "./DaysChoice.svelte";
   import DaysSettings from "./DaysSettings.svelte";
   import GeneralDaysSettings from "./GeneralDaysSettings.svelte";
   import PracticeEnabler from "./PracticeEnabler.svelte";
@@ -67,7 +68,8 @@
 </script>
 
 <div
-  class="max-w-md mx-auto max-h-[calc(100vh-160px)] overflow-auto p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
+  transition:fade
+  class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-160px)] overflow-auto p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
 >
   <div
     class="border-{mainColor}-400 border-2 rounded-md p-2 cursor-default select-none"

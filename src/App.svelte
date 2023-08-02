@@ -8,7 +8,7 @@
   import { modalComponentRegistry } from "./lib/shared/modalComponentRegistry.js";
 
   // initial page
-  $routerStore = "/settings";
+  $routerStore = "/dictionary";
 </script>
 
 <Popups />

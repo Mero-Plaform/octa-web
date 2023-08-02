@@ -24,14 +24,14 @@
 
 <div
   transition:fade
-  class="flex flex-col justify-center gap-[3vh] h-full max-w-90% absolute"
+  class="flex flex-col justify-center items-center gap-[3vh] h-full w-90% p-2 absolute"
 >
   <WordData
     show={showPracticeTarget}
     coverStyles="absolute bg-orange-400 w-full transition-all rounded-md font-bold text-orange-800 flex justify-center items-center"
     hide={$settingsStore.practiceTarget === "original"}
     data={variants}
-    wrapStyles="flex flex-wrap gap-2 p-2 max-h-28 overflow-auto bg-orange-300 bg-opacity-50 rounded-md"
+    wrapStyles="overflow-y-auto flex flex-wrap gap-2 p-2 max-h-28 bg-orange-300 bg-opacity-50 rounded-md"
     chipStyles="overflow-hidden relative chip text-orange-800 bg-orange-300 hover:filter-none hover:bg-orange-400 grow break-all whitespace-normal cursor-default"
   />
 
@@ -42,12 +42,14 @@
     coverStyles="absolute bg-green-400 w-full transition-all rounded-md font-bold text-green-800 flex justify-center items-center"
     hide={$settingsStore.practiceTarget === "translation"}
     data={translations}
-    wrapStyles="flex flex-wrap gap-2 p-2 max-h-28 overflow-auto bg-green-300 bg-opacity-50 rounded-md"
+    wrapStyles="flex flex-wrap gap-2 p-2 max-h-28 overflow-y-auto bg-green-300 bg-opacity-50 rounded-md"
     chipStyles="overflow-hidden relative chip text-green-800 bg-green-300 hover:filter-none hover:bg-green-400 grow break-all whitespace-normal cursor-default"
   />
 
   {#if description}
-    <div class="p-2 max-h-28 overflow-auto bg-sky-300 bg-opacity-50 rounded-md">
+    <div
+      class="p-2 break-all whitespace-normal max-h-28 overflow-y-auto bg-sky-300 bg-opacity-50 rounded-md"
+    >
       <div class="p-2 h-full max-h-28 overflow-auto bg-sky-300 rounded-md">
         {description}
       </div>
@@ -60,8 +62,8 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
-        fill="bg-slate-500 !text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:bg-slate-400 focus:text-white"
+        fill="!bg-slate-500 !text-white"
         value={true}
       >
         success
@@ -70,8 +72,8 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 focus:bg-slate-400 focus:text-white"
-        fill="bg-slate-500 !text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:bg-slate-400 focus:text-white"
+        fill="!bg-slate-500 !text-white"
         value={false}
       >
         fail
