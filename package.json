@@ -1,11 +1,11 @@
 {
-  "name": "dictionary",
+  "name": "dictionary-web",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --open",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
