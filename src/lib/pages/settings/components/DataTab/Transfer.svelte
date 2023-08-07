@@ -1,7 +1,6 @@
 <script lang="ts">
   import { FileDropzone, modalStore } from "@skeletonlabs/skeleton";
   import {
-    utilsWithCatch,
     type ImportAppDBData,
   } from "../../../../DB/utils.js";
   import { getConfirmModalSettings } from "../../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
@@ -14,6 +13,7 @@
   import { exportAppData } from "./DataTab/DataTabUtils.js";
   import FileRemoveWhiteIconUrl from "/src/assets/icons/file-remove-white.svg";
   import FileSmileWhiteIconUrl from "/src/assets/icons/file-smile-white.svg";
+    import { utilsWithCatch } from '../../../../DB/utilsWithCatch.js';
 
   const loadingDrawerSettings = {
     bgBackdropColor: "emerald",

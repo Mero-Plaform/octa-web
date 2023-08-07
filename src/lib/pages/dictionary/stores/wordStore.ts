@@ -1,4 +1,5 @@
-import { utilsWithCatch, type GetDictionaryDataAsArray } from '../../../DB/utils.js';
+import { type GetDictionaryDataAsArray } from '../../../DB/utils.js';
+import { utilsWithCatch } from '../../../DB/utilsWithCatch.js';
 import type { CustomWritableStore } from '../../../utils/customStores/CustomWritableStore.js';
 import { CustomWritableStoreFactory } from '../../../utils/customStores/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';

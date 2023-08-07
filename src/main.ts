@@ -1,10 +1,7 @@
-// import '@skeletonlabs/skeleton/themes/theme-seafoam.css';
-// import '@skeletonlabs/skeleton/themes/theme-crimson.css';
-// import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 import { arrow, autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
 import { storePopup } from '@skeletonlabs/skeleton';
 import '@skeletonlabs/skeleton/styles/skeleton.css';
-import { getDBData } from './lib/DB/main.js';
+import { getDBData, setupUtilDB } from './lib/DB/main.js';
 import { initDBAppSettingsStoreListener } from './lib/DB/storesListeners/appSettingsStoreListener.js';
 import { initDBPracticeSettingsStoreListener } from './lib/DB/storesListeners/practiceSettingsStoreListener.js';
 import { initDBStatisticStoreListener } from './lib/DB/storesListeners/statisticStoreListener.js';
@@ -15,7 +12,7 @@ import { createAppSettingsStore } from './lib/pages/settings/stores/appSettingsS
 import { createBasicSettingsStore } from './lib/pages/settings/stores/basicSettingsStore.js';
 import { createPassivePracticeSettingsStore } from './lib/pages/settings/stores/passivePractice/passivePracticeSettingsStore.js';
 import { createStatisticStore } from './lib/pages/statistic/stores/statisticStore/statisticStore.js';
-import { disableStandardContextMenu } from './lib/utils/helpers.js';
+import { disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
 import "/src/styles/main";
 import { createActivePracticeSettingsStore } from './lib/pages/settings/stores/activePractice/activePracticeSettingsStore.js';
 
@@ -23,7 +20,10 @@ storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
 let app;
 
-getDBData()
+enableWindowErrCatcher();
+
+setupUtilDB()
+  .then(getDBData)
   .then(async ([dictionaryArr, practiceData, statisticArr, appSettings]) => {
     createWordStore(dictionaryArr);
     createSettingsStore(practiceData);
@@ -42,6 +42,10 @@ getDBData()
     // dictionaryMockFill(10_000);
 
     disableStandardContextMenu();
+
+    if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+      (await import("./lib/shared/desktopAppBuild/ipcUtils.js")).initDesktopActionListeners();
+    }
 
     const App = (await import("./App.svelte")).default;
 

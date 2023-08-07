@@ -1,11 +1,12 @@
 import { toastStore } from '@skeletonlabs/skeleton';
 import type { TimeFrame } from '../pages/statistic/interfaces/TimeFrame.js';
 import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
+import { sendWindowError } from '../shared/desktopAppBuild/ipcUtils.js';
 
 /* --------------------------------- general -------------------------------- */
 
 export const createDebounce = (callback: (...params: unknown[]) => unknown, timeout: number) => {
-  let timerID: number;
+  let timerID: NodeJS.Timeout;
   return (...params: unknown[]) => {
     clearTimeout(timerID);
     timerID = setTimeout(callback, timeout, ...params);
@@ -107,13 +108,13 @@ export const WEEK_DAYS_SHORTS = WEEK_DAYS.map((day) =>
   ];
 
 const WEEK_DAYS_SHORTS_INDEXES = {
-  "Mon": 0,
-  "Tue": 1,
-  "Wed": 2,
-  "Thu": 3,
-  "Fri": 4,
-  "Sat": 5,
-  "Sun": 6,
+  "Sun": 0,
+  "Mon": 1,
+  "Tue": 2,
+  "Wed": 3,
+  "Thu": 4,
+  "Fri": 5,
+  "Sat": 6,
 };
 
 export const sortShortWeekDays = (arr: Array<WEEK_DAYS_SHORTS_TYPE>) => {
@@ -172,4 +173,17 @@ const preventStandardContextMenu = (e: Event) => {
 
 export const disableStandardContextMenu = () => {
   document.addEventListener("contextmenu", preventStandardContextMenu);
+};
+
+export const enableWindowErrCatcher = () => {
+  window.onerror = (err) => {
+    toastStore.trigger({
+      message: `Global app error: ${err}`,
+      background: ERR_TOAST_STYLES,
+    });
+
+    if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+      sendWindowError(err);
+    }
+  };
 };

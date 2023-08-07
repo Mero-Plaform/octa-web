@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --open",
-    "build:desktop": "tsx prebuild-setup/desktop.ts && vite build",
+    "dev:web": "tsx prebuild-setup/web.ts && vite --open",
+    "dev:desktop": "tsx prebuild-setup/desktop.ts && vite --open",
     "build:web": "tsx prebuild-setup/web.ts && vite build",
+    "build:desktop": "tsx prebuild-setup/desktop.ts && vite build",
     "preview": "vite preview --open",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
