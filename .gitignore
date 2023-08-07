@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 .todo
 .env
+vite.config.ts.timestamp*
 
 node_modules
 dist
