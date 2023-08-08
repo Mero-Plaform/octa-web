@@ -10,22 +10,7 @@
     backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm",
   };
 
-  const checkIsOpen = () => {
-    if ($modalStore.length === 0) {
-      return false;
-    }
-    return $modalStore.find((modals: { type: string; component: string }) => {
-      if (modals.type !== "component") {
-        return false;
-      }
-      return modal.component === "addWord";
-    });
-  };
-
   const openModal = () => {
-    if (checkIsOpen()) {
-      return;
-    }
     modalStore.trigger(modal);
   };
 
