@@ -14,5 +14,5 @@ export const initDesktopActionListeners = () => {
 };
 
 export const sendWindowError = (err: unknown) => {
-  window.electron.ipcRenderer.send("globalWindowError", err);
+  window.electron.ipcRenderer.send("mainWinErr", err);
 };
