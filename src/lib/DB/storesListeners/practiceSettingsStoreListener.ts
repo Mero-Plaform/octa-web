@@ -4,7 +4,7 @@ import type { UpdatePracticeData } from '../utils.js';
 import { utilsWithCatch } from '../utilsWithCatch.js';
 
 const practiceSettingsStoreListener = (settings: SettingsStore) => {
-  (<UpdatePracticeData>utilsWithCatch.get("updatePracticeData")!)(settings);
+  <UpdatePracticeData>utilsWithCatch.get("updatePracticeData")!(settings);
 };
 
 export const initDBPracticeSettingsStoreListener = () => {
