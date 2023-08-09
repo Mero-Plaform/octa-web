@@ -2,7 +2,7 @@ import { cloneObject } from '../../utils/helpers.js';
 
 const appBasicSettingsInitialValues = {
   startWithSystem: true,
-  startAppAsMinimized: false,
+  openAppWindowAtStart: false,
 } as const;
 
 const appPassivePracticeSettingsInitialValues = {
