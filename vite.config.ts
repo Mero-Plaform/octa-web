@@ -18,7 +18,7 @@ export default defineConfig({
         },
         {
           name: "main",
-          dir: "../dictionary-electron/src/renderer/main",
+          dir: "../dictionary-electron/src/renderer/mainWindow",
         }
       ]
     },
