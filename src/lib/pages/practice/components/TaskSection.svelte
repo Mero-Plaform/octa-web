@@ -3,6 +3,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { fade } from "svelte/transition";
   import StateText from "../../../shared/components/StateText.svelte";
+  import { WARN_TOAST_STYLES } from "../../../utils/helpers.js";
   import type { Word } from "../../dictionary/interfaces/Word.js";
   import { wordStore } from "../../dictionary/stores/wordStore.js";
   import { practiceActionStore } from "../stores/practiceActionStore.js";
@@ -12,7 +13,6 @@
   import CurrentTask from "./CurrentTask.svelte";
   import FinishTask from "./FinishTask.svelte";
   import { taskDataPreparer } from "./taskUtils.js";
-    import { ERR_TOAST_STYLES } from '../../../utils/helpers.js';
 
   const dispatcher = createEventDispatcher();
   let taskDataIterator: Generator<Word>;
@@ -71,7 +71,7 @@
       toastStore.trigger({
         message: `It's last dictionary's section.
         No enough words`,
-        background: ERR_TOAST_STYLES,
+        background: WARN_TOAST_STYLES,
       });
     }
 
