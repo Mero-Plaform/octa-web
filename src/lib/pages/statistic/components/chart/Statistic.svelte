@@ -54,7 +54,7 @@
 >
   <select
     bind:value={$dateSelectStore}
-    class="select mt-5 w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 focus:border-orange-500"
+    class="select mt-5 w-1/2 max-w-md rounded-md border-2 border-violet-300 bg-violet-200 text-violet-900 focus:border-violet-500"
   >
     <option value="all">all time</option>
     {#each [...$statisticStore.keys()] as year}
@@ -64,7 +64,7 @@
 
   <select
     bind:value={$dataSelectStore}
-    class="select w-1/2 max-w-md rounded-md border-2 border-orange-300 bg-orange-200 text-orange-900 focus:border-orange-500"
+    class="select w-1/2 max-w-md rounded-md border-2 border-violet-300 bg-violet-200 text-violet-900 focus:border-violet-500"
   >
     {#each dataSelectEnum as data}
       <option value={data}>{data}</option>
