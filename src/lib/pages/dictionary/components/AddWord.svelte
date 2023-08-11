@@ -15,9 +15,10 @@
   };
 
   const onPlusBtnPress = ({ code }: KeyboardEvent) => {
-    if (code !== "NumpadAdd") {
+    if (code !== "NumpadAdd" || $modalStore[0]?.component === "addWord") {
       return;
     }
+
     openModal();
   };
 
