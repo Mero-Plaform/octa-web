@@ -7,4 +7,7 @@ export const createSettingsStore = (initData: SettingsStore) => {
   });
 };
 
+/**
+ * contain practice page practice setup (e.g. target, type)
+ */
 export let settingsStore: Writable<SettingsStore>;
