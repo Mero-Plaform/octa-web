@@ -13,7 +13,7 @@ import { createBasicSettingsStore } from './lib/pages/settings/stores/basicSetti
 import { createPassivePracticeSettingsStore } from './lib/pages/settings/stores/passivePractice/passivePracticeSettingsStore.js';
 import { createStatisticStore } from './lib/pages/statistic/stores/statisticStore/statisticStore.js';
 import { disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
-import "/src/styles/main";
+import "./styles/main.js";
 import { createActivePracticeSettingsStore } from './lib/pages/settings/stores/activePractice/activePracticeSettingsStore.js';
 
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
