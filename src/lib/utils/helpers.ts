@@ -175,18 +175,36 @@ export const disableStandardContextMenu = () => {
   document.addEventListener("contextmenu", preventStandardContextMenu);
 };
 
-const onAppError = (err: unknown) => {
+/* -------------------------------------------------------------------------- */
+/*                            global error handling                           */
+/* -------------------------------------------------------------------------- */
+
+const showErrorOnPage = (errMsg: string) => {
   toastStore.trigger({
-    message: `Global app error: ${err}`,
+    message: `Global app error: ${errMsg}`,
     background: ERR_TOAST_STYLES,
   });
+};
+
+const onGlobalError = (errMsg: string | Event) => {
+  showErrorOnPage(errMsg as string);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
-    sendWindowError(err);
+    sendWindowError(errMsg);
+  }
+};
+
+const onGlobalUnhandledrejection = ({ reason }: PromiseRejectionEvent) => {
+  const errMSg = `Unhandledrejection, reason: ${reason}`;
+
+  showErrorOnPage(errMSg);
+
+  if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+    sendWindowError(errMSg);
   }
 };
 
 export const enableWindowErrCatcher = () => {
-  window.onerror = onAppError;
-  window.onunhandledrejection = onAppError;
+  window.onerror = onGlobalError;
+  window.onunhandledrejection = onGlobalUnhandledrejection;
 };
