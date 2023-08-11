@@ -142,10 +142,7 @@ export const RunPromiseWithCatch = async<T extends (...args: any) => any>(func: 
   try {
     return await func(...params);
   } catch (err) {
-    toastStore.trigger({
-      message: (err as Error).message || String(err),
-      background: ERR_TOAST_STYLES,
-    });
+    onRunPromiseWithCatchError(err);
   }
 };
 
@@ -184,6 +181,10 @@ const showErrorOnPage = (errMsg: string) => {
     message: `Global app error: ${errMsg}`,
     background: ERR_TOAST_STYLES,
   });
+};
+
+const onRunPromiseWithCatchError = (err: unknown) => {
+  onGlobalError("in RunPromiseWithCatch: " + err);
 };
 
 const onGlobalError = (errMsg: string | Event) => {
