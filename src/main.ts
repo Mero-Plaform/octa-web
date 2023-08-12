@@ -12,7 +12,7 @@ import { createAppSettingsStore } from './lib/pages/settings/stores/appSettingsS
 import { createBasicSettingsStore } from './lib/pages/settings/stores/basicSettingsStore.js';
 import { createPassivePracticeSettingsStore } from './lib/pages/settings/stores/passivePractice/passivePracticeSettingsStore.js';
 import { createStatisticStore } from './lib/pages/statistic/stores/statisticStore/statisticStore.js';
-import { disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
+import { checkElectronApiExist, disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
 import "./styles/main.js";
 import { createActivePracticeSettingsStore } from './lib/pages/settings/stores/activePractice/activePracticeSettingsStore.js';
 
@@ -52,6 +52,8 @@ setupUtilDB()
     app = new App({
       target: document.getElementById("app")!,
     });
+
+    checkElectronApiExist();
   });
 
 export default app;

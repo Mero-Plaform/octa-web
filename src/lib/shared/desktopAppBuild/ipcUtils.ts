@@ -10,9 +10,9 @@ const onNewPassivePracticeComplete = (_: unknown, result: boolean, wordId: Word[
 };
 
 export const initDesktopActionListeners = () => {
-  window.electron.ipcRenderer.on("newPassivePracticeComplete", onNewPassivePracticeComplete);
+  window.electron?.ipcRenderer.on("newPassivePracticeComplete", onNewPassivePracticeComplete);
 };
 
 export const sendWindowError = (err: unknown) => {
-  window.electron.ipcRenderer.send("mainWinErr", err);
+  window.electron?.ipcRenderer.send("mainWinErr", err);
 };

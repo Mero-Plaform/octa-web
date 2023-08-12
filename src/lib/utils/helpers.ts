@@ -180,17 +180,17 @@ export const disableStandardContextMenu = () => {
 
 const showErrorOnPage = (errMsg: string) => {
   toastStore.trigger({
-    message: `Global app error: ${errMsg}`,
+    message: errMsg,
     background: ERR_TOAST_STYLES,
   });
 };
 
 const onRunPromiseWithCatchError = (err: unknown) => {
-  onGlobalError("in RunPromiseWithCatch: " + err);
+  onGlobalError("In RunPromiseWithCatch: " + err);
 };
 
 const onGlobalError = (errMsg: string | Event) => {
-  showErrorOnPage(errMsg as string);
+  showErrorOnPage("UnexpectedException: " + errMsg as string);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
     sendWindowError(errMsg);
@@ -198,7 +198,7 @@ const onGlobalError = (errMsg: string | Event) => {
 };
 
 const onGlobalUnhandledrejection = ({ reason }: PromiseRejectionEvent) => {
-  const errMSg = `Unhandledrejection, reason: ${reason}`;
+  const errMSg = `Unhandledrejection: ${reason}`;
 
   showErrorOnPage(errMSg);
 
@@ -210,4 +210,10 @@ const onGlobalUnhandledrejection = ({ reason }: PromiseRejectionEvent) => {
 export const enableWindowErrCatcher = () => {
   window.onerror = onGlobalError;
   window.onunhandledrejection = onGlobalUnhandledrejection;
+};
+
+export const checkElectronApiExist = () => {
+  if (window.electron === undefined) {
+    throw "electron API is missing in window";
+  }
 };
