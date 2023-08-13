@@ -63,6 +63,7 @@
 
   const onRemoveTimeFrame = (fromToRemove: string) => {
     timeFrames = timeFrames.filter(({ from }) => from !== fromToRemove);
+    settingsStore.updateTimeFrames(settingKey, timeFrames);
   };
 
   const onUpdatedDayInPassivePracticeSettingsStoreUpdate = (
