@@ -53,7 +53,9 @@ setupUtilDB()
       target: document.getElementById("app")!,
     });
 
-    checkElectronApiExist();
+    if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+      checkElectronApiExist();
+    }
   });
 
 export default app;
