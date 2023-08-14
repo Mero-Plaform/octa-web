@@ -36,6 +36,7 @@ const config = {
     "hover:bg-emerald-500",
     "focus:bg-emerald-500",
     "bg-blue-200",
+    "group-hover:bg-blue-500",
     "!bg-blue-200",
     "bg-blue-400",
     "bg-fuchsia-200",
