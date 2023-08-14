@@ -48,7 +48,7 @@
   <div
     class="cursor-default text-xs bg-white rounded-md p-2 text-{mainColor}-500 align-middle"
   >
-    Copy settings from
+    Copy settings from day
   </div>
   <div class="my-2 flex flex-wrap justify-center gap-2">
     {#each daysToRender as chosenDay (chosenDay)}
