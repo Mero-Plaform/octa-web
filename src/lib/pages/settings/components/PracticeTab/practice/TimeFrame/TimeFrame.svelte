@@ -1,12 +1,16 @@
 <script lang="ts">
   import { getContext, onMount } from "svelte";
+  import { flip } from "svelte/animate";
+  import { scale } from "svelte/transition";
   import SveltyPicker from "svelty-picker";
   import removeIconUrl from "../../../../../../../assets/icons/clear.svg";
+  import SlateText from "../../../../../../shared/components/StateText.svelte";
   import {
     getIconMaskStyes,
     sortTimeFrames,
     type WEEK_DAYS_SHORTS_TYPE,
   } from "../../../../../../utils/helpers.js";
+  import type { TimeFrame } from "../../../../../statistic/interfaces/TimeFrame.js";
   import type { PracticeStoreValueKeys } from "../../../../interfaces/practice.js";
   import type { PracticeStores } from "../../../../interfaces/practiceStores.js";
   import {
@@ -19,9 +23,10 @@
 
   const { settingsStore, updatedDay } = getContext<PracticeStores>("stores");
   const mainColor = getContext<string>("mainColor");
-  let hideOverlapErr = true;
+  let hideTimeFrameErr = true;
   let errMsg: string;
   let timeFramesOverlapIndex: number | null = null;
+  let timeFramesOverlapData: TimeFrame | null = null;
   let timeFrames = $settingsStore.daySettings[settingKey]!.timeFrames;
   let timeFramesChips: HTMLSpanElement[] = [];
   let from = "00:00";
@@ -29,8 +34,11 @@
 
   const onAddTimeFrame = () => {
     if (!checkTimeFrameValid({ from, to })) {
+      if (timeFramesOverlapIndex !== null) {
+        hideAndResetError();
+      }
       errMsg = errVariants.invalid;
-      hideOverlapErr = false;
+      hideTimeFrameErr = false;
       return;
     }
 
@@ -42,17 +50,23 @@
 
     if (overlappedTimeFrameIndex !== -1) {
       errMsg = errVariants.overlap;
-      hideOverlapErr = false;
+      hideTimeFrameErr = false;
       timeFramesOverlapIndex = overlappedTimeFrameIndex;
+      timeFramesOverlapData = { ...timeFrames[overlappedTimeFrameIndex] };
       return;
     }
 
     onNewTimeFrame();
   };
 
-  const onNewTimeFrame = () => {
-    hideOverlapErr = true;
+  const hideAndResetError = () => {
+    hideTimeFrameErr = true;
     timeFramesOverlapIndex = null;
+    timeFramesOverlapData = null;
+  };
+
+  const onNewTimeFrame = () => {
+    hideAndResetError();
     timeFrames.push({ from, to });
     sortTimeFrames(timeFrames);
     timeFrames = timeFrames;
@@ -61,9 +75,37 @@
     settingsStore.updateTimeFrames(settingKey, timeFrames);
   };
 
-  const onRemoveTimeFrame = (fromToRemove: string) => {
-    timeFrames = timeFrames.filter(({ from }) => from !== fromToRemove);
+  const deleteTimeFrame = (fromToRemove: string) => {
+    let removedTimeFrameIndex: number;
+    timeFrames = timeFrames.filter(({ from }, i) => {
+      if (from === fromToRemove) {
+        removedTimeFrameIndex = i;
+        return false;
+      } 
+      return true;
+    });
     settingsStore.updateTimeFrames(settingKey, timeFrames);
+    return removedTimeFrameIndex!;
+  };
+
+  const checkToRemoveOverlapErrorAfterRemovingTimeFrame = (removedTimeFrameIndex: number) => {
+    if (
+      timeFramesOverlapIndex !== null &&
+      timeFramesOverlapIndex === removedTimeFrameIndex!
+    ) {
+      hideAndResetError();
+    }
+  };
+
+  const onRemoveTimeFrame = (fromToRemove: string) => {
+    const removedTimeFrameIndex = deleteTimeFrame(fromToRemove);
+
+    if (timeFrames.length === 0) {
+      hideAndResetError();
+      return;
+    }
+
+    checkToRemoveOverlapErrorAfterRemovingTimeFrame(removedTimeFrameIndex);
   };
 
   const onUpdatedDayInPassivePracticeSettingsStoreUpdate = (
@@ -86,7 +128,7 @@
   });
 </script>
 
-<div class="my-2">
+<div class="mt-2">
   <div>
     <button
       on:click={onAddTimeFrame}
@@ -109,33 +151,43 @@
     />
     <div
       class="w-max mt-2 px-2 mx-auto bg-red-500 text-white rounded-md"
-      hidden={hideOverlapErr}
+      hidden={hideTimeFrameErr}
     >
       {errMsg}
     </div>
   </div>
-  {#if timeFrames.length > 0}
-    <div
-      class="mt-2 flex p-2 flex-wrap justify-center gap-2 rounded-md border-dashed border-2 border-{mainColor}-500"
-    >
-      {#each timeFrames as timeFrame, timeFrameIndex}
-        <span
-          bind:this={timeFramesChips[timeFrameIndex]}
-          class:animate-pulse={timeFrameIndex === timeFramesOverlapIndex}
-          class="chip bg-{mainColor}-500 text-white select-none cursor-default !filter-none"
+  <div
+    class="flex p-2 flex-wrap justify-center gap-2 rounded-md border-dashed border-2 border-{mainColor}-500"
+  >
+    {#each timeFrames as timeFrame, timeFrameIndex (timeFrame.from)}
+      <span
+        animate:flip={{ duration: 300 }}
+        bind:this={timeFramesChips[timeFrameIndex]}
+        class:animate-pulse={timeFrameIndex === timeFramesOverlapIndex}
+        class="chip bg-{mainColor}-500 text-white select-none cursor-default !filter-none"
+      >
+        <span>{timeFrame.from} - {timeFrame.to}</span>
+        <button
+          class="group h-5 w-5 rounded-md border-2 border-white hover:bg-white transition-all"
+          on:click={() => onRemoveTimeFrame(timeFrame.from)}
         >
-          <span>{timeFrame.from} - {timeFrame.to}</span>
-          <button
-            class="group h-5 w-5 rounded-md border-2 border-white hover:bg-white transition-all"
-            on:click={() => onRemoveTimeFrame(timeFrame.from)}
+          <span
+            class="h-full w-full inline-block bg-white rounded-md group-hover:bg-{mainColor}-500"
+            style={getIconMaskStyes(removeIconUrl)}
+          />
+        </button>
+      </span>
+    {:else}
+      <div transition:scale>
+        <SlateText
+          additionalStyles="chip text-xs -translate-y-0 tracking-normal text-white bg-yellow-500 translate-x-0 m-sm:tracking-normal hover:filter-none"
+        >
+          No time frames
+          <span class="bg-white text-yellow-600 px-2 rounded-md ml-2"
+            >will be used from general</span
           >
-            <span
-              class="h-full w-full inline-block bg-white rounded-md group-hover:bg-{mainColor}-500"
-              style={getIconMaskStyes(removeIconUrl)}
-            />
-          </button>
-        </span>
-      {/each}
-    </div>
-  {/if}
+        </SlateText>
+      </div>
+    {/each}
+  </div>
 </div>
