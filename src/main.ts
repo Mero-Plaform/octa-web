@@ -8,13 +8,13 @@ import { initDBStatisticStoreListener } from './lib/DB/storesListeners/statistic
 import { initDBWordStoreActionsListener } from './lib/DB/storesListeners/wordStoreActionsListener.js';
 import { createWordStore } from './lib/pages/dictionary/stores/wordStore.js';
 import { createSettingsStore } from './lib/pages/practice/stores/settingsStore.js';
+import { createActivePracticeSettingsStore } from './lib/pages/settings/stores/activePractice/activePracticeSettingsStore.js';
 import { createAppSettingsStore } from './lib/pages/settings/stores/appSettingsStore/appSettingsStore.js';
 import { createBasicSettingsStore } from './lib/pages/settings/stores/basicSettingsStore.js';
 import { createPassivePracticeSettingsStore } from './lib/pages/settings/stores/passivePractice/passivePracticeSettingsStore.js';
 import { createStatisticStore } from './lib/pages/statistic/stores/statisticStore/statisticStore.js';
 import { checkElectronApiExist, disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
 import "./styles/main.js";
-import { createActivePracticeSettingsStore } from './lib/pages/settings/stores/activePractice/activePracticeSettingsStore.js';
 
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
@@ -30,7 +30,7 @@ setupUtilDB()
     createStatisticStore(statisticArr);
 
     createPassivePracticeSettingsStore(appSettings.practice.passive);
-    createActivePracticeSettingsStore(appSettings.practice.active)
+    createActivePracticeSettingsStore(appSettings.practice.active);
     createBasicSettingsStore(appSettings.basic);
     createAppSettingsStore(appSettings);
 
