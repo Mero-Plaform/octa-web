@@ -73,7 +73,6 @@
     successCount = 0;
     updatePracticeDataStore(totalCount, successCount);
     selectedTaskResult = null;
-    // resetShowPracticeTarget();
     ({ variants, translations, description, id } =
       taskDataIterator.next().value!);
     isPreparingData = false;
