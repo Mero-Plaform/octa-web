@@ -20,11 +20,22 @@
     $searchWordsTextStore = "";
   };
 
-  const onInputInput = () => {
+  const updateSearchWordsTextStore = () => {
     $searchWordsTextStore = inputElem.value;
   };
 
-  const onInputDebounce = createDebounce(onInputInput, 1000);
+  const updateSearchWordsTextStoreDebounce = createDebounce(
+    updateSearchWordsTextStore,
+    500
+  );
+
+  const onInputInput = () => {
+    if (inputElem.value === "") {
+      updateSearchWordsTextStore();
+    } else {
+      updateSearchWordsTextStoreDebounce();
+    }
+  };
 
   const onInputFocus = () => {
     document.addEventListener("keydown", onKeydown);
@@ -35,13 +46,13 @@
   };
 
   const addInputListener = () => {
-    inputElem.addEventListener("input", onInputDebounce);
+    inputElem.addEventListener("input", onInputInput);
     inputElem.addEventListener("focus", onInputFocus);
     inputElem.addEventListener("blur", onInputBlur);
   };
 
   const removeInputListener = () => {
-    inputElem.removeEventListener("focus", onInputDebounce);
+    inputElem.removeEventListener("input", onInputInput);
     inputElem.removeEventListener("focus", onInputFocus);
     inputElem.removeEventListener("blur", onInputBlur);
   };
