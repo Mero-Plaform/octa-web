@@ -9,9 +9,10 @@
 
   export let settingKey: PracticeStoreValueKeys;
 
+  const MINIMAL_INTERVAL_VALUE = "00:05";
   const { settingsStore, updatedDay } = getContext<PracticeStores>("stores");
   const mainColor = getContext<string>("mainColor");
-  let interval: string = "00:00";
+  let interval: string = MINIMAL_INTERVAL_VALUE;
 
   const getCurrentInterval = () => {
     interval = $settingsStore.daySettings[settingKey]!.interval;
@@ -39,8 +40,8 @@
   });
 
   const onIntervalPickerInput = ({ detail }: CustomEvent) => {
-    interval = detail < "00:05" ? "00:05" : detail;
-
+    interval =
+      detail < MINIMAL_INTERVAL_VALUE ? MINIMAL_INTERVAL_VALUE : detail;
     settingsStore.updateSettingKeyIntervalProp(settingKey, interval);
   };
 </script>
@@ -52,8 +53,8 @@
       >Interval</span
     >
     <SveltyPicker
-      value={interval}
-      on:input={onIntervalPickerInput}
+      bind:value={interval}
+      on:change={onIntervalPickerInput}
       clearBtn={false}
       format="hh:ii"
       inputClasses="align-middle p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
