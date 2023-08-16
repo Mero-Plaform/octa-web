@@ -1,7 +1,6 @@
 import { toastStore } from '@skeletonlabs/skeleton';
 import OctaIConURL from '../../assets/icons/octopus-white.svg';
 import type { TimeFrame } from '../pages/statistic/interfaces/TimeFrame.js';
-import { sendWindowError } from '../shared/desktopAppBuild/ipcUtils.js';
 import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
 
 /* --------------------------------- general -------------------------------- */
@@ -200,21 +199,21 @@ const onRunPromiseWithCatchError = (err: unknown) => {
   onGlobalError("In RunPromiseWithCatch: " + err);
 };
 
-const onGlobalError = (errMsg: string | Event) => {
+const onGlobalError = async (errMsg: string | Event) => {
   showErrorToast("UnexpectedException: " + errMsg as string);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
-    sendWindowError(errMsg);
+    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendWindowError(errMsg);
   }
 };
 
-const onGlobalUnhandledrejection = ({ reason }: PromiseRejectionEvent) => {
-  const errMSg = `Unhandledrejection: ${reason}`;
+const onGlobalUnhandledrejection = async ({ reason }: PromiseRejectionEvent) => {
+  const errMsg = `Unhandledrejection: ${reason}`;
 
-  showErrorToast(errMSg);
+  showErrorToast(errMsg);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
-    sendWindowError(errMSg);
+    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendWindowError(errMsg);
   }
 };
 
