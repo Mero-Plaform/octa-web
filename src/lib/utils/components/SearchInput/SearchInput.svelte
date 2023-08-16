@@ -16,7 +16,7 @@
 <div class={wrapStyles}>
   <input bind:this={inputElem} bind:value {placeholder} class={inputStyles} disabled={disabled}/>
   {#if iconSrc}
-    <button class={buttonStyles} on:click={buttonClickHandler} disabled={disabled}>
+    <button class:pointer-events-none={disabled} class={buttonStyles} on:click={buttonClickHandler} disabled={disabled}>
       <div class={iconStyles} style={getIconMaskStyes(iconSrc)}></div>
     </button>
   {/if}
