@@ -1,7 +1,8 @@
 import { toastStore } from '@skeletonlabs/skeleton';
+import OctaIConURL from '../../assets/icons/octopus-white.svg';
 import type { TimeFrame } from '../pages/statistic/interfaces/TimeFrame.js';
-import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
 import { sendWindowError } from '../shared/desktopAppBuild/ipcUtils.js';
+import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
 
 /* --------------------------------- general -------------------------------- */
 
@@ -13,9 +14,11 @@ export const createDebounce = (callback: (...params: unknown[]) => unknown, time
   };
 };
 
-export const ERR_TOAST_STYLES = "break-all bg-red-400 text-white cursor-default !rounded-md";
+const TOAST_OCTA_ICON = `<img class='h-8' src='${OctaIConURL}' alt='octa icon'/>`;
 
-export const WARN_TOAST_STYLES = "break-all bg-yellow-500 text-white cursor-default !rounded-md";
+export const ERR_TOAST_STYLES = "break-all bg-red-400 text-white cursor-default !rounded-md [&_.text-base]:flex [&_.text-base]:gap-4 [&_.text-base]:items-center";
+
+export const WARN_TOAST_STYLES = "break-all bg-yellow-500 text-white cursor-default !rounded-md [&_.text-base]:flex [&_.text-base]:gap-4 [&_.text-base]:items-center";
 
 export const getIconMaskStyes = (iconSrc: string) => {
   return `-webkit-mask: url(${iconSrc}) no-repeat center / contain; mask: url(${iconSrc}) no-repeat center / contain;`;
@@ -178,23 +181,27 @@ export const disableStandardContextMenu = () => {
 /*                            global error handling                           */
 /* -------------------------------------------------------------------------- */
 
-const showErrorOnPage = (errMsg: string) => {
+const showErrorToast = (errMsg: string) => {
   toastStore.trigger({
-    message: errMsg,
+    message: TOAST_OCTA_ICON + `<div>${errMsg}</div>`,
     background: ERR_TOAST_STYLES,
+    autohide: false
   });
 };
 
-setTimeout(() => {
-  throw "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-}, 2000)
+export const showWarnToast = (warnMsg: string) => {
+  toastStore.trigger({
+    message: TOAST_OCTA_ICON + `<div>${warnMsg}</div>`,
+    background: WARN_TOAST_STYLES,
+  });
+};
 
 const onRunPromiseWithCatchError = (err: unknown) => {
   onGlobalError("In RunPromiseWithCatch: " + err);
 };
 
 const onGlobalError = (errMsg: string | Event) => {
-  showErrorOnPage("UnexpectedException: " + errMsg as string);
+  showErrorToast("UnexpectedException: " + errMsg as string);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
     sendWindowError(errMsg);
@@ -204,7 +211,7 @@ const onGlobalError = (errMsg: string | Event) => {
 const onGlobalUnhandledrejection = ({ reason }: PromiseRejectionEvent) => {
   const errMSg = `Unhandledrejection: ${reason}`;
 
-  showErrorOnPage(errMSg);
+  showErrorToast(errMSg);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
     sendWindowError(errMSg);

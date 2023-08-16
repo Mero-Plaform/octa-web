@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { toastStore } from "@skeletonlabs/skeleton";
   import { createEventDispatcher, onMount } from "svelte";
   import { fade } from "svelte/transition";
   import StateText from "../../../shared/components/StateText.svelte";
-  import { WARN_TOAST_STYLES } from "../../../utils/helpers.js";
+  import { showWarnToast } from "../../../utils/helpers.js";
   import type { Word } from "../../dictionary/interfaces/Word.js";
   import { wordStore } from "../../dictionary/stores/wordStore.js";
   import { practiceActionStore } from "../stores/practiceActionStore.js";
@@ -68,11 +67,7 @@
     totalCount = $sectionTaskWordTotalAmountStore;
 
     if (totalCount < $settingsStore.sectionSize) {
-      toastStore.trigger({
-        message: `It's last dictionary's section.
-        No enough words`,
-        background: WARN_TOAST_STYLES,
-      });
+      showWarnToast("It's last dictionary's section. No enough words");
     }
 
     successCount = 0;
