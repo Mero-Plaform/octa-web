@@ -13,9 +13,9 @@ export const createDebounce = (callback: (...params: unknown[]) => unknown, time
   };
 };
 
-export const ERR_TOAST_STYLES = "bg-red-400 text-white cursor-default !rounded-md";
+export const ERR_TOAST_STYLES = "break-all bg-red-400 text-white cursor-default !rounded-md";
 
-export const WARN_TOAST_STYLES = "bg-yellow-500 text-white cursor-default !rounded-md";
+export const WARN_TOAST_STYLES = "break-all bg-yellow-500 text-white cursor-default !rounded-md";
 
 export const getIconMaskStyes = (iconSrc: string) => {
   return `-webkit-mask: url(${iconSrc}) no-repeat center / contain; mask: url(${iconSrc}) no-repeat center / contain;`;
@@ -184,6 +184,10 @@ const showErrorOnPage = (errMsg: string) => {
     background: ERR_TOAST_STYLES,
   });
 };
+
+setTimeout(() => {
+  throw "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+}, 2000)
 
 const onRunPromiseWithCatchError = (err: unknown) => {
   onGlobalError("In RunPromiseWithCatch: " + err);
