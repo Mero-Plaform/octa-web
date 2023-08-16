@@ -41,7 +41,7 @@
   };
 </script>
 
-<div class="flex gap-2 wordCard bg-white bg-opacity-30 p-2 rounded-md">
+<div class="flex gap-2 bg-white bg-opacity-30 p-2 rounded-md">
   <div
     class="inline-flex flex-col justify-center grow gap-2 max-w-xs box-border rounded-md"
   >
