@@ -180,7 +180,7 @@
     {:else}
       <div transition:scale>
         <SlateText
-          additionalStyles="chip text-xs -translate-y-0 tracking-normal text-white bg-yellow-500 translate-x-0 m-sm:tracking-normal hover:filter-none"
+          additionalStyles="chip text-xs translate-y-0 tracking-normal text-white bg-yellow-500 translate-x-0 m-sm:tracking-normal hover:filter-none"
         >
           No time frames
           <span class="bg-white text-yellow-600 px-2 rounded-md ml-2"
