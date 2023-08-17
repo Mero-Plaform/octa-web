@@ -39,8 +39,6 @@ setupUtilDB()
     initDBStatisticStoreListener();
     initDBAppSettingsStoreListener();
 
-    // dictionaryMockFill(10_000);
-
     disableStandardContextMenu();
 
     if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
