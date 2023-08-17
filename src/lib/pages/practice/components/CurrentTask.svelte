@@ -32,7 +32,7 @@
     hide={$settingsStore.practiceTarget === "original"}
     data={variants}
     wrapStyles="overflow-y-auto flex flex-wrap gap-2 p-2 max-h-28 bg-orange-300 bg-opacity-50 rounded-md"
-    chipStyles="overflow-hidden relative chip text-orange-800 bg-orange-300 hover:filter-none hover:bg-orange-400 grow break-all whitespace-normal cursor-default"
+    chipStyles="overflow-hidden relative chip text-orange-800 bg-orange-300 hover:filter-none grow break-all whitespace-normal cursor-default"
   />
 
   <WordDataViewToggle bind:showPracticeTarget />
@@ -43,14 +43,14 @@
     hide={$settingsStore.practiceTarget === "translation"}
     data={translations}
     wrapStyles="flex flex-wrap gap-2 p-2 max-h-28 overflow-y-auto bg-green-300 bg-opacity-50 rounded-md"
-    chipStyles="overflow-hidden relative chip text-green-800 bg-green-300 hover:filter-none hover:bg-green-400 grow break-all whitespace-normal cursor-default"
+    chipStyles="chip overflow-hidden relative  text-green-800 bg-green-300 hover:filter-none grow break-all whitespace-normal cursor-default"
   />
 
   {#if description}
     <div
       class="p-2 break-all whitespace-normal max-h-28 overflow-y-auto bg-sky-300 bg-opacity-50 rounded-md"
     >
-      <div class="p-2 h-full max-h-28 overflow-auto bg-sky-300 rounded-md">
+      <div class="chip p-2 h-full max-h-28 overflow-auto bg-sky-300 rounded-md !filter-none cursor-default">
         {description}
       </div>
     </div>

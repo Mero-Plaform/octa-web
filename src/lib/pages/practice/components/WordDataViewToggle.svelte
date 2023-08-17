@@ -6,7 +6,7 @@
 
 <div>
   <span
-    class:bg-opacity-50={showPracticeTarget}
+    class:opacity-30={showPracticeTarget}
     class="chip bg-slate-500 text-white cursor-default !filter-none"
   >
     hide
@@ -19,7 +19,7 @@
     size="sm"
   />
   <span
-    class:bg-opacity-50={!showPracticeTarget}
+    class:opacity-30={!showPracticeTarget}
     class="chip bg-pink-500 text-white cursor-default !filter-none"
   >
     show
