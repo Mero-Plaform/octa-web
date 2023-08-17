@@ -1,0 +1,9 @@
+:root {
+  --sdt-bg-main: #3b82f6; /* clock bg */
+  --sdt-shadow-color: #00000069; /* wrap shadow color */
+  --sdt-color: #3b82f6; /* all numbers color (e.g. header & circle) */
+  --sdt-primary: #3b82f6; /* selection element (circle with line) */
+  --sdt-btn-header-bg-hover: #ffffff; /* header number hover bg */
+  --sdt-color-selected: white; /* selected time color (in circle) */
+  --sdt-clock-bg: #ffffff; /* clock bg (around numbers) */
+}
