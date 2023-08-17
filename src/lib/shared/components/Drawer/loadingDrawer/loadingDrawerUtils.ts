@@ -1,6 +1,6 @@
 import { drawerStore, type DrawerSettings } from '@skeletonlabs/skeleton';
 import { disablePreventEscButton, enablePreventEscButton } from '../../../../utils/helpers.js';
-import { loadingDrawerProgressBarStylesStore, type LoadingDrawerProgressBarStylesStore } from './loadingDrawerProgressBarStylesStore.js';
+import { loadingDrawerStylesStore, type LoadingDrawerProgressBarStylesStore } from './loadingDrawerStylesStore.js';
 
 const loadingDrawerSettings: DrawerSettings = {
   id: "loading",
@@ -15,12 +15,12 @@ const loadingDrawerSettings: DrawerSettings = {
 type CustomLoadingDrawerSettings = { bgBackdropColor: string; } & LoadingDrawerProgressBarStylesStore;
 
 export const openLoadingDrawer = (settings: CustomLoadingDrawerSettings) => {
-  loadingDrawerProgressBarStylesStore.set({ 
-    progressBarBgColor: settings.progressBarBgColor 
+  loadingDrawerStylesStore.set({
+    OctaIconColor: settings.OctaIconColor
   });
   enablePreventEscButton();
-  drawerStore.open({ 
-    ...loadingDrawerSettings, 
+  drawerStore.open({
+    ...loadingDrawerSettings,
     bgBackdrop: `${loadingDrawerSettings.bgBackdrop} bg-${settings.bgBackdropColor}-500`
   });
 };

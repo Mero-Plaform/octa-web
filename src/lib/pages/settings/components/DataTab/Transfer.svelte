@@ -1,8 +1,7 @@
 <script lang="ts">
   import { FileDropzone, modalStore } from "@skeletonlabs/skeleton";
-  import {
-    type ImportAppDBData,
-  } from "../../../../DB/utils.js";
+  import { type ImportAppDBData } from "../../../../DB/utils.js";
+  import { utilsWithCatch } from "../../../../DB/utilsWithCatch.js";
   import { getConfirmModalSettings } from "../../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
   import {
     closeLoadingDrawer,
@@ -13,11 +12,10 @@
   import { exportAppData } from "./DataTab/DataTabUtils.js";
   import FileRemoveWhiteIconUrl from "/src/assets/icons/file-remove-white.svg";
   import FileSmileWhiteIconUrl from "/src/assets/icons/file-smile-white.svg";
-    import { utilsWithCatch } from '../../../../DB/utilsWithCatch.js';
 
   const loadingDrawerSettings = {
     bgBackdropColor: "emerald",
-    progressBarBgColor: "emerald",
+    OctaIconColor: "emerald",
   };
   let isDragEnter = false;
   let inputTag: HTMLInputElement;
@@ -51,7 +49,7 @@
           ? fileName.slice(0, 10) + `... .${fileType}`
           : files[0].name;
 
-      if (fileType !== "dic") {
+      if (fileType !== "octa") {
         errFileType = true;
         importDataDisabled = true;
       } else {
@@ -110,7 +108,7 @@
       on:dragenter={onDragEnter}
       on:dragleave={onDragLeave}
       on:drop={onDragLeave}
-      accept=".dic"
+      accept=".octa"
     >
       <svelte:fragment slot="lead">
         <div
@@ -124,7 +122,7 @@
       >
       <svelte:fragment slot="meta">
         <div class:animate-pulse={errFileType} class:text-red-700={errFileType}>
-          only DIC files allowed
+          only OCTA files allowed
         </div>
       </svelte:fragment>
     </FileDropzone>

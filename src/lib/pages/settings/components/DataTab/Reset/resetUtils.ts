@@ -2,18 +2,18 @@ import { modalStore } from '@skeletonlabs/skeleton';
 import { getAppSettingsInitialValues } from '../../../../../DB/initialData/appSettingsInitialValues.js';
 import { getStatisticInitialValues } from '../../../../../DB/initialData/statisticInitialValues.js';
 import { type InitAppSettingsData, type InitStatisticData, type OnAppSettingsClear, type OnDictionaryClear, type OnStatisticClear } from '../../../../../DB/utils.js';
+import { utilsWithCatch } from '../../../../../DB/utilsWithCatch.js';
 import { getConfirmModalSettings } from '../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js';
 import { closeLoadingDrawer, openLoadingDrawer } from '../../../../../shared/components/Drawer/loadingDrawer/loadingDrawerUtils.js';
 import { wordStore } from '../../../../dictionary/stores/wordStore.js';
 import { statisticStore } from '../../../../statistic/stores/statisticStore/statisticStore.js';
+import { activePracticeSettingsStore } from '../../../stores/activePractice/activePracticeSettingsStore.js';
 import { appSettingsStore } from '../../../stores/appSettingsStore/appSettingsStore.js';
 import { passivePracticeSettingsStore } from '../../../stores/passivePractice/passivePracticeSettingsStore.js';
-import { activePracticeSettingsStore } from '../../../stores/activePractice/activePracticeSettingsStore.js';
-import { utilsWithCatch } from '../../../../../DB/utilsWithCatch.js';
 
 const loadingDrawerSettings = {
   bgBackdropColor: "red",
-  progressBarBgColor: "red",
+  OctaIconColor: "red",
 };
 
 /* -------------------------------------------------------------------------- */

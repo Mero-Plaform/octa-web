@@ -8,7 +8,7 @@ import { utilsWithCatch } from '../../../../../DB/utilsWithCatch.js';
 export const exportAppData = async () => {
   const data = await (<ExportAppDBData>utilsWithCatch.get("exportAppDBData")!)();
   const downloadLink = document.createElement("a");
-  downloadLink.download = "dictionaryData.dic";
+  downloadLink.download = "UserData.octa";
   downloadLink.href = URL.createObjectURL(data);
   downloadLink.click();
 };
