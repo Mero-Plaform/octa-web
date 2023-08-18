@@ -136,28 +136,32 @@
     >
       Add time frame
     </button>
-    <SveltyPicker
-      bind:value={from}
-      clearBtn={false}
-      format="hh:ii"
-      inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
-    />
-    -
-    <SveltyPicker
-      bind:value={to}
-      clearBtn={false}
-      format="hh:ii"
-      inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
-    />
+    <div class="inline-flex items-center gap-1 m-sm:mt-2">
+      <SveltyPicker
+        bind:value={from}
+        clearBtn={false}
+        format="hh:ii"
+        inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
+      />
+      -
+      <SveltyPicker
+        bind:value={to}
+        clearBtn={false}
+        format="hh:ii"
+        inputClasses="p-2 w-16 text-white text-center  rounded-md bg-{mainColor}-500 cursor-pointer hover:brightness-110 focus:brightness-110"
+      />
+    </div>
+    {#if !hideTimeFrameErr}
     <div
-      class="w-max mt-2 px-2 mx-auto bg-red-500 text-white rounded-md"
-      hidden={hideTimeFrameErr}
+      transition:scale
+      class="w-max mt-2 px-2 py-1 mx-auto bg-red-500 text-white rounded-md"
     >
       {errMsg}
     </div>
+    {/if}
   </div>
   <div
-    class="flex p-2 flex-wrap justify-center gap-2 rounded-md border-dashed border-2 border-{mainColor}-500"
+    class="flex p-2 pb-0 flex-wrap justify-center gap-2 rounded-md border-dashed border-2 border-{mainColor}-500"
   >
     {#each timeFrames as timeFrame, timeFrameIndex (timeFrame.from)}
       <span
@@ -178,15 +182,14 @@
         </button>
       </span>
     {:else}
-      <div transition:scale>
-        <SlateText
-          additionalStyles="chip text-xs translate-y-0 tracking-normal text-white bg-yellow-500 translate-x-0 m-sm:tracking-normal hover:filter-none"
+      <div
+        transition:scale
+        class="chip text-xs text-white bg-yellow-500 hover:filter-none cursor-default m-sm:px-2"
+      >
+        No time frames
+        <span class="bg-white text-yellow-600 p-2 rounded-md ml-2"
+          >will be used from general</span
         >
-          No time frames
-          <span class="bg-white text-yellow-600 px-2 rounded-md ml-2"
-            >will be used from general</span
-          >
-        </SlateText>
       </div>
     {/each}
   </div>

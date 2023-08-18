@@ -16,7 +16,7 @@
     hover="hover:brightness-110"
     rounded="rounded-md"
     border=""
-    class="w-full mt-5 [&_.tab-list]:gap-10 text-indigo-900 [&_.tab]:"
+    class="w-full mt-5 [&_.tab-list]:gap-10 [&_.tab-list]:m-sm:gap-2 text-indigo-900"
   >
     <Tab
       bind:group={tabSet}
