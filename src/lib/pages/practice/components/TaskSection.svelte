@@ -6,7 +6,10 @@
   import type { Word } from "../../dictionary/interfaces/Word.js";
   import { wordStore } from "../../dictionary/stores/wordStore.js";
   import { practiceActionStore } from "../stores/practiceActionStore.js";
-  import { updatePracticeDataStore } from "../stores/practiceProgressStore.js";
+  import {
+    resetPracticeDataStore,
+    updatePracticeDataStore,
+  } from "../stores/practiceProgressStore.js";
   import { sectionTaskWordTotalAmountStore } from "../stores/sectionTaskWordTotalAmountStore.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import CurrentTask from "./CurrentTask.svelte";
@@ -47,13 +50,18 @@
 
     if (nextTaskData.done) {
       finished = true;
-      updatePracticeDataStore(totalCount, successCount);
+      updatePracticeDataStore(
+        totalCount,
+        successCount,
+        id,
+        selectedTaskResult!
+      );
       return;
     }
 
     ({ variants, translations, description, id } = nextTaskData.value!);
+    updatePracticeDataStore(totalCount, successCount, id, selectedTaskResult!);
     selectedTaskResult = null;
-    updatePracticeDataStore(totalCount, successCount);
   };
 
   const onSettings = () => {
@@ -71,7 +79,7 @@
     }
 
     successCount = 0;
-    updatePracticeDataStore(totalCount, successCount);
+    resetPracticeDataStore(totalCount);
     selectedTaskResult = null;
     ({ variants, translations, description, id } =
       taskDataIterator.next().value!);

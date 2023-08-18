@@ -12,8 +12,8 @@
 </script>
 
 <div transition:fade class="flex flex-col items-center gap-[3vh] w-full">
-  <StateText additionalStyles="">{title}</StateText>
-  <TaskProgress styleClasses="m-0 mb-10" />
+  <StateText additionalStyles="translate-y-0">{title}</StateText>
+  <TaskProgress wrapStyleClasses="mb-10" />
   <div>
     <button
       class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"

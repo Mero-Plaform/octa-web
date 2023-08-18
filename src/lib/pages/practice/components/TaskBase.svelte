@@ -5,7 +5,7 @@
   import type { Word } from "../../dictionary/interfaces/Word.js";
   import { wordStore } from "../../dictionary/stores/wordStore.js";
   import { practiceActionStore } from "../stores/practiceActionStore.js";
-  import { updatePracticeDataStore } from "../stores/practiceProgressStore.js";
+  import { resetPracticeDataStore, updatePracticeDataStore } from "../stores/practiceProgressStore.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import CurrentTask from "./CurrentTask.svelte";
   import FinishTask from "./FinishTask.svelte";
@@ -38,17 +38,17 @@
       practiceActionStore.set("unsuccessful");
     }
 
-    if (nextTaskData.done) {
-      finished = true;
-      updatePracticeDataStore(totalCount, successCount);
-      return;
-    }
-
     totalCount += 1;
 
+    if (nextTaskData.done) {
+      finished = true;
+      updatePracticeDataStore(totalCount, successCount, id, selectedTaskResult!);
+      return;
+    }
+    
     ({ variants, translations, description, id } = nextTaskData.value!);
+    updatePracticeDataStore(totalCount, successCount, id, selectedTaskResult!);
     selectedTaskResult = null;
-    updatePracticeDataStore(totalCount, successCount);
   };
 
   const onSettings = () => {
@@ -59,9 +59,9 @@
     isPreparingData = true;
     finished = false;
     taskDataIterator = taskDataPreparer($settingsStore);
-    totalCount = 1;
+    totalCount = 0;
     successCount = 0;
-    updatePracticeDataStore(totalCount, successCount);
+    resetPracticeDataStore(totalCount);
     selectedTaskResult = null;
     ({ variants, translations, description, id } =
       taskDataIterator.next().value!);

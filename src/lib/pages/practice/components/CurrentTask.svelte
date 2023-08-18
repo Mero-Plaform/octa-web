@@ -50,7 +50,9 @@
     <div
       class="p-2 break-all whitespace-normal max-h-28 overflow-y-auto bg-sky-300 bg-opacity-50 rounded-md"
     >
-      <div class="chip p-2 h-full max-h-28 overflow-auto bg-sky-300 rounded-md !filter-none cursor-default">
+      <div
+        class="chip p-2 h-full max-h-28 overflow-auto bg-sky-300 rounded-md !filter-none cursor-default"
+      >
         {description}
       </div>
     </div>
@@ -97,5 +99,5 @@
       stop
     </button>
   </div>
-  <TaskProgress />
+  <TaskProgress wrapStyleClasses="mt-0"/>
 </div>

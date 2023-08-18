@@ -3,6 +3,6 @@ import { CustomWritableStoreWithoutInitialCallFactory } from '../../../utils/cus
 export type PracticeActionStoreActions = 'successful' | 'unsuccessful';
 
 /**
- * broadcast last action in practice (such as: <PracticeActionStoreActions>)
+ * broadcast last action in practice (such as: PracticeActionStoreActions type)
  */
 export const practiceActionStore = CustomWritableStoreWithoutInitialCallFactory<PracticeActionStoreActions>();
