@@ -40,6 +40,7 @@
   });
 
   const onIntervalPickerInput = ({ detail }: CustomEvent) => {
+    (document.activeElement as HTMLInputElement).blur();
     interval =
       detail < MINIMAL_INTERVAL_VALUE ? MINIMAL_INTERVAL_VALUE : detail;
     settingsStore.updateSettingKeyIntervalProp(settingKey, interval);
