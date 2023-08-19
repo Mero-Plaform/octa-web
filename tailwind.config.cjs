@@ -21,6 +21,7 @@ const config = {
       },
       screens: {
         'm-sm': { 'max': '500px' },
+        'm-420': { 'max': '420px' },
       },
       spacing: {
         "90%": "90%",

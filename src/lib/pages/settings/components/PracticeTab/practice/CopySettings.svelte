@@ -46,7 +46,7 @@
 
 <div transition:scale>
   <div
-    class="cursor-default text-xs bg-white rounded-md p-2 text-{mainColor}-500 align-middle"
+    class="cursor-default text-xs bg-white rounded-md mt-2 p-2 text-{mainColor}-500 align-middle"
   >
     Copy settings from day
   </div>

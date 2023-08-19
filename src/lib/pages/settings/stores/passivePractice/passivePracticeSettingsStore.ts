@@ -12,7 +12,7 @@ import { updatedDayInPassivePracticeSettingsStore } from './updatedDayInPassiveP
 const initValueForSettingKey = (settingKey: PracticeStoreValueKeys, passivePracticeSettingsStoreValue: PracticeSettings) => {
   passivePracticeSettingsStoreValue.daySettings[settingKey] = {
     enabled: false,
-    interval: "00:00",
+    interval: "00:05",
     timeFrames: [],
   };
 };

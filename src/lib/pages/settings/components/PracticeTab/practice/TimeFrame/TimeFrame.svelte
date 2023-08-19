@@ -136,7 +136,7 @@
     >
       Add time frame
     </button>
-    <div class="inline-flex items-center gap-1 m-sm:mt-2">
+    <div class="inline-flex items-center gap-1 m-420:mt-2">
       <SveltyPicker
         bind:value={from}
         clearBtn={false}
