@@ -1,14 +1,15 @@
 import type { Word } from '../../pages/dictionary/interfaces/Word.js';
 import { wordStore } from '../../pages/dictionary/stores/wordStore.js';
-import { practiceActionStore } from '../../pages/practice/stores/practiceActionStore.js';
+import type { PracticeTarget } from '../../pages/practice/interfaces/settings.js';
+import { onPassivePractice } from '../../pages/statistic/stores/statisticStore/statisticStoreUtils.js';
 
-const onNewPassivePracticeComplete = (_: unknown, result: boolean, wordId: Word["id"]) => {
+const onNewPassivePracticeComplete = (_: unknown, result: boolean, wordId: Word["id"], practiceTarget: PracticeTarget) => {
   if (result) {
     wordStore.onSuccessfulPractice(wordId);
-    practiceActionStore.set("successful");
+    onPassivePractice("successful", practiceTarget);
   } else {
     wordStore.onUnsuccessfulPractice(wordId);
-    practiceActionStore.set("unsuccessful");
+    onPassivePractice("unsuccessful", practiceTarget);
   }
 };
 

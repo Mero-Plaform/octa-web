@@ -87,7 +87,7 @@ const wordActionListeners: Record<Extract<WordActionStoreActions, AllowedValues>
 /*                        practiceActionStoreListeners                        */
 /* -------------------------------------------------------------------------- */
 
-const onPracticeProgress = (type: PracticeActionStoreActions) => {
+const statisticStoreUpdateOnPractice = (type: PracticeActionStoreActions, practiceTarget: PracticeTarget) => {
   statisticStore.update((statistic) => {
     const [curMonth, curYear] = getDateInfo();
     const curYearData = getCurYearData(statistic, curYear);
@@ -115,6 +115,10 @@ const onPracticeProgress = (type: PracticeActionStoreActions) => {
 
     return statistic;
   });
+}
+
+const onPracticeProgress = (type: PracticeActionStoreActions) => {
+  statisticStoreUpdateOnPractice(type, practiceTarget);
 };
 
 /**
@@ -124,4 +128,12 @@ export const initStatisticStoreListeners = () => {
   settingsStore.subscribe(settingsStoreListener);
   wordActionStore.subscribe(wordActionStoreListener);
   practiceActionStore.subscribe(onPracticeProgress);
+};
+
+/* -------------------------------------------------------------------------- */
+/*                          passive practice handler                          */
+/* -------------------------------------------------------------------------- */
+
+export const onPassivePractice = (type: PracticeActionStoreActions, practiceTarget: PracticeTarget) => {
+  statisticStoreUpdateOnPractice(type, practiceTarget);
 };
