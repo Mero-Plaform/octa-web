@@ -2,6 +2,6 @@ import { CustomWritableStoreWithoutInitialCallFactory } from '../../../utils/cus
 import type { YearData } from '../interfaces/StatisticStore.js';
 
 /**
- * keeps year of new statistic update
+ * stores year of new statistic update
  */
 export const statisticUpdateStore = CustomWritableStoreWithoutInitialCallFactory<YearData>();

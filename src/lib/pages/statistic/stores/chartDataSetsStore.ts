@@ -4,8 +4,10 @@ import { filterByData, filterByDate } from '../components/chart/statisticUtils.j
 import type { YearData } from '../interfaces/StatisticStore.js';
 import { dataSelectStore } from './dataSelectStore.js';
 import { dateSelectStore } from './dateSelectStore.js';
+import { statisticStore } from './statisticStore/statisticStore.js';
 
-export const chartDataSetsStore = derived([dateSelectStore, dataSelectStore], (
+// statisticStore for new passive practice data appears
+export const chartDataSetsStore = derived([dateSelectStore, dataSelectStore, statisticStore], (
   [$dateSelectStore, $dataSelectStore]) => {
   let statisticFilterByDate: YearData | YearData[];
   let statisticFilterByData: ChartData[];
