@@ -24,7 +24,7 @@
 
 <div
   transition:fade
-  class="flex flex-col justify-center items-center gap-[3vh] h-full w-90% p-2 absolute"
+  class="flex flex-col justify-center items-center gap-[3vh] h-full w-90% p-2 absolute select-none"
 >
   <WordData
     show={showPracticeTarget}
@@ -64,7 +64,7 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:bg-slate-400 focus:text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:text-white focus:bg-slate-400 focus:bg-opacity-40"
         fill="!bg-slate-500 !text-white"
         value={true}
       >
@@ -74,7 +74,7 @@
         bind:group={selectedTaskResult}
         name="curTaskResult"
         rounded="rounded-md"
-        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:bg-slate-400 focus:text-white"
+        class="border-b-2 border-slate-400  text-slate-400 transition-all hover:text-white hover:bg-slate-400 hover:bg-opacity-40 focus:text-white focus:bg-slate-400 focus:bg-opacity-40"
         fill="!bg-slate-500 !text-white"
         value={false}
       >

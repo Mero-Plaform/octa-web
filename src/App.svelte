@@ -9,7 +9,7 @@
   import { modalComponentRegistry } from "./lib/shared/modalComponentRegistry.js";
 
   // initial page
-  $routerStore = "/practice";
+  $routerStore = "/dictionary";
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "web") {
     onMount(async () => {
