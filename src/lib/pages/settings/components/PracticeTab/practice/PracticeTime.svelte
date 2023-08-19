@@ -13,9 +13,11 @@
   const { settingsStore, updatedDay } = getContext<PracticeStores>("stores");
   const mainColor = getContext<string>("mainColor");
   let interval: string = MINIMAL_INTERVAL_VALUE;
+  let prevInterval = interval;
 
   const getCurrentInterval = () => {
     interval = $settingsStore.daySettings[settingKey]!.interval;
+    prevInterval = interval;
   };
 
   const onUpdatedDayInPassivePracticeSettingsStoreUpdate = (
@@ -41,8 +43,15 @@
 
   const onIntervalPickerInput = ({ detail }: CustomEvent) => {
     (document.activeElement as HTMLInputElement).blur();
+    
     interval =
       detail < MINIMAL_INTERVAL_VALUE ? MINIMAL_INTERVAL_VALUE : detail;
+
+    if (prevInterval === interval) {
+      return;
+    }
+
+    prevInterval = interval;
     settingsStore.updateSettingKeyIntervalProp(settingKey, interval);
   };
 </script>
