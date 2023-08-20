@@ -4,7 +4,6 @@
   import { scale } from "svelte/transition";
   import SveltyPicker from "svelty-picker";
   import removeIconUrl from "../../../../../../../assets/icons/clear.svg";
-  import SlateText from "../../../../../../shared/components/StateText.svelte";
   import {
     getIconMaskStyes,
     sortTimeFrames,
@@ -81,14 +80,16 @@
       if (from === fromToRemove) {
         removedTimeFrameIndex = i;
         return false;
-      } 
+      }
       return true;
     });
     settingsStore.updateTimeFrames(settingKey, timeFrames);
     return removedTimeFrameIndex!;
   };
 
-  const checkToRemoveOverlapErrorAfterRemovingTimeFrame = (removedTimeFrameIndex: number) => {
+  const checkToRemoveOverlapErrorAfterRemovingTimeFrame = (
+    removedTimeFrameIndex: number
+  ) => {
     if (
       timeFramesOverlapIndex !== null &&
       timeFramesOverlapIndex === removedTimeFrameIndex!
@@ -152,12 +153,12 @@
       />
     </div>
     {#if !hideTimeFrameErr}
-    <div
-      transition:scale
-      class="w-max mt-2 px-2 py-1 mx-auto bg-red-500 text-white rounded-md"
-    >
-      {errMsg}
-    </div>
+      <div
+        transition:scale
+        class="w-max mt-2 px-2 py-1 mx-auto bg-red-500 text-white rounded-md"
+      >
+        {errMsg}
+      </div>
     {/if}
   </div>
   <div

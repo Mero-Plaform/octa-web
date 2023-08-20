@@ -13,7 +13,7 @@
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "web") {
     onMount(async () => {
-      (await import("./lib/utils/webPlatrom/buildHelpers.js")).onAppRendered();
+      (await import("./lib/utils/webPlatform/buildHelpers.js")).onAppRendered();
     });
   }
 </script>

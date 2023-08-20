@@ -9,7 +9,5 @@
     <MenuDrawer />
   {:else if $drawerStore.id === "loading"}
     <CustomLoadingDrawer />
-  {:else}
-    <!-- (fallback contents) -->
   {/if}
 </Drawer>

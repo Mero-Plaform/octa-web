@@ -20,3 +20,8 @@ export const initDesktopActionListeners = () => {
 export const sendWindowError = (err: unknown) => {
   window.electron?.ipcRenderer.send("mainWinErr", err);
 };
+
+// menu -> exit
+export const onAppExit = () => {
+  window.electron?.ipcRenderer.send("onAppExit");
+};
