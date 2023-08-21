@@ -14,8 +14,7 @@ type UtilsWithCatchKeys = "onAddWord"
   | "importAppDBData"
   | "getAppSettings"
   | "initAppSettingsData"
-  | "updateAppSettingsData"
-  | "onAppSettingsClear";
+  | "updateAppSettingsData";
 
 type UtilsWithCatchValues = (...params: unknown[]) => unknown;
 

@@ -1,7 +1,7 @@
 import { modalStore } from '@skeletonlabs/skeleton';
 import { getAppSettingsInitialValues } from '../../../../../DB/initialData/appSettingsInitialValues.js';
 import { getStatisticInitialValues } from '../../../../../DB/initialData/statisticInitialValues.js';
-import { type InitAppSettingsData, type InitStatisticData, type OnAppSettingsClear, type OnDictionaryClear, type OnStatisticClear } from '../../../../../DB/utils.js';
+import { type InitAppSettingsData, type InitStatisticData, type OnDictionaryClear, type OnStatisticClear } from '../../../../../DB/utils.js';
 import { utilsWithCatch } from '../../../../../DB/utilsWithCatch.js';
 import { getConfirmModalSettings } from '../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js';
 import { closeLoadingDrawer, openLoadingDrawer } from '../../../../../shared/components/Drawer/loadingDrawer/loadingDrawerUtils.js';
@@ -79,7 +79,6 @@ const appSettingsReset = async () => {
   appSettingsStore.reInit(initialData);
   passivePracticeSettingsStore.reInit(initialData.practice.passive);
   activePracticeSettingsStore.reInit(initialData.practice.active);
-  await (<OnAppSettingsClear>utilsWithCatch.get("onAppSettingsClear")!)();
   await (<InitAppSettingsData>utilsWithCatch.get("initAppSettingsData")!)(initialData);
 };
 

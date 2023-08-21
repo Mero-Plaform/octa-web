@@ -143,7 +143,7 @@ export const getAppSettings = () => {
 export type InitAppSettingsData = typeof initAppSettingsData;
 
 export const initAppSettingsData = (appSettingsInitialValues: AppSettings) => {
-  return appDB.appSettings.add(
+  return appDB.appSettings.put(
     {
       ...appSettingsInitialValues,
     }, appSettingsDataKey
@@ -154,13 +154,4 @@ export type UpdateAppSettingsData = typeof updateAppSettingsData;
 
 export const updateAppSettingsData = (appSettingsData: AppSettings) => {
   return appDB.appSettings.update(appSettingsDataKey, appSettingsData);
-};
-
-export type OnAppSettingsClear = typeof onAppSettingsClear;
-
-/**
- * erase all statistic data
- */
-export const onAppSettingsClear = () => {
-  return appDB.appSettings.clear();
 };

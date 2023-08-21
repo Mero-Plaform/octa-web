@@ -3,7 +3,7 @@ import type { SettingsStore } from '../pages/practice/interfaces/settings.js';
 import type { AppSettings } from '../pages/settings/interfaces/appSettings.js';
 import type { YearData } from '../pages/statistic/interfaces/StatisticStore.js';
 import { RunPromiseWithCatch } from '../utils/helpers.js';
-import { importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onAppSettingsClear, onDeleteWord, onDictionaryClear, onEditWord, onStatisticClear, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
+import { importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, onStatisticClear, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
 import { utilsWithCatch } from './utilsWithCatch.js';
 
 /* -------------------------------------------------------------------------- */
@@ -35,11 +35,6 @@ const initStatisticDataObservable = (statisticInitialValues: YearData) => {
   return initStatisticData(statisticInitialValues);
 };
 
-const onStatisticClearObservable = () => {
-  window.electron?.ipcRenderer.send('onStatisticClear');
-  return onStatisticClear();
-};
-
 const initPracticeDataObservable = (practiceInitialValues: SettingsStore) => {
   window.electron?.ipcRenderer.send('initPracticeData', practiceInitialValues);
   return initPracticeData(practiceInitialValues);
@@ -65,11 +60,6 @@ const updateAppSettingsDataObservable = (appSettingsData: AppSettings) => {
   return updateAppSettingsData(appSettingsData);
 };
 
-const onAppSettingsClearObservable = () => {
-  window.electron?.ipcRenderer.send('onAppSettingsClear');
-  return onAppSettingsClear();
-};
-
 const importAppDBDataObservable = (file: File) => {
   window.electron?.ipcRenderer.send('importAppDBData', file);
   return importAppDBData(file);
@@ -85,12 +75,11 @@ export const initUtilsWithCatchSetupForDesktopBuild = () => {
   utilsWithCatch.set("onDeleteWord", (...params) => RunPromiseWithCatch(onDeleteWordObservable, params));
   utilsWithCatch.set("onDictionaryClear", (...params) => RunPromiseWithCatch(onDictionaryClearObservable, params));
   utilsWithCatch.set("initStatisticData", (...params) => RunPromiseWithCatch(initStatisticDataObservable, params));
-  utilsWithCatch.set("onStatisticClear", (...params) => RunPromiseWithCatch(onStatisticClearObservable, params));
+  utilsWithCatch.set("onStatisticClear", (...params) => RunPromiseWithCatch(onStatisticClear, params));
   utilsWithCatch.set("initPracticeData", (...params) => RunPromiseWithCatch(initPracticeDataObservable, params));
   utilsWithCatch.set("updatePracticeData", (...params) => RunPromiseWithCatch(updatePracticeDataObservable, params));
   utilsWithCatch.set("updateStatistic", (...params) => RunPromiseWithCatch(updateStatisticObservable, params));
   utilsWithCatch.set("initAppSettingsData", (...params) => RunPromiseWithCatch(initAppSettingsDataObservable, params));
   utilsWithCatch.set("updateAppSettingsData", (...params) => RunPromiseWithCatch(updateAppSettingsDataObservable, params));
-  utilsWithCatch.set("onAppSettingsClear", (...params) => RunPromiseWithCatch(onAppSettingsClearObservable, params));
   utilsWithCatch.set("importAppDBData", (...params) => RunPromiseWithCatch(importAppDBDataObservable, params));
 };

@@ -1,5 +1,5 @@
 import { RunPromiseWithCatch } from '../utils/helpers.js';
-import { exportAppDBData, getAppSettings, getDictionaryDataAsArray, getPracticeData, getStatisticDataAsArray, importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onAppSettingsClear, onDeleteWord, onDictionaryClear, onEditWord, onStatisticClear, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
+import { exportAppDBData, getAppSettings, getDictionaryDataAsArray, getPracticeData, getStatisticDataAsArray, importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, onStatisticClear, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
 import { utilsWithCatch } from './utilsWithCatch.js';
 
 /* -------------------------------------------------------------------------- */
@@ -24,5 +24,4 @@ export const initUtilsWithCatchSetupForWebBuild = () => {
   utilsWithCatch.set("getAppSettings", (...params) => RunPromiseWithCatch(getAppSettings, params));
   utilsWithCatch.set("initAppSettingsData", (...params) => RunPromiseWithCatch(initAppSettingsData, params));
   utilsWithCatch.set("updateAppSettingsData", (...params) => RunPromiseWithCatch(updateAppSettingsData, params));
-  utilsWithCatch.set("onAppSettingsClear", (...params) => RunPromiseWithCatch(onAppSettingsClear, params));
 };
