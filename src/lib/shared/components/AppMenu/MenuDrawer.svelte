@@ -6,7 +6,7 @@
   import SettingsIconSvg from "../../../../assets/icons/settings-white.svg";
   import StatsIconSvg from "../../../../assets/icons/stats-white.svg";
   import routerStore from "../../../router/routerStore.js";
-  import { onAppExit } from "../../desktopAppBuild/ipcUtils.js";
+  import { sendToIpcMain } from "../../desktopAppBuild/ipcUtils.js";
 
   const closeMenu = () => drawerStore.close();
 
@@ -48,7 +48,7 @@
       imgSrc: ClearIconSvg,
       imgAlt: "exit icon",
       onClick: () => {
-        onAppExit();
+        sendToIpcMain("onAppExit");
         closeMenu();
       },
     });

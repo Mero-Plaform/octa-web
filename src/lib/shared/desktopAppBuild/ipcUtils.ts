@@ -17,11 +17,6 @@ export const initDesktopActionListeners = () => {
   window.electron?.ipcRenderer.on("newPassivePracticeComplete", onNewPassivePracticeComplete);
 };
 
-export const sendWindowError = (err: unknown) => {
-  window.electron?.ipcRenderer.send("mainWinErr", err);
-};
-
-// menu -> exit
-export const onAppExit = () => {
-  window.electron?.ipcRenderer.send("onAppExit");
+export const sendToIpcMain = (channel: string, ...data: unknown[]) => {
+  window.electron?.ipcRenderer.send(channel, ...data);
 };

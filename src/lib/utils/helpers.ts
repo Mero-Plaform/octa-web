@@ -191,7 +191,7 @@ const onGlobalError = async (errMsg: string | Event) => {
   showErrorToast("UnexpectedException: " + errMsg as string);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
-    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendWindowError(errMsg);
+    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendToIpcMain("mainWinErr", errMsg);
   }
 };
 
@@ -201,7 +201,7 @@ const onGlobalUnhandledrejection = async ({ reason }: PromiseRejectionEvent) => 
   showErrorToast(errMsg);
 
   if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
-    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendWindowError(errMsg);
+    (await import("../shared/desktopAppBuild/ipcUtils.js")).sendToIpcMain("mainWinErr", errMsg);
   }
 };
 
