@@ -10,8 +10,6 @@ import { AppDB, appDB } from './AppDB.js';
 /*                                 dictionary                                 */
 /* -------------------------------------------------------------------------- */
 
-export type OnAddWord = typeof onAddWord;
-
 export const onAddWord = (newWord: Word) => {
   return appDB.dictionary.add({
     ...newWord
@@ -24,19 +22,13 @@ export const onEditWord = (editedWord: Word) => {
   return appDB.dictionary.put(editedWord);
 };
 
-export type OnDeleteWord = typeof onDeleteWord;
-
 export const onDeleteWord = (wordId: Word['id']) => {
   return appDB.dictionary.delete(wordId);
 };
 
-export type GetDictionaryDataAsArray = typeof getDictionaryDataAsArray;
-
 export const getDictionaryDataAsArray = () => {
   return appDB.dictionary.toArray();
 };
-
-export type OnDictionaryClear = typeof onDictionaryClear;
 
 /**
  * erase all dictionary data
@@ -48,8 +40,6 @@ export const onDictionaryClear = () => {
 /* -------------------------------------------------------------------------- */
 /*                                  practice                                  */
 /* -------------------------------------------------------------------------- */
-
-export type GetPracticeData = typeof getPracticeData;
 
 /**
  * the out-bound key for practiceSettings table only data
@@ -66,8 +56,6 @@ export const initPracticeData = (practiceInitialValues: SettingsStore) => {
   }, practiceSettingsDataKey);
 };
 
-export type UpdatePracticeData = typeof updatePracticeData;
-
 export const updatePracticeData = (practiceData: SettingsStore) => {
   return appDB.practiceSettings.update(practiceSettingsDataKey, practiceData);
 };
@@ -76,27 +64,19 @@ export const updatePracticeData = (practiceData: SettingsStore) => {
 /*                                  statistic                                 */
 /* -------------------------------------------------------------------------- */
 
-export type UpdateStatistic = typeof updateStatistic;
-
 export const updateStatistic = (yearData: YearData) => {
   return appDB.statistic.put(yearData);
 };
 
-export type GetStatisticDataAsArray = typeof getStatisticDataAsArray;
-
 export const getStatisticDataAsArray = () => {
   return appDB.statistic.toArray();
 };
-
-export type InitStatisticData = typeof initStatisticData;
 
 export const initStatisticData = async (statisticInitialValues: YearData) => {
   return appDB.statistic.add({
     ...statisticInitialValues
   });
 };
-
-export type OnStatisticClear = typeof onStatisticClear;
 
 /**
  * erase all statistic data
@@ -109,14 +89,10 @@ export const onStatisticClear = () => {
 /*                           app data transfer                                */
 /* -------------------------------------------------------------------------- */
 
-export type ExportAppDBData = typeof exportAppDBData;
-
 export const exportAppDBData = async () => {
   //@ts-ignore
   return exportDB(appDB);
 };
-
-export type ImportAppDBData = typeof importAppDBData;
 
 export const importAppDBData = async (file: File) => {
   // @ts-ignore
@@ -129,8 +105,6 @@ export const importAppDBData = async (file: File) => {
 /*                                app settings                                */
 /* -------------------------------------------------------------------------- */
 
-export type GetAppSettings = typeof getAppSettings;
-
 /**
  * the out-bound key for appSettings table only data
  */
@@ -140,8 +114,6 @@ export const getAppSettings = () => {
   return appDB.appSettings.get(appSettingsDataKey);
 };
 
-export type InitAppSettingsData = typeof initAppSettingsData;
-
 export const initAppSettingsData = (appSettingsInitialValues: AppSettings) => {
   return appDB.appSettings.put(
     {
@@ -149,8 +121,6 @@ export const initAppSettingsData = (appSettingsInitialValues: AppSettings) => {
     }, appSettingsDataKey
   );
 };
-
-export type UpdateAppSettingsData = typeof updateAppSettingsData;
 
 export const updateAppSettingsData = (appSettingsData: AppSettings) => {
   return appDB.appSettings.update(appSettingsDataKey, appSettingsData);
