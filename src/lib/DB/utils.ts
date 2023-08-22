@@ -16,8 +16,6 @@ export const onAddWord = (newWord: Word) => {
   });
 };
 
-export type OnEditWord = typeof onEditWord;
-
 export const onEditWord = (editedWord: Word) => {
   return appDB.dictionary.put(editedWord);
 };
