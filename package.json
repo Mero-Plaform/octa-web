@@ -33,6 +33,6 @@
     "chart.js": "^4.3.0",
     "dexie": "^3.2.3",
     "dexie-export-import": "^4.0.7",
-    "svelty-picker": "^4.0.9"
+    "svelty-picker": "^4.1.0"
   }
 }
