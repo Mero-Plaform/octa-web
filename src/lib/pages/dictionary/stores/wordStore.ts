@@ -1,5 +1,4 @@
-import { type GetDictionaryDataAsArray } from '../../../DB/utils.js';
-import { utilsWithCatch } from '../../../DB/utilsWithCatch.js';
+import { DBUtilsFacade } from '../../../DB/DBUtilsFacade.js';
 import type { CustomWritableStore } from '../../../utils/customStores/CustomWritableStore.js';
 import { CustomWritableStoreFactory } from '../../../utils/customStores/CustomWritableStoreFactory.js';
 import type { Word } from '../interfaces/Word.js';
@@ -126,7 +125,7 @@ type WordStore = CustomWritableStore<Map<string, Word>> & {
 };
 
 export const reInitWordStoreFromDB = async () => {
-  const dictionaryArr = await (<GetDictionaryDataAsArray>utilsWithCatch.get("getDictionaryDataAsArray")!)();
+  const dictionaryArr = await DBUtilsFacade.getDictionaryDataAsArray();
   wordStore.value = createWordStoreValue(dictionaryArr);
 };
 

@@ -1,10 +1,9 @@
 import type { YearData } from '../../pages/statistic/interfaces/StatisticStore.js';
 import { statisticUpdateStore } from '../../pages/statistic/stores/statisticUpdateStore.js';
-import type { UpdateStatistic } from '../utils.js';
-import { utilsWithCatch } from '../utilsWithCatch.js';
+import { DBUtilsFacade } from '../DBUtilsFacade.js';
 
 const statisticStoreListener = (yearData: YearData) => {
-  (<UpdateStatistic>utilsWithCatch.get("updateStatistic")!)(yearData);
+  DBUtilsFacade.updateStatistic(yearData);
 };
 
 export const initDBStatisticStoreListener = () => {

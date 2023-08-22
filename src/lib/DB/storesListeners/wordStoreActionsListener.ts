@@ -1,7 +1,6 @@
 import type { Word } from '../../pages/dictionary/interfaces/Word.js';
 import { wordActionStore, type WordActionStoreData } from '../../pages/dictionary/stores/wordActionStore.js';
-import { type OnAddWord, type OnDeleteWord, type OnEditWord } from '../utils.js';
-import { utilsWithCatch } from '../utilsWithCatch.js';
+import { DBUtilsFacade } from '../DBUtilsFacade.js';
 
 let handlers: {
   add: (newWord: Word) => Promise<unknown>;
@@ -11,11 +10,11 @@ let handlers: {
 
 const setupHandlers = () => {
   handlers = {
-    add: <OnAddWord>utilsWithCatch.get("onAddWord")!,
-    edit: <OnEditWord>utilsWithCatch.get("onEditWord")!,
-    delete: <OnDeleteWord>utilsWithCatch.get("onDeleteWord")!,
+    add: DBUtilsFacade.onAddWord,
+    edit: DBUtilsFacade.onEditWord,
+    delete: DBUtilsFacade.onDeleteWord,
   };
-}
+};
 
 const wordStoreActionsListener = ([action, data]: WordActionStoreData) => {
   handlers[action](data as Word & string);

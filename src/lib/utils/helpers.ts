@@ -142,14 +142,6 @@ export const sortTimeFrames = (arr: TimeFrame[]) => {
   arr.sort(({ from: from1 }, { from: from2 }) => Number(from1.replace(":", "")) - Number(from2.replace(":", "")));
 };
 
-export const RunPromiseWithCatch = async<T extends (...args: any) => any>(func: T, params: unknown[]): Promise<ReturnType<T> | undefined> => {
-  try {
-    return await func(...params);
-  } catch (err) {
-    onRunPromiseWithCatchError(err);
-  }
-};
-
 /* --------------------------- Esc keyboard button -------------------------- */
 
 const preventEscButton = (e: KeyboardEvent) => {
@@ -193,10 +185,6 @@ export const showWarnToast = (warnMsg: string) => {
     message: TOAST_OCTA_ICON + `<div>${warnMsg}</div>`,
     background: WARN_TOAST_STYLES,
   });
-};
-
-const onRunPromiseWithCatchError = (err: unknown) => {
-  onGlobalError("In RunPromiseWithCatch: " + err);
 };
 
 const onGlobalError = async (errMsg: string | Event) => {

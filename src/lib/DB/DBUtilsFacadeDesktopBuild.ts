@@ -2,12 +2,12 @@ import type { Word } from '../pages/dictionary/interfaces/Word.js';
 import type { SettingsStore } from '../pages/practice/interfaces/settings.js';
 import type { AppSettings } from '../pages/settings/interfaces/appSettings.js';
 import type { YearData } from '../pages/statistic/interfaces/StatisticStore.js';
-import { RunPromiseWithCatch } from '../utils/helpers.js';
-import { importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, onStatisticClear, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
-import { utilsWithCatch } from './utilsWithCatch.js';
+import type { Mutable } from '../shared/interfaces/basic.js';
+import { DBUtilsFacade } from './DBUtilsFacade.js';
+import { importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
 
 /* -------------------------------------------------------------------------- */
-/*                               decorated utils                              */
+/*                             DB decorated utils                             */
 /* -------------------------------------------------------------------------- */
 
 const onAddWordObservable = (newWord: Word) => {
@@ -66,20 +66,19 @@ const importAppDBDataObservable = (file: File) => {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                            decorated utils setup                           */
+/*                         DB utils facade decoration                         */
 /* -------------------------------------------------------------------------- */
 
-export const initUtilsWithCatchSetupForDesktopBuild = () => {
-  utilsWithCatch.set("onAddWord", (...params) => RunPromiseWithCatch(onAddWordObservable, params));
-  utilsWithCatch.set("onEditWord", (...params) => RunPromiseWithCatch(onEditWordObservable, params));
-  utilsWithCatch.set("onDeleteWord", (...params) => RunPromiseWithCatch(onDeleteWordObservable, params));
-  utilsWithCatch.set("onDictionaryClear", (...params) => RunPromiseWithCatch(onDictionaryClearObservable, params));
-  utilsWithCatch.set("initStatisticData", (...params) => RunPromiseWithCatch(initStatisticDataObservable, params));
-  utilsWithCatch.set("onStatisticClear", (...params) => RunPromiseWithCatch(onStatisticClear, params));
-  utilsWithCatch.set("initPracticeData", (...params) => RunPromiseWithCatch(initPracticeDataObservable, params));
-  utilsWithCatch.set("updatePracticeData", (...params) => RunPromiseWithCatch(updatePracticeDataObservable, params));
-  utilsWithCatch.set("updateStatistic", (...params) => RunPromiseWithCatch(updateStatisticObservable, params));
-  utilsWithCatch.set("initAppSettingsData", (...params) => RunPromiseWithCatch(initAppSettingsDataObservable, params));
-  utilsWithCatch.set("updateAppSettingsData", (...params) => RunPromiseWithCatch(updateAppSettingsDataObservable, params));
-  utilsWithCatch.set("importAppDBData", (...params) => RunPromiseWithCatch(importAppDBDataObservable, params));
+export const initDBUtilsFacadeDesktopBuild = () => {
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).onAddWord = onAddWordObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).onEditWord = onEditWordObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).onDeleteWord = onDeleteWordObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).onDictionaryClear = onDictionaryClearObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).initStatisticData = initStatisticDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).initPracticeData = initPracticeDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updatePracticeData = updatePracticeDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updateStatistic = updateStatisticObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).initAppSettingsData = initAppSettingsDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updateAppSettingsData = updateAppSettingsDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).importAppDBData = importAppDBDataObservable;
 };

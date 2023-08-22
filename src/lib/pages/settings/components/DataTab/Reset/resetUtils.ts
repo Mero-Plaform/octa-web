@@ -1,8 +1,7 @@
 import { modalStore } from '@skeletonlabs/skeleton';
+import { DBUtilsFacade } from '../../../../../DB/DBUtilsFacade.js';
 import { getAppSettingsInitialValues } from '../../../../../DB/initialData/appSettingsInitialValues.js';
 import { getStatisticInitialValues } from '../../../../../DB/initialData/statisticInitialValues.js';
-import { type InitAppSettingsData, type InitStatisticData, type OnDictionaryClear, type OnStatisticClear } from '../../../../../DB/utils.js';
-import { utilsWithCatch } from '../../../../../DB/utilsWithCatch.js';
 import { getConfirmModalSettings } from '../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js';
 import { closeLoadingDrawer, openLoadingDrawer } from '../../../../../shared/components/Drawer/loadingDrawer/loadingDrawerUtils.js';
 import { wordStore } from '../../../../dictionary/stores/wordStore.js';
@@ -22,7 +21,7 @@ const loadingDrawerSettings = {
 
 const dictionaryReset = async () => {
   wordStore.clear();
-  await (<OnDictionaryClear>utilsWithCatch.get("onDictionaryClear")!)();
+  await DBUtilsFacade.onDictionaryClear();
 };
 
 const onDictionaryReset = async (response: boolean) => {
@@ -49,8 +48,8 @@ export const onDictionaryResetButtonClick = () => {
 const statisticReset = async () => {
   const initialData = getStatisticInitialValues();
   statisticStore.reInit(initialData);
-  await (<OnStatisticClear>utilsWithCatch.get("onStatisticClear")!)();
-  await (<InitStatisticData>utilsWithCatch.get("initStatisticData")!)(initialData[0]);
+  await DBUtilsFacade.onStatisticClear();
+  await DBUtilsFacade.initStatisticData(initialData[0]);
 };
 
 const onStatisticReset = async (response: boolean) => {
@@ -79,7 +78,7 @@ const appSettingsReset = async () => {
   appSettingsStore.reInit(initialData);
   passivePracticeSettingsStore.reInit(initialData.practice.passive);
   activePracticeSettingsStore.reInit(initialData.practice.active);
-  await (<InitAppSettingsData>utilsWithCatch.get("initAppSettingsData")!)(initialData);
+  await DBUtilsFacade.initAppSettingsData(initialData);
 };
 
 /* -------------------------------------------------------------------------- */

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { FileDropzone, modalStore } from "@skeletonlabs/skeleton";
-  import { type ImportAppDBData } from "../../../../DB/utils.js";
-  import { utilsWithCatch } from "../../../../DB/utilsWithCatch.js";
+  import { DBUtilsFacade } from "../../../../DB/DBUtilsFacade.js";
   import { getConfirmModalSettings } from "../../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
   import {
     closeLoadingDrawer,
@@ -65,7 +64,7 @@
     }
 
     openLoadingDrawer(loadingDrawerSettings);
-    await (<ImportAppDBData>utilsWithCatch.get("importAppDBData")!)(files[0]);
+    await DBUtilsFacade.importAppDBData(files[0]);
     reInitWordStoreFromDB();
     inputTag.value = "";
     inputTag.dispatchEvent(new CustomEvent("change"));
