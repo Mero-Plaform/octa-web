@@ -19,6 +19,12 @@
   export let header: string;
   export let generalSettingsPopup: string;
   export let stores: PracticeStores;
+  export let pickerStyles: {
+    "--sdt-bg-main": string;
+    "--sdt-color": string;
+    "--sdt-primary": string;
+    "--sdt-btn-header-bg-hover": string;
+  };
 
   const weekdaysStyles = `bg-${mainColor}-500`;
   const weekendsStyles = "bg-rose-500";
@@ -70,6 +76,12 @@
 <div
   transition:fade
   class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-160px)] overflow-auto p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
+  style={`
+    --sdt-bg-main: ${pickerStyles["--sdt-bg-main"]};
+    --sdt-color: ${pickerStyles["--sdt-color"]};
+    --sdt-primary: ${pickerStyles["--sdt-primary"]};
+    --sdt-btn-header-bg-hover: ${pickerStyles["--sdt-btn-header-bg-hover"]};
+  `}
 >
   <div
     class="border-{mainColor}-400 border-2 rounded-md p-2 cursor-default select-none"
@@ -90,3 +102,12 @@
     {/each}
   {/if}
 </div>
+
+<!-- <style>
+  :root {
+    --sdt-bg-main: rgb(211, 2, 211);
+    --sdt-color: fuchsia;
+    --sdt-primary: fuchsia;
+    --sdt-btn-header-bg-hover: #a93f9e;
+  }
+</style> -->

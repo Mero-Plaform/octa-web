@@ -60,6 +60,12 @@
           mainColor="blue"
           generalSettingsPopup="Passive"
           stores={passivePracticeStore}
+          pickerStyles={{
+            "--sdt-bg-main": "#3b82f6",
+            "--sdt-color": "#3b82f6",
+            "--sdt-primary": "#3b82f6",
+            "--sdt-btn-header-bg-hover": "#3f67a9",
+          }}
         />
       {:else if tabSet === 1}
         <PracticeSettings
@@ -67,6 +73,12 @@
           mainColor="fuchsia"
           generalSettingsPopup="Active"
           stores={activePracticeStore}
+          pickerStyles={{
+            "--sdt-bg-main": "rgb(211, 2, 211)",
+            "--sdt-color": "fuchsia",
+            "--sdt-primary": "fuchsia",
+            "--sdt-btn-header-bg-hover": "#a93f9e",
+          }}
         />
       {/if}
     </svelte:fragment>
