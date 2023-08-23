@@ -8,8 +8,9 @@
   import { editWordStore } from "../stores/editWordStore.js";
   import { removeWordStore } from "../stores/removeWordStore.js";
   import { wordPracticeStore } from "../stores/wordPracticeStore.js";
-  import deleteImageUrl from "/src/assets/icons/delete.svg";
-  import editImageUrl from "/src/assets/icons/edit.svg";
+  import deleteIconUrl from "/src/assets/icons/delete.svg";
+  import editIconUrl from "/src/assets/icons/edit.svg";
+  import octaSlateIconUrl from "/src/assets/icons/octopus-slate.svg";
 
   export let word: Word;
 
@@ -41,7 +42,10 @@
   };
 </script>
 
-<div class="flex gap-2 bg-white bg-opacity-30 p-2 rounded-md">
+<div 
+  class="flex gap-2 bg-white bg-opacity-30 p-2 rounded-md  bg-[length:20%] bg-repeat-space"
+  style={`background-image: url('${octaSlateIconUrl}')`}
+>
   <div
     class="inline-flex flex-col justify-center grow gap-2 max-w-xs box-border rounded-md"
   >
@@ -96,7 +100,7 @@
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-purple-500"
-        style={getIconMaskStyes(editImageUrl)}
+        style={getIconMaskStyes(editIconUrl)}
       />
     </button>
     <button
@@ -106,7 +110,7 @@
     >
       <div
         class="h-1/2 w-1/2 m-auto bg-red-500"
-        style={getIconMaskStyes(deleteImageUrl)}
+        style={getIconMaskStyes(deleteIconUrl)}
       />
     </button>
   </div>
