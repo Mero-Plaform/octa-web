@@ -23,7 +23,7 @@ type GetConfirmModalSettingsParams = {
  */
 export const getConfirmModalSettings = ({
   backdropColor,
-  backdropClasses = `!bg-${backdropColor}-200 !bg-opacity-50 backdrop-blur-sm`,
+  backdropClasses = `!bg-${backdropColor}-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer`,
   title = "Confirm to proceed",
   body,
   color,

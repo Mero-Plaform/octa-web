@@ -7,7 +7,7 @@
   const modal: ModalSettings = {
     type: "component",
     component: "addWord",
-    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm",
+    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
   };
 
   const openModal = () => {

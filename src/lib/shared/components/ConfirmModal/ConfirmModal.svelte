@@ -24,7 +24,7 @@
 <div
   use:backdropClick
   on:backdropClick={onReject}
-  class="flex flex-col gap-5 text-white"
+  class="flex flex-col gap-5 text-white cursor-default"
 >
   <div
     class="bg-{color}-400 rounded-md p-2 text-center cursor-default select-none text-2xl"

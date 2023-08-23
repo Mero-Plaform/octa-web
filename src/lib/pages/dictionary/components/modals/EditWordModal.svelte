@@ -27,10 +27,10 @@
 </script>
 
 <div
-  class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-purple-500 overflow-hidden px-5"
+  class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-purple-500 overflow-hidden px-5 cursor-default"
 >
   <div
-    class="select-none bg-purple-400 text-white rounded-md p-2 cursor-default"
+    class="select-none bg-purple-400 text-white rounded-md p-2"
   >
     Edit word
   </div>

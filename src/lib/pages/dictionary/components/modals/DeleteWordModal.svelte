@@ -13,8 +13,8 @@
   };
 </script>
 
-<div class="gap-5 max-w-90% flex flex-col text-center">
-  <div class="select-none bg-red-400 rounded-md p-2 text-white cursor-default">
+<div class="gap-5 max-w-90% flex flex-col text-center cursor-default">
+  <div class="select-none bg-red-400 rounded-md p-2 text-white">
     Delete word
   </div>
   <div class="p-2 rounded-md border-red-300 border-2">

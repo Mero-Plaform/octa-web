@@ -19,7 +19,7 @@
     modalStore.trigger({
       type: "component",
       component: "removeWord",
-      backdropClasses: "!bg-red-200 !bg-opacity-50 backdrop-blur-sm",
+      backdropClasses: "!bg-red-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
     });
   };
 
@@ -28,7 +28,7 @@
     modalStore.trigger({
       type: "component",
       component: "editWord",
-      backdropClasses: "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm",
+      backdropClasses: "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
     });
   };
 
@@ -37,7 +37,7 @@
     modalStore.trigger({
       type: "component",
       component: "wordPractice",
-      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm",
+      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
     });
   };
 </script>

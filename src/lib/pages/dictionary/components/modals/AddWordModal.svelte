@@ -35,9 +35,9 @@
 </script>
 
 <div
-  class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-cyan-500 overflow-hidden px-5"
+  class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-cyan-500 overflow-hidden cursor-default px-5"
 >
-  <div class="select-none bg-cyan-400 text-white rounded-md p-2 cursor-default">
+  <div class="select-none bg-cyan-400 text-white rounded-md p-2">
     Add word
   </div>
   <CustomInputChip

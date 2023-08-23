@@ -12,10 +12,6 @@
 
   $: word = $wordPracticeStore!;
 
-  // const onResetClick = () => {
-  //   showPracticeData = false;
-  // };
-
   const confirmHandler = (confirmResult: boolean) => {
     if (confirmResult) {
       wordStore.resetWordPractice(word);
@@ -25,7 +21,7 @@
     modalStore.trigger({
       type: "component",
       component: "wordPractice",
-      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm",
+      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
     });
   };
 
