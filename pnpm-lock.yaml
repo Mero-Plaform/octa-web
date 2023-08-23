@@ -18,8 +18,8 @@ dependencies:
     specifier: ^4.0.7
     version: 4.0.7(dexie@3.2.3)
   svelty-picker:
-    specifier: ^4.1.0
-    version: 4.1.0(svelte@3.59.1)
+    specifier: ^4.1.1
+    version: 4.1.1(svelte@3.59.1)
 
 devDependencies:
   '@skeletonlabs/skeleton':
@@ -1649,8 +1649,8 @@ packages:
     resolution: {integrity: sha512-pKj8fEBmqf6mq3/NfrB9SLtcJcUvjYSWyePlfCqN9gujLB25RitWK8PvFzlwim6hD/We35KbPlRteuA6rnPGcQ==}
     engines: {node: '>= 8'}
 
-  /svelty-picker@4.1.0(svelte@3.59.1):
-    resolution: {integrity: sha512-QRi1JtfZSaia8M2XxPfEx3yCHi9nmX4hoozinZAWfbFJ1eyLqz2gsViPbObR/za+EMeUtFRKre0JqJHbNloSZg==}
+  /svelty-picker@4.1.1(svelte@3.59.1):
+    resolution: {integrity: sha512-9DHWtuE9qR6AnnV/MrV057LxzkfKekE9I1OeectNYv2+a7+QKNS06Okfp3DxjXvXPKwvZ0AMia31m30xmDLb2A==}
     peerDependencies:
       svelte: ^3.53.0 || ^4.0.0
     dependencies:
