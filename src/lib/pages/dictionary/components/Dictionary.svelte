@@ -13,7 +13,7 @@
   };
 </script>
 
-<div transition:fade class="absolute flex flex-col h-screen w-screen">
+<div transition:fade class="absolute flex flex-col h-full w-full">
   <div class="flex justify-center gap-3 w-full p-2 mt-4">
     <AddWord />
     <SearchWords />

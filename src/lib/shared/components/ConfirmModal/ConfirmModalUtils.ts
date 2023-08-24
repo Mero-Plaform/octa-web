@@ -23,7 +23,7 @@ type GetConfirmModalSettingsParams = {
  */
 export const getConfirmModalSettings = ({
   backdropColor,
-  backdropClasses = `!bg-${backdropColor}-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer`,
+  backdropClasses = `!bg-${backdropColor}-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40`,
   title = "Confirm to proceed",
   body,
   color,
@@ -34,7 +34,7 @@ export const getConfirmModalSettings = ({
   return {
     type: "component",
     component: "confirm",
-    backdropClasses,
+    backdropClasses: backdropClasses + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     meta: {
       title,
       body,

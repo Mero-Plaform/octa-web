@@ -6,7 +6,7 @@
   const drawerSettings: DrawerSettings = {
     id: "mainMenu",
     bgDrawer: "text-white",
-    bgBackdrop: "bg-teal-200 bg-opacity-50 !z-30",
+    bgBackdrop: "bg-teal-200 bg-opacity-50 !z-30" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     width: "w-[150px] md:w-[250px]",
     height: "h-max",
     padding: "p-4",
@@ -16,7 +16,7 @@
 
 <button
   on:click={() => drawerStore.open(drawerSettings)}
-  class="hover:opacity-100 focus:opacity-100 opacity-50 fixed top-6 left-5 z-20 active:scale-90 rounded-full transition-all"
+  class={`hover:opacity-100 focus:opacity-100 opacity-50 fixed left-5 z-20 active:scale-90 rounded-full transition-all ${import.meta.env.VITE_BUILD_PLATFORM === "desktop" ? "top-12" : "top-6"}`}
 >
   <div
     class="h-10 w-10 p-2 bg-teal-500"

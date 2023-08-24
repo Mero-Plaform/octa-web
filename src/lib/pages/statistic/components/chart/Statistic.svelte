@@ -50,7 +50,7 @@
 
 <div
   transition:fade
-  class="absolute flex flex-col justify-center items-center gap-5 h-screen w-screen"
+  class="absolute flex flex-col justify-center items-center gap-5 h-full w-full"
 >
   <select
     bind:value={$dateSelectStore}

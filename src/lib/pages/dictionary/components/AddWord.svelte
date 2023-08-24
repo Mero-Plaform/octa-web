@@ -7,7 +7,7 @@
   const modal: ModalSettings = {
     type: "component",
     component: "addWord",
-    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
+    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
   };
 
   const openModal = () => {

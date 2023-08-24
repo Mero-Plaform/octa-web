@@ -31,7 +31,7 @@
 
 <div
   transition:fade
-  class="absolute flex justify-center items-center w-screen h-screen"
+  class="absolute flex justify-center items-center h-full w-full"
 >
   {#if $wordStore.size === 0}
     <div transition:fade class="absolute">

@@ -9,7 +9,7 @@
   let tabSet: number = 0;
 </script>
 
-<div transition:fade class="absolute h-screen w-screen">
+<div transition:fade class="absolute h-full w-full">
   <TabGroup
     justify="justify-center"
     active="!bg-opacity-100 !text-white"

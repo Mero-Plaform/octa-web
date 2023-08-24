@@ -21,7 +21,7 @@
     modalStore.trigger({
       type: "component",
       component: "wordPractice",
-      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
+      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 

@@ -19,7 +19,7 @@
     modalStore.trigger({
       type: "component",
       component: "removeWord",
-      backdropClasses: "!bg-red-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
+      backdropClasses: "!bg-red-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 
@@ -28,7 +28,7 @@
     modalStore.trigger({
       type: "component",
       component: "editWord",
-      backdropClasses: "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
+      backdropClasses: "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 
@@ -37,7 +37,7 @@
     modalStore.trigger({
       type: "component",
       component: "wordPractice",
-      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer",
+      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 </script>

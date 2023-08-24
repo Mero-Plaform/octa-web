@@ -4,6 +4,6 @@
   
 </script>
 
-<div transition:fade class="absolute h-screen w-screen flex justify-center items-center">
+<div transition:fade class="absolute h-full w-full flex justify-center items-center">
 <StateText> App is closing </StateText>
 </div>

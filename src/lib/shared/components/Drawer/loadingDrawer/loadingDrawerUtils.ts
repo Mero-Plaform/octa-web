@@ -5,7 +5,7 @@ import { loadingDrawerStylesStore, type LoadingDrawerProgressBarStylesStore } fr
 const loadingDrawerSettings: DrawerSettings = {
   id: "loading",
   bgDrawer: "text-white",
-  bgBackdrop: "bg-opacity-50 !z-30",
+  bgBackdrop: "bg-opacity-50 !z-30" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
   width: "w-full",
   height: "h-full",
   padding: "",

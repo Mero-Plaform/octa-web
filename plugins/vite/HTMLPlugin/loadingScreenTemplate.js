@@ -1,3 +1,7 @@
+/* -------------------------------------------------------------------------- */
+/*                              used in web build                             */
+/* -------------------------------------------------------------------------- */
+
 export const loadingScreenTemplate = `
   <style id="appEntryLoadingScreenStyles">
     @keyframes scaleAnim {
