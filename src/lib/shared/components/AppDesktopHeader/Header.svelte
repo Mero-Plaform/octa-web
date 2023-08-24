@@ -4,7 +4,7 @@
   import { sendToIpcMain } from "../../desktopAppBuild/ipcUtils.js";
 </script>
 
-<div class="fixed top-0 left-0 h-6 w-full flex bg-emerald-500 rounded-t-md">
+<div class="fixed top-0 left-0 h-6 w-full flex bg-emerald-500">
   <div class="dragZone grow" />
   <button
     on:click={() => sendToIpcMain("minimizeMainWindow")}
@@ -25,7 +25,7 @@
   </button>
   <button
     on:click={() => sendToIpcMain("closeMainWindow")}
-    class="btn p-1 h-6 w-10 text-white hover:bg-red-500 active:scale-100 [&_img]:active:scale-90 rounded-tr-md"
+    class="btn p-1 h-6 w-10 text-white hover:bg-red-500 active:scale-100 [&_img]:active:scale-90"
   >
     <img
       class="h-full"
