@@ -1,3 +1,4 @@
+import { DBUtilsFacade } from '../../../../DB/DBUtilsFacade.js';
 import type { CustomWritableStore } from '../../../../utils/customStores/CustomWritableStore.js';
 import { CustomWritableStoreFactory } from '../../../../utils/customStores/CustomWritableStoreFactory.js';
 import type { WEEK_DAYS_SHORTS_TYPE } from '../../../../utils/helpers.js';
@@ -72,6 +73,10 @@ const reInit = (initialValue: PracticeSettings) => {
   passivePracticeSettingsStore.set(initialValue);
 };
 
+const reInitFromDB = async () => {
+  passivePracticeSettingsStore.set((await DBUtilsFacade.getAppSettings())!.practice.passive)
+};
+
 type PracticeSettingsStore = CustomWritableStore<PracticeSettings> & {
   updateSettingKeyIntervalProp: typeof updateSettingKeyIntervalProp;
   updateSettingKeyEnabledProp: typeof updateSettingKeyEnabledProp;
@@ -80,6 +85,7 @@ type PracticeSettingsStore = CustomWritableStore<PracticeSettings> & {
   updateTimeFrames: typeof updateTimeFrames;
   copySettingsForDay: typeof copySettingsForDay;
   reInit: typeof reInit;
+  reInitFromDB: typeof reInitFromDB;
 };
 
 export const createPassivePracticeSettingsStore = (initialValue: PracticeSettings) => {
@@ -90,7 +96,8 @@ export const createPassivePracticeSettingsStore = (initialValue: PracticeSetting
     removeSettingKey,
     updateTimeFrames,
     copySettingsForDay,
-    reInit
+    reInit,
+    reInitFromDB
   });
 };
 

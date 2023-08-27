@@ -1,13 +1,29 @@
-import { writable, type Writable } from 'svelte/store';
+import { DBUtilsFacade } from '../../../DB/DBUtilsFacade.js';
+import type { CustomWritableStore } from '../../../utils/customStores/CustomWritableStore.js';
+import { CustomWritableStoreFactory } from '../../../utils/customStores/CustomWritableStoreFactory.js';
 import type { SettingsStore } from '../interfaces/settings.js';
 
-export const createSettingsStore = (initData: SettingsStore) => {
-  settingsStore = writable<SettingsStore>({
-    ...initData,
+const reInit = (initialValue: SettingsStore) => {
+  settingsStore.set(initialValue);
+};
+
+const reInitFromDB = async () => {
+  settingsStore.set((await DBUtilsFacade.getPracticeData())!);
+};
+
+export const createSettingsStore = (initialValue: SettingsStore) => {
+  settingsStore = CustomWritableStoreFactory({
+    ...initialValue,
+  }, {
+    reInit,
+    reInitFromDB
   });
 };
 
 /**
  * contain practice page practice setup (e.g. target, type)
  */
-export let settingsStore: Writable<SettingsStore>;
+export let settingsStore: CustomWritableStore<SettingsStore> & {
+  reInit: typeof reInit;
+  reInitFromDB: typeof reInitFromDB;
+};

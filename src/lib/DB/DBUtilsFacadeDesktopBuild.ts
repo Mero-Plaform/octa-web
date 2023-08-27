@@ -61,17 +61,16 @@ const updateAppSettingsDataObservable = (appSettingsData: AppSettings) => {
   return updateAppSettingsData(appSettingsData);
 };
 
-type ImportData = { 
+type ImportData = {
   tableName: string;
   rows: Array<unknown>;
 };
 
 const importAppDBDataObservable = async (file: File) => {
-  console.log(JSON.parse(await file.text()).data.data);
   (JSON.parse(await file.text()).data.data as ImportData[]).forEach(({ tableName, rows }) => {
     sendToIpcMain('importAppDBData', tableName, rows);
   });
-  
+
   return importAppDBData(file);
 };
 

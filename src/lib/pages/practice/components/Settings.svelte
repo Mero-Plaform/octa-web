@@ -102,8 +102,9 @@
             maxlength="3"
             on:input={sectionSizeInputHandler}
             on:input={onSectionSizeChange}
+            on:dragstart|preventDefault
             value={$settingsStore.sectionSize}
-            class="bg-opacity-70 bg-white p-1 w-10 text-center rounded-md text-pink-600 selection:bg-pink-500 selection:text-white"
+            class="bg-opacity-70 bg-white p-1 w-12 ml-1 text-center rounded-md text-pink-600 selection:bg-pink-500 selection:text-white"
           />
         </RadioItem>
       </RadioGroup>

@@ -113,7 +113,7 @@ const clear = () => {
   wordStore.value.clear();
 };
 
-const reInitWordStoreFromDB = async () => {
+const reInitFromDB = async () => {
   const dictionaryArr = await DBUtilsFacade.getDictionaryDataAsArray();
   wordStore.value = createWordStoreValue(dictionaryArr);
 };
@@ -127,7 +127,7 @@ type WordStore = CustomWritableStore<Map<string, Word>> & {
   onUnsuccessfulPractice: typeof onUnsuccessfulPractice;
   onSuccessfulPractice: typeof onSuccessfulPractice;
   clear: typeof clear;
-  reInitWordStoreFromDB: typeof reInitWordStoreFromDB;
+  reInitFromDB: typeof reInitFromDB;
 };
 
 const createWordStoreValue = (dictionaryArr: Word[]) => {
@@ -154,7 +154,7 @@ export const createWordStore = (dictionaryArr: Word[]) => {
       onUnsuccessfulPractice,
       onSuccessfulPractice,
       clear,
-      reInitWordStoreFromDB
+      reInitFromDB
     });
 };
 

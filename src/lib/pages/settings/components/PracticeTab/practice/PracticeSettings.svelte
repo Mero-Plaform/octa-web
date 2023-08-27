@@ -102,12 +102,3 @@
     {/each}
   {/if}
 </div>
-
-<!-- <style>
-  :root {
-    --sdt-bg-main: rgb(211, 2, 211);
-    --sdt-color: fuchsia;
-    --sdt-primary: fuchsia;
-    --sdt-btn-header-bg-hover: #a93f9e;
-  }
-</style> -->
