@@ -1,19 +1,22 @@
-import type { CustomWritableStore } from '../../../../utils/customStores/CustomWritableStore.js';
-import { CustomWritableStoreFactory } from '../../../../utils/customStores/CustomWritableStoreFactory.js';
+import { derived, type Readable } from 'svelte/store';
 import type { AppSettings } from '../../interfaces/appSettings.js';
-import { initSettingStoresListeners } from './appSettingsStoreUtils.js';
+import { activePracticeSettingsStore } from '../activePractice/activePracticeSettingsStore.js';
+import { basicSettingsStore } from '../basicSettingsStore.js';
+import { passivePracticeSettingsStore } from '../passivePractice/passivePracticeSettingsStore.js';
 
-export let appSettingsStore: CustomWritableStore<AppSettings> & {
-  reInit: typeof reInit;
-};
+export let appSettingsStore: Readable<AppSettings>;
 
-const reInit = (initialValue: AppSettings) => {
-  appSettingsStore.value = initialValue;
-};
+export const createAppSettingsStore = () => {
+  appSettingsStore = derived(
+    [basicSettingsStore, passivePracticeSettingsStore, activePracticeSettingsStore],
+    ([$basicSettingsStore, $passivePracticeSettingsStore, $activePracticeSettingsStore]) => {
 
-export const createAppSettingsStore = (initialValue: AppSettings) => {
-  appSettingsStore = CustomWritableStoreFactory(initialValue, {
-    reInit
-  });
-  initSettingStoresListeners();
+      return {
+        basic: { ...$basicSettingsStore },
+        practice: {
+          passive: { ...$passivePracticeSettingsStore },
+          active: { ...$activePracticeSettingsStore }
+        }
+      };
+    });
 };

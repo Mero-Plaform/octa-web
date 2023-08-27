@@ -9,6 +9,7 @@ import { statisticStore } from '../../../../statistic/stores/statisticStore/stat
 import { activePracticeSettingsStore } from '../../../stores/activePractice/activePracticeSettingsStore.js';
 import { appSettingsStore } from '../../../stores/appSettingsStore/appSettingsStore.js';
 import { passivePracticeSettingsStore } from '../../../stores/passivePractice/passivePracticeSettingsStore.js';
+import { basicSettingsStore } from '../../../stores/basicSettingsStore.js';
 
 const loadingDrawerSettings = {
   bgBackdropColor: "red",
@@ -75,9 +76,10 @@ export const onStatisticResetButtonClick = () => {
 
 const appSettingsReset = async () => {
   const initialData = getAppSettingsInitialValues();
-  appSettingsStore.reInit(initialData);
   passivePracticeSettingsStore.reInit(initialData.practice.passive);
   activePracticeSettingsStore.reInit(initialData.practice.active);
+  basicSettingsStore.reInit(initialData.basic);
+  // appSettingsStore is derived from 3 stores above, so it will reinit automatically
   await DBUtilsFacade.initAppSettingsData(initialData);
 };
 
