@@ -22,7 +22,7 @@
       bind:group={tabSet}
       name="tab1"
       value={0}
-      class="select-none bg-pink-400 border-b-2 border-pink-400 bg-opacity-20 text-pink-900"
+      class="select-none bg-green-400 border-b-2 border-green-400 bg-opacity-20 text-green-900"
     >
       Data
     </Tab>
@@ -30,7 +30,7 @@
       bind:group={tabSet}
       name="tab2"
       value={1}
-      class="select-none bg-green-400 border-b-2 border-green-400 bg-opacity-20 text-green-900"
+      class="select-none bg-pink-400 border-b-2 border-pink-400 bg-opacity-20 text-pink-900"
     >
       Practice
     </Tab>
@@ -38,7 +38,7 @@
       bind:group={tabSet}
       name="tab3"
       value={2}
-      class="select-none bg-cyan-400 border-b-2 border-cyan-400 bg-opacity-20 text-cyan-900"
+      class="select-none bg-yellow-500 border-b-2 border-yellow-400 bg-opacity-20 text-yellow-900"
     >
       Basic
     </Tab>

@@ -49,7 +49,7 @@
       bind:group={tabSet}
       name="tab2"
       value={1}
-      class="select-none bg-fuchsia-400 border-b-2 border-fuchsia-400 bg-opacity-20 text-fuchsia-900"
+      class="select-none bg-violet-400 border-b-2 border-violet-400 bg-opacity-20 text-violet-900"
     >
       Active
     </Tab>
@@ -70,14 +70,14 @@
       {:else if tabSet === 1}
         <PracticeSettings
           header="Active"
-          mainColor="fuchsia"
+          mainColor="violet"
           generalSettingsPopup="Active"
           stores={activePracticeStore}
           pickerStyles={{
-            "--sdt-bg-main": "rgb(211, 2, 211)",
-            "--sdt-color": "fuchsia",
-            "--sdt-primary": "fuchsia",
-            "--sdt-btn-header-bg-hover": "#a93f9e",
+            "--sdt-bg-main": "#8b5cf6",
+            "--sdt-color": "#8b5cf6",
+            "--sdt-primary": "#8b5cf6",
+            "--sdt-btn-header-bg-hover": "#754ecf",
           }}
         />
       {/if}
