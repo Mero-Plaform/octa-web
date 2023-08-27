@@ -32,7 +32,7 @@ setupUtilDB()
     createPassivePracticeSettingsStore(appSettings.practice.passive);
     createActivePracticeSettingsStore(appSettings.practice.active);
     createBasicSettingsStore(appSettings.basic);
-    createAppSettingsStore(appSettings);
+    createAppSettingsStore();
 
     initDBWordStoreActionsListener();
     initDBPracticeSettingsStoreListener();
