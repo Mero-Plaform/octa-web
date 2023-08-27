@@ -1,15 +1,16 @@
 import { modalStore } from '@skeletonlabs/skeleton';
 import { DBUtilsFacade } from '../../../../../DB/DBUtilsFacade.js';
 import { getAppSettingsInitialValues } from '../../../../../DB/initialData/appSettingsInitialValues.js';
+import { getPracticeInitialValues } from '../../../../../DB/initialData/practiceInitialValues.js';
 import { getStatisticInitialValues } from '../../../../../DB/initialData/statisticInitialValues.js';
 import { getConfirmModalSettings } from '../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js';
 import { closeLoadingDrawer, openLoadingDrawer } from '../../../../../shared/components/Drawer/loadingDrawer/loadingDrawerUtils.js';
 import { wordStore } from '../../../../dictionary/stores/wordStore.js';
+import { settingsStore } from '../../../../practice/stores/settingsStore.js';
 import { statisticStore } from '../../../../statistic/stores/statisticStore/statisticStore.js';
 import { activePracticeSettingsStore } from '../../../stores/activePractice/activePracticeSettingsStore.js';
-import { appSettingsStore } from '../../../stores/appSettingsStore/appSettingsStore.js';
-import { passivePracticeSettingsStore } from '../../../stores/passivePractice/passivePracticeSettingsStore.js';
 import { basicSettingsStore } from '../../../stores/basicSettingsStore.js';
+import { passivePracticeSettingsStore } from '../../../stores/passivePractice/passivePracticeSettingsStore.js';
 
 const loadingDrawerSettings = {
   bgBackdropColor: "red",
@@ -84,6 +85,16 @@ const appSettingsReset = async () => {
 };
 
 /* -------------------------------------------------------------------------- */
+/*                        practice page settings reset                        */
+/* -------------------------------------------------------------------------- */
+
+const practicePageSettingsReset = async () => {
+  const initialData = getPracticeInitialValues();
+  settingsStore.reInit(initialData);
+  await DBUtilsFacade.initPracticeData(initialData);
+};
+
+/* -------------------------------------------------------------------------- */
 /*                                  app reset                                 */
 /* -------------------------------------------------------------------------- */
 
@@ -92,6 +103,7 @@ const onAppReset = async (response: boolean) => {
 
   openLoadingDrawer(loadingDrawerSettings);
   await dictionaryReset();
+  await practicePageSettingsReset();
   await statisticReset();
   await appSettingsReset();
   closeLoadingDrawer();
