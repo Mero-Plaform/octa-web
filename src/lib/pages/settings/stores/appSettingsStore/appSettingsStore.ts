@@ -9,14 +9,11 @@ export let appSettingsStore: Readable<AppSettings>;
 export const createAppSettingsStore = () => {
   appSettingsStore = derived(
     [basicSettingsStore, passivePracticeSettingsStore, activePracticeSettingsStore],
-    ([$basicSettingsStore, $passivePracticeSettingsStore, $activePracticeSettingsStore]) => {
-
-      return {
-        basic: { ...$basicSettingsStore },
-        practice: {
-          passive: { ...$passivePracticeSettingsStore },
-          active: { ...$activePracticeSettingsStore }
-        }
-      };
-    });
+    ([$basicSettingsStore, $passivePracticeSettingsStore, $activePracticeSettingsStore]) => ({
+      basic: { ...$basicSettingsStore },
+      practice: {
+        passive: { ...$passivePracticeSettingsStore },
+        active: { ...$activePracticeSettingsStore }
+      }
+    }));
 };
