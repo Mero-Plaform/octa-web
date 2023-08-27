@@ -49,7 +49,7 @@ export const getPracticeData = () => {
 };
 
 export const initPracticeData = (practiceInitialValues: SettingsStore) => {
-  return appDB.practiceSettings.add({
+  return appDB.practiceSettings.put({
     ...practiceInitialValues
   }, practiceSettingsDataKey);
 };
