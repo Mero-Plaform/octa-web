@@ -43,7 +43,7 @@
 </script>
 
 <div 
-  class="flex gap-2 bg-white bg-opacity-30 p-2 rounded-md  bg-[length:20%] bg-repeat-space"
+  class="flex gap-2 bg-white bg-opacity-30 hover:bg-opacity-50 p-2 rounded-md  bg-[length:20%] bg-repeat-space transition-all"
   style={`background-image: url('${octaSlateIconUrl}')`}
 >
   <div
