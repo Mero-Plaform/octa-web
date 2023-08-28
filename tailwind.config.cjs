@@ -26,6 +26,15 @@ const config = {
       spacing: {
         "90%": "90%",
         "1/2": "50%"
+      },
+      keyframes: {
+        lift: {
+          '0%': { transform: 'translateY(0px)' },
+          '100%': { transform: 'translateY(-100px)' },
+        }
+      },
+      animation: {
+        lift: 'lift 10s linear infinite',
       }
     },
   },

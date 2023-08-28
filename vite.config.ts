@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
           },
           {
             name: "main",
-            dir: "../dictionary-electron/src/renderer/mainWindow",
+            dir: "../octa-electron/src/renderer/mainWindow",
           }
         ]
       },
