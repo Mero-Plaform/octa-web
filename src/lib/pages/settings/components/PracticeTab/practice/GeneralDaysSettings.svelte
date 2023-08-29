@@ -6,7 +6,7 @@
     type PopupSettings,
   } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
-  import { fly } from "svelte/transition";
+  import { scale } from "svelte/transition";
   import PracticeTime from "./PracticeTime.svelte";
 
   const mainColor = getContext<string>("mainColor");
@@ -18,7 +18,7 @@
   };
 </script>
 
-<div transition:fly={{ y: 10 }}>
+<div transition:scale>
   <Accordion class="mt-2">
     <AccordionItem class="bg-white rounded-md">
       <svelte:fragment slot="summary">

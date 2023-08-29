@@ -1,7 +1,7 @@
 <script lang="ts">
   import { setContext } from "svelte";
   import { flip } from "svelte/animate";
-  import { fade } from "svelte/transition";
+  import { fade, slide } from "svelte/transition";
   import {
     WEEK_DAYS_SHORTS,
     deleteAllInArray,
@@ -75,7 +75,7 @@
 
 <div
   transition:fade
-  class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-160px)] overflow-auto p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
+  class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-160px)] overflow-y-auto overflow-x-hidden p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
   style={`
     --sdt-bg-main: ${pickerStyles["--sdt-bg-main"]};
     --sdt-color: ${pickerStyles["--sdt-color"]};
@@ -90,15 +90,17 @@
   </div>
   <PracticeEnabler />
   {#if $settingsStore.enabled}
-    <SoundAlarm />
-    <DaysChoice {chosenPracticeDays} {onDayClick} {onAllDaysClick} />
-    {#if chosenPracticeDays.length > 0}
-      <GeneralDaysSettings />
-    {/if}
-    {#each chosenPracticeDays as chosenDay (chosenDay)}
-      <div animate:flip={{ duration: 300 }}>
-        <DaysSettings {chosenDay} />
-      </div>
-    {/each}
+    <div transition:slide>
+      <SoundAlarm />
+      <DaysChoice {chosenPracticeDays} {onDayClick} {onAllDaysClick} />
+      {#if chosenPracticeDays.length > 0}
+        <GeneralDaysSettings />
+      {/if}
+      {#each chosenPracticeDays as chosenDay (chosenDay)}
+        <div animate:flip={{ duration: 300 }}>
+          <DaysSettings {chosenDay} />
+        </div>
+      {/each}
+    </div>
   {/if}
 </div>
