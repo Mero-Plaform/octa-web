@@ -15,4 +15,4 @@
 
 ### Tech-stack
 
-<img src="./github extras/">
+<img src="./github extras/tech-stack.jpg">
