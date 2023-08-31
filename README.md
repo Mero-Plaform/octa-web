@@ -15,6 +15,6 @@
 
 ### Tech stack
 
-<img src="./github extras/tech-stack.jpg">
+<img src="./github extras/tech-stack.jpg" alt="tech stack list">
 
 Demo: <a href="https://mero-plaform.github.io/octa-web-build/"> Octa </a>
