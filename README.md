@@ -4,7 +4,7 @@
 
 ### Features
 
-(Only partially available on the web version)
+(Only partial functionality is available in the web version)
 *  vocabulary with variations of words and their translations
 *  words learning progress
 *  practicing for random/worst words or a section (chosen amount in a row in a dictionary)
