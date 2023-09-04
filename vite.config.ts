@@ -11,8 +11,33 @@ type ENV = {
   VITE_BUILD_PLATFORM: "desktop" | "web";
 };
 
+const generalBuildDirs = [
+  {
+    name: "main",
+    dir: "dist",
+  }
+];
+
+const additionalDesktopBuildDirs = [
+  {
+    name: "main",
+    dir: "../octa-electron/src/renderer/mainWindow",
+  }
+];
+
+const additionalWebBuildDirs = [
+  {
+    name: "main",
+    dir: "../octa-web-build/",
+  }
+];
+
 export default defineConfig(({ mode }) => {
   const env = <ENV>loadEnv(mode, process.cwd(), 'VITE_');
+
+  const buildDirs = [...generalBuildDirs];
+  env.VITE_BUILD_PLATFORM === "web" && buildDirs.push(...additionalWebBuildDirs);
+  env.VITE_BUILD_PLATFORM === "desktop" && buildDirs.push(...additionalDesktopBuildDirs);
 
   return {
     plugins: [
@@ -31,16 +56,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(__dirname, './index.html'),
         },
-        output: [
-          {
-            name: "main",
-            dir: "dist",
-          },
-          {
-            name: "main",
-            dir: "../octa-electron/src/renderer/mainWindow",
-          }
-        ]
+        output: buildDirs
       },
     },
   };
