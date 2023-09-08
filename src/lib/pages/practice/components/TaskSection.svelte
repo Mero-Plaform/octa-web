@@ -110,7 +110,7 @@
     <FinishTask
       title="Section complete"
       restartBtnText="next section"
-      settingsBtnText="settings"
+      settingsBtnText="practice settings"
       {onRestart}
       {onSettings}
     />

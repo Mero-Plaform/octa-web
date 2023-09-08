@@ -92,7 +92,7 @@
     <FinishTask
       title="Passed all dictionary's words"
       restartBtnText="restart"
-      settingsBtnText="settings"
+      settingsBtnText="practice settings"
       {onRestart}
       {onSettings}
     />
