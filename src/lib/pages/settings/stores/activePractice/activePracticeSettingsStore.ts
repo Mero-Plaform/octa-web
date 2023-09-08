@@ -77,7 +77,7 @@ const reInitFromDB = async () => {
   activePracticeSettingsStore.set((await DBUtilsFacade.getAppSettings())!.practice.active);
 };
 
-type PracticeSettingsStore = CustomWritableStore<PracticeSettings> & {
+export type PracticeSettingsStore = CustomWritableStore<PracticeSettings> & {
   updateSettingKeyIntervalProp: typeof updateSettingKeyIntervalProp;
   updateSettingKeyEnabledProp: typeof updateSettingKeyEnabledProp;
   addSettingKey: typeof addSettingKey;

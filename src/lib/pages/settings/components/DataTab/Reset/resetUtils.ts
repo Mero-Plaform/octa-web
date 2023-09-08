@@ -26,7 +26,7 @@ const dictionaryReset = async () => {
   await DBUtilsFacade.onDictionaryClear();
 };
 
-const onDictionaryReset = async (response: boolean) => {
+export const onDictionaryReset = async (response: boolean) => {
   if (!response) { return; }
 
   openLoadingDrawer(loadingDrawerSettings);
@@ -39,7 +39,8 @@ export const onDictionaryResetButtonClick = () => {
     backdropColor: "red",
     color: "red",
     body: "All words in the dictionary and their data (e.g. practice) will be <i class='px-1 bg-white text-red-700 rounded-md'>deleted</i><br>This action doesn't affects app statistic",
-    callback: onDictionaryReset
+    backdropActionName: "dictionaryResetConfirmAnswer",
+    response: onDictionaryReset,
   }));
 };
 
@@ -54,7 +55,7 @@ const statisticReset = async () => {
   await DBUtilsFacade.initStatisticData(initialData[0]);
 };
 
-const onStatisticReset = async (response: boolean) => {
+export const onStatisticReset = async (response: boolean) => {
   if (!response) { return; }
 
   openLoadingDrawer(loadingDrawerSettings);
@@ -67,7 +68,8 @@ export const onStatisticResetButtonClick = () => {
     backdropColor: "red",
     color: "red",
     body: "All statistic data (e.g. number of practice per month etc.) will be <i class='px-1 bg-white text-red-700 rounded-md'>deleted</i>",
-    callback: onStatisticReset
+    backdropActionName: "statisticResetConfirmAnswer",
+    response: onStatisticReset,
   }));
 };
 
@@ -98,7 +100,7 @@ const practicePageSettingsReset = async () => {
 /*                                  app reset                                 */
 /* -------------------------------------------------------------------------- */
 
-const onAppReset = async (response: boolean) => {
+export const onAppReset = async (response: boolean) => {
   if (!response) { return; }
 
   openLoadingDrawer(loadingDrawerSettings);
@@ -114,6 +116,7 @@ export const onAppResetButtonClick = () => {
     backdropColor: "red",
     color: "red",
     body: "All app data (e.g. dictionary, statistic etc.) will be <i class='px-1 bg-white text-red-700 rounded-md'>deleted</i>",
-    callback: onAppReset
+    backdropActionName: "appResetConfirmAnswer",
+    response: onAppReset,
   }));
 };

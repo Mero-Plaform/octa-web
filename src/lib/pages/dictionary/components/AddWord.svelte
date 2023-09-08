@@ -1,25 +1,18 @@
 <script lang="ts">
-  import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+  import { modalStore } from "@skeletonlabs/skeleton";
   import { onDestroy, onMount } from "svelte";
-  import { getIconMaskStyes } from "../../../utils/helpers.js";
+  import {
+    getIconMaskStyes,
+    openAddWordModal,
+  } from "../../../utils/helpers.js";
   import plusImageUrl from "/src/assets/icons/plus.svg";
-
-  const modal: ModalSettings = {
-    type: "component",
-    component: "addWord",
-    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
-  };
-
-  const openModal = () => {
-    modalStore.trigger(modal);
-  };
 
   const onPlusBtnPress = ({ code }: KeyboardEvent) => {
     if (code !== "NumpadAdd" || $modalStore[0]?.component === "addWord") {
       return;
     }
 
-    openModal();
+    openAddWordModal();
   };
 
   const setKeyboardListeners = () => {
@@ -36,7 +29,7 @@
 
 <button
   on:dragstart|preventDefault
-  on:click={openModal}
+  on:click={openAddWordModal}
   class="btn h-10 w-10 p-2 bg-cyan-400 hover:bg-cyan-500 hover:filter-none rounded-md active:scale-90 active:bg-cyan-500 focus:bg-cyan-500 active:filter-none"
 >
   <div class="h-full w-full bg-white" style={getIconMaskStyes(plusImageUrl)} />

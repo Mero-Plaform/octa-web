@@ -1,4 +1,5 @@
 import type { ModalSettings } from '@skeletonlabs/skeleton';
+import type { modalsBackdropHandlers } from '../../modalComponent/modalsBackdropHandlers/modalsBackdropHandlers.js';
 
 export type ConfirmModalMeta = {
   title?: string;
@@ -6,7 +7,7 @@ export type ConfirmModalMeta = {
   okBtnText?: string;
   noBtnText?: string;
   color?: string;
-  callback: (result: boolean) => void;
+  backdropActionName: keyof typeof modalsBackdropHandlers;
 };
 
 export type ConfirmModalSettings = ModalSettings & {

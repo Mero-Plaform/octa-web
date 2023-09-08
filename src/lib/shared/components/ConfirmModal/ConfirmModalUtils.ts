@@ -1,4 +1,5 @@
-import type { ConfirmModalSettings } from './interface.js';
+import { modalsBackdropHandlers } from '../../modalComponent/modalsBackdropHandlers/modalsBackdropHandlers.js';
+import type { ConfirmModalMeta, ConfirmModalSettings } from './interface.js';
 
 type GetConfirmModalSettingsParams = {
   backdropColor: string;
@@ -8,7 +9,8 @@ type GetConfirmModalSettingsParams = {
   color: string;
   okBtnText?: string;
   noBtnText?: string;
-  callback: (response: boolean) => void;
+  backdropActionName: keyof typeof modalsBackdropHandlers;
+  response: (answer: boolean) => void;
 };
 
 /**
@@ -19,7 +21,8 @@ type GetConfirmModalSettingsParams = {
  * @param {string} color
  * @param {string} okBtnText
  * @param {string} noBtnText
- * @param {GetConfirmModalSettingsParams["callback"]} callback
+ * @param {GetConfirmModalSettingsParams["backdropActionName"]} backdropActionName
+ * @param {GetConfirmModalSettingsParams["response"]} response
  */
 export const getConfirmModalSettings = ({
   backdropColor,
@@ -29,19 +32,25 @@ export const getConfirmModalSettings = ({
   color,
   okBtnText,
   noBtnText,
-  callback,
+  backdropActionName,
+  response,
 }: GetConfirmModalSettingsParams): ConfirmModalSettings => {
   return {
     type: "component",
     component: "confirm",
     backdropClasses: backdropClasses + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
+    response: (answer: boolean) => {
+      // skip default 'on:backdrop' handler
+      if (answer === undefined) { return; }
+      response(answer);
+    },
     meta: {
       title,
       body,
       color,
       okBtnText,
       noBtnText,
-      callback,
-    },
+      backdropActionName
+    } satisfies ConfirmModalMeta
   };
 };

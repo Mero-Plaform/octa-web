@@ -7,7 +7,8 @@
   import MenuButton from "./lib/shared/components/AppMenu/MenuButton.svelte";
   import Drawer from "./lib/shared/components/Drawer/Drawer.svelte";
   import Popups from "./lib/shared/components/Popups.svelte";
-  import { modalComponentRegistry } from "./lib/shared/modalComponentRegistry.js";
+  import { modalComponentBackdropHandler } from "./lib/shared/modalComponent/modalsBackdropHandlers/modalComponentBackdropHandler.js";
+  import { modalComponentRegistry } from "./lib/shared/modalComponent/modalComponentRegistry.js";
 
   // initial page
   $routerStore = "/dictionary";
@@ -23,9 +24,12 @@
 
 <Popups />
 
-<Drawer/>
+<Drawer />
 
-<Modal components={modalComponentRegistry} />
+<Modal
+  components={modalComponentRegistry}
+  on:backdrop={modalComponentBackdropHandler}
+/>
 
 <Toast />
 

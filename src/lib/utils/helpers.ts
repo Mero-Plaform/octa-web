@@ -1,9 +1,17 @@
-import { toastStore } from '@skeletonlabs/skeleton';
+import { modalStore, toastStore } from '@skeletonlabs/skeleton';
 import OctaIConURL from '../../assets/icons/octopus-white.svg';
 import type { TimeFrame } from '../pages/statistic/interfaces/TimeFrame.js';
 import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js';
 
 /* --------------------------------- general -------------------------------- */
+
+export const openAddWordModal = () => {
+  modalStore.trigger({
+    type: "component",
+    component: "addWord",
+    backdropClasses: "!bg-cyan-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
+  });
+};
 
 export const createDebounce = (callback: (...params: unknown[]) => unknown, timeout: number) => {
   let timerID: NodeJS.Timeout;
@@ -39,7 +47,7 @@ export function* createIteratorFromArr<T = unknown>(arr: T[]) {
 
 export const inputHardHandlerCreator = (params: ConstructorParams) => new InputHardHandler(params);
 
-export const getLearnSuccessPassiveStyles = (learnSuccess: number) => {
+export const getLearnSuccessPassiveStyles = (learnSuccess: number = 0) => {
   if (learnSuccess === 0) {
     return "bg-slate-400";
   } else if (learnSuccess < 40) {

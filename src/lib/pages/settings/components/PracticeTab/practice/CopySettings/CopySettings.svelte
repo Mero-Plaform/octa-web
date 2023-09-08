@@ -3,42 +3,44 @@
   import { getContext } from "svelte";
   import { flip } from "svelte/animate";
   import { scale } from "svelte/transition";
-  import { getConfirmModalSettings } from "../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
+  import { getConfirmModalSettings } from "../../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
   import {
     WEEK_DAYS_SHORT_TO_LONG,
     type WEEK_DAYS_SHORTS_TYPE,
-  } from "../../../../../utils/helpers.js";
-  import type { PracticeStores } from "../../../interfaces/practiceStores.js";
- 
+  } from "../../../../../../utils/helpers.js";
+  import type { PracticeStores } from "../../../../interfaces/practiceStores.js";
+  import {
+    onDayCopySettingsCallback,
+    setUtilsCurrentDay,
+    setUtilsDayToCopy,
+    setUtilsSettingsStore,
+  } from "./utils.js";
+
   export let currentDay: WEEK_DAYS_SHORTS_TYPE;
+  setUtilsCurrentDay(currentDay);
 
   const { chosenPracticeDays } = getContext<PracticeStores>("stores");
   let daysToRender: Array<WEEK_DAYS_SHORTS_TYPE>;
   let dayToCopy: WEEK_DAYS_SHORTS_TYPE;
-  
-  $: daysToRender = $chosenPracticeDays.filter(
-    (day) => day !== currentDay
-  );
 
-  const { settingsStore } = getContext<PracticeStores>("stores");
+  $: daysToRender = $chosenPracticeDays.filter((day) => day !== currentDay);
+
+  setUtilsSettingsStore(getContext<PracticeStores>("stores").settingsStore);
   const mainColor = getContext<string>("mainColor");
   const weekdaysStyles = getContext("weekdaysStyles");
   const weekendsStyles = getContext("weekendsStyles");
 
-  const onDayCopySettingsCallback = (modalResult: boolean) => {
-    if (modalResult) {
-      settingsStore.copySettingsForDay(currentDay, dayToCopy);
-    }
-  };
-
   const onDayCopySettingsClick = (chosenDay: WEEK_DAYS_SHORTS_TYPE) => {
     dayToCopy = chosenDay;
+    setUtilsDayToCopy(chosenDay);
+
     modalStore.trigger(
       getConfirmModalSettings({
         backdropColor: mainColor,
         color: mainColor,
         body: `Current day settings will be <i class='px-1 bg-white text-red-700 rounded-md'>overwritten</i><br> by <i class='px-1 mr-1 bg-white text-red-700 rounded-md'>${WEEK_DAYS_SHORT_TO_LONG[dayToCopy]}</i> settings`,
-        callback: onDayCopySettingsCallback,
+        backdropActionName: "copyPracticeDaySettingsConfirmAnswer",
+        response: onDayCopySettingsCallback,
       })
     );
   };

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
-  import { backdropClick } from "./backdropClickDirective.js";
+  import { setNewActionForModalsBackdropActionStore } from "../../modalComponent/modalsBackdropHandlers/modalsBackdropActionStore.js";
   import type { ConfirmModalMeta } from "./interface.js";
 
   const {
@@ -9,23 +9,21 @@
     okBtnText = "Yes",
     noBtnText = "No",
     color = "slate",
-    callback,
+    backdropActionName,
   }: ConfirmModalMeta = $modalStore[0].meta;
 
   const onReject = () => onModalAction(false);
   const onConfirm = () => onModalAction(true);
 
   const onModalAction = (result: boolean) => {
-    callback(result);
+    $modalStore[0].response!(result);
     modalStore.close();
   };
+
+  setNewActionForModalsBackdropActionStore(backdropActionName, false);
 </script>
 
-<div
-  use:backdropClick
-  on:backdropClick={onReject}
-  class="flex flex-col gap-5 text-white cursor-default"
->
+<div class="flex flex-col gap-5 text-white cursor-default">
   <div
     class="bg-{color}-400 rounded-md p-2 text-center cursor-default select-none text-2xl"
   >

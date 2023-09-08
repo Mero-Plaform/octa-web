@@ -1,5 +1,6 @@
 <script lang="ts">
   import { FileDropzone, modalStore } from "@skeletonlabs/skeleton";
+  import { onMount } from "svelte";
   import { DBUtilsFacade } from "../../../../DB/DBUtilsFacade.js";
   import {
     initDBAppSettingsStoreListener,
@@ -17,15 +18,20 @@
   import { activePracticeSettingsStore } from "../../stores/activePractice/activePracticeSettingsStore.js";
   import { basicSettingsStore } from "../../stores/basicSettingsStore.js";
   import { passivePracticeSettingsStore } from "../../stores/passivePractice/passivePracticeSettingsStore.js";
+  import {
+    transferActionStore,
+    transferActionStoreSet,
+  } from "../../stores/transferActionStore.js";
   import { exportAppData } from "./DataTab/DataTabUtils.js";
+  import FileAngryWhiteIconUrl from "/src/assets/icons/file-angry-white.svg";
   import FileRemoveWhiteIconUrl from "/src/assets/icons/file-remove-white.svg";
   import FileSmileWhiteIconUrl from "/src/assets/icons/file-smile-white.svg";
-  import FileAngryWhiteIconUrl from "/src/assets/icons/file-angry-white.svg";
 
   const loadingDrawerSettings = {
     bgBackdropColor: "emerald",
     OctaIconColor: "emerald",
   };
+
   let isDragEnter = false;
   let inputTag: HTMLInputElement;
   let inputIcon = FileRemoveWhiteIconUrl;
@@ -65,7 +71,7 @@
     } else {
       errFileType = false;
       importDataDisabled = false;
-      inputIcon = FileSmileWhiteIconUrl
+      inputIcon = FileSmileWhiteIconUrl;
     }
   };
 
@@ -78,7 +84,8 @@
     }
   };
 
-  const onImportDataModalResponse = async (result: boolean | undefined) => {
+  export const onImportDataModalResponse = async (result: boolean | null) => {
+    // skip false answer and null (on store reset after answer)
     if (!result) {
       return;
     }
@@ -111,10 +118,13 @@
         backdropColor: "emerald",
         body: "Import data from file will <i class='text-red-300 bg-white px-1 rounded-md'>delete</i> all existing ones!",
         color: "emerald",
-        callback: onImportDataModalResponse,
+        backdropActionName: "transferImportConfirmAnswer",
+        response: transferActionStoreSet,
       })
     );
   };
+
+  onMount(() => transferActionStore.subscribe(onImportDataModalResponse));
 </script>
 
 <div
@@ -139,7 +149,9 @@
     >
       <svelte:fragment slot="lead">
         <div
-          class={`h-10 w-10 m-auto ${errFileType ? "bg-red-400" : "bg-emerald-400"}`}
+          class={`h-10 w-10 m-auto ${
+            errFileType ? "bg-red-400" : "bg-emerald-400"
+          }`}
           style={getIconMaskStyes(inputIcon)}
         />
         <div>{inputFileName}</div>

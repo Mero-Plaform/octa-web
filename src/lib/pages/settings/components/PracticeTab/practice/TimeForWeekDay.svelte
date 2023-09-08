@@ -4,7 +4,7 @@
   import { scale } from "svelte/transition";
   import type { WEEK_DAYS_SHORTS_TYPE } from "../../../../../utils/helpers.js";
   import type { PracticeStores } from "../../../interfaces/practiceStores.js";
-  import CopySettings from "./CopySettings.svelte";
+  import CopySettings from "./CopySettings/CopySettings.svelte";
   import PracticeTime from "./PracticeTime.svelte";
 
   export let settingKey: WEEK_DAYS_SHORTS_TYPE;
