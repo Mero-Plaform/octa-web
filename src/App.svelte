@@ -7,7 +7,7 @@
   import MenuButton from "./lib/shared/components/AppMenu/MenuButton.svelte";
   import Drawer from "./lib/shared/components/Drawer/Drawer.svelte";
   import Popups from "./lib/shared/components/Popups.svelte";
-  import { modalComponentBackdropHandler } from "./lib/shared/modalComponent/modalsBackdropHandlers/modalComponentBackdropHandler.js";
+  import { modalOnBackdropHandler } from "./lib/shared/modalComponent/modalsBackdropHandlers/modalOnBackdropHandler.js";
   import { modalComponentRegistry } from "./lib/shared/modalComponent/modalComponentRegistry.js";
 
   // initial page
@@ -28,7 +28,7 @@
 
 <Modal
   components={modalComponentRegistry}
-  on:backdrop={modalComponentBackdropHandler}
+  on:backdrop={modalOnBackdropHandler}
 />
 
 <Toast />

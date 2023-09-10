@@ -1,7 +1,7 @@
 import { actionDefaultParams, modalsBackdropActionStore, resetModalsBackdropActionStore } from './modalsBackdropActionStore.js';
 import { modalsBackdropHandlers } from './modalsBackdropHandlers.js';
 
-export const modalComponentBackdropHandler = () => {
+export const modalOnBackdropHandler = () => {
   if (!modalsBackdropActionStore) {
     return;
   }

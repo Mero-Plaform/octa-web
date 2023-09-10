@@ -16,6 +16,7 @@ import { createStatisticStore } from './lib/pages/statistic/stores/statisticStor
 import { initModalsBackdropHandlers } from './lib/shared/modalComponent/modalsBackdropHandlers/modalsBackdropHandlers.js';
 import { checkElectronApiExist, disableStandardContextMenu, enableWindowErrCatcher } from './lib/utils/helpers.js';
 import "./styles/main.js";
+import { initModalOnEscHandler } from './lib/shared/modalComponent/modalsBackdropHandlers/modalOnEscHandler.js';
 
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
@@ -41,6 +42,7 @@ setupUtilDB()
     initDBAppSettingsStoreListener();
 
     initModalsBackdropHandlers();
+    initModalOnEscHandler();
 
     disableStandardContextMenu();
 
