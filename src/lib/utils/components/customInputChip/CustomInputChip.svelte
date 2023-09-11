@@ -1,6 +1,6 @@
-<script lang='ts'>
+<script lang="ts">
   import { InputChip } from "@skeletonlabs/skeleton";
-  import { getIconMaskStyes } from '../../helpers.js';
+  import { getIconMaskStyes } from "../../helpers.js";
   import plusImageUrl from "/src/assets/icons/plus.svg";
 
   export let placeholder = "";
@@ -23,15 +23,21 @@
 
   const onAddButtonClick = () => {
     chipCurValue = chipCurValue.trim();
-    if (chipCurValue === "") { buttonError = true; return; }
-    if (list.includes(chipCurValue)) { buttonError = true; return; }
+    if (chipCurValue === "") {
+      buttonError = true;
+      return;
+    }
+    if (list.includes(chipCurValue)) {
+      buttonError = true;
+      return;
+    }
     buttonError = false;
-    list = [...list, chipCurValue]; 
+    list = [...list, chipCurValue];
     chipCurValue = "";
   };
 
   const onInput = () => {
-    if (buttonError) {  
+    if (buttonError) {
       buttonError = false;
     }
   };
@@ -45,14 +51,18 @@
     on:input={onInput}
     class={InputChipStyles}
     name="customChip"
-    rounded={rounded}
-    placeholder={placeholder}
+    {rounded}
+    {placeholder}
     validation={(val) => val.trim() !== ""}
   />
-  <button 
+  <button
     class="{buttonBaseStyles} {buttonError && buttonErrorStyles}"
-    on:click={ onAddButtonClick }
+    on:click={onAddButtonClick}
   >
-    <div class="h-4 w-4 m-auto {buttonImageBaseStyles} {buttonError && buttonImageErrorStyles}" style={getIconMaskStyes(plusImageUrl)}></div>
+    <div
+      class="h-4 w-4 m-auto {buttonImageBaseStyles} {buttonError &&
+        buttonImageErrorStyles}"
+      style={getIconMaskStyes(plusImageUrl)}
+    />
   </button>
 </div>

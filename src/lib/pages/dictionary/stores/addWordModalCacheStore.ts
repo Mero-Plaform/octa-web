@@ -6,14 +6,16 @@ type AddWordModalCacheStoreValue = {
   newWordDescription: string;
 };
 
-const initialValue = {
+export const addWordModalCacheStore = writable<AddWordModalCacheStoreValue>({
   newWordVariantsList: [],
   newWordTranslationsList: [],
-  newWordDescription: ""
-};
-
-export const addWordModalCacheStore = writable<AddWordModalCacheStoreValue>({ ...initialValue });
+  newWordDescription: "",
+});
 
 export const resetAddWordModalCacheStore = () => {
-  addWordModalCacheStore.set({ ...initialValue });
+  addWordModalCacheStore.set({
+    newWordVariantsList: [],
+    newWordTranslationsList: [],
+    newWordDescription: "",
+  });
 };
