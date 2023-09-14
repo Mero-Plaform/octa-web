@@ -21,7 +21,7 @@
   };
 
   const updateSearchWordsTextStore = () => {
-    $searchWordsTextStore = inputElem.value;
+    $searchWordsTextStore = inputElem.value.trim();
   };
 
   const updateSearchWordsTextStoreDebounce = createDebounce(
