@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
         APP_ROOT_STYLES: env.VITE_BUILD_PLATFORM === "desktop" ? appRootStyles : "",
       }),
       ViteMinifyPlugin(),
-      removeUnusedCSS("index"),
+      removeUnusedCSS(),
     ],
     base: "./",
     build: {
