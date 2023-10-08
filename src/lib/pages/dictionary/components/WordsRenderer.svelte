@@ -15,23 +15,19 @@
     size: $wordsToRenderStore.length,
   };
 
-  const updatePaginatorPageSize = () => {
-    page.size = $wordsToRenderStore.length;
-  };
-
-  const unsubscribeUpdatePaginatorPageSize = wordsToRenderStore.subscribe(
-    updatePaginatorPageSize
-  );
-
   let paginatedSource: Word[];
 
-  $: paginatedSource = $wordsToRenderStore.slice(
-    page.offset * page.limit,
-    page.offset * page.limit + page.limit
-  );
+  const unsubscribeFromWordsToRenderStore = wordsToRenderStore.subscribe((words) => {
+    page.offset = 0;
+    paginatedSource = words.slice(
+      page.offset * page.limit,
+      page.offset * page.limit + page.limit
+    );
+    page.size = words.length;
+  });
 
   onDestroy(() => {
-    unsubscribeUpdatePaginatorPageSize();
+    unsubscribeFromWordsToRenderStore();
   });
 </script>
 

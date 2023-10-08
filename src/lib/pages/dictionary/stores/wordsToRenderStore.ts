@@ -5,7 +5,7 @@ import { wordStore } from './wordStore.js';
 export const wordsToRenderStore = derived([wordStore, searchWordsTextStore], ([words, searchText]) => {
   return [...words!.values()]
     .filter(({ translations, variants, description }) =>
-      variants.some((el) => el.includes(searchText))
-      || translations.some((el) => el.includes(searchText))
-      || description.includes(searchText));
+      variants.some((el) => el.toLowerCase().includes(searchText))
+      || translations.some((el) => el.toLowerCase().includes(searchText))
+      || description.toLowerCase().includes(searchText));
 });
