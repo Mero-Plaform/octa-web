@@ -12,7 +12,7 @@
   export let buttonErrorStyles = "";
   export let buttonImageBaseStyles = "";
   export let buttonImageErrorStyles = "";
-  let chipCurValue: string;
+  export let chipCurValue = "";
   let buttonError = false;
 
   export const reset = () => {

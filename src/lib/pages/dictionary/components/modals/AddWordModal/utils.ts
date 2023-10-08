@@ -18,9 +18,11 @@ export const onAddWordModalClose = () => {
 
   // if addWordModal is not empty
   if (
-    addWordModalCacheStoreValue.newWordVariantsList.length !== 0 ||
-    addWordModalCacheStoreValue.newWordTranslationsList.length !== 0 ||
-    addWordModalCacheStoreValue.newWordDescription.trim() !== ""
+    addWordModalCacheStoreValue.newWordVariantsList.length !== 0 
+    || addWordModalCacheStoreValue.newWordVariantsInput !== ""
+    || addWordModalCacheStoreValue.newWordTranslationsList.length !== 0 
+    || addWordModalCacheStoreValue.newWordTranslationsInput !== "" 
+    || addWordModalCacheStoreValue.newWordDescription.trim() !== ""
   ) {
     // open confirm modal to proceed addWordModal close
     modalStore.trigger(
