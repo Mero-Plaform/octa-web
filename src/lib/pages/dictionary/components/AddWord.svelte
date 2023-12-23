@@ -8,7 +8,7 @@
   import plusImageUrl from "/src/assets/icons/plus.svg";
 
   const onPlusBtnPress = ({ code }: KeyboardEvent) => {
-    if (code !== "NumpadAdd" || $modalStore[0]?.component === "addWord") {
+    if (code !== "NumpadAdd" || $modalStore[0]?.component !== undefined) {
       return;
     }
 
