@@ -54,7 +54,7 @@
     >
       {#each word.variants as variant}
         <span
-          class="chip bg-orange-300 hover:filter-none grow break-all whitespace-normal cursor-default"
+          class="chip bg-orange-300 hover:filter-none grow break-all whitespace-pre-wrap cursor-default"
           >{variant}</span
         >
       {/each}
@@ -64,14 +64,14 @@
     >
       {#each word.translations as translation}
         <span
-          class="chip bg-green-300 hover:filter-none grow break-all whitespace-normal cursor-default"
+          class="chip bg-green-300 hover:filter-none grow break-all whitespace-pre-wrap cursor-default"
           >{translation}</span
         >
       {/each}
     </div>
     {#if word.description}
       <div
-        class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all"
+        class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all whitespace-pre-wrap"
       >
         <div
           class="bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"

@@ -41,7 +41,7 @@
     buttonImageBaseStyles={chipsAddButtonImageBaseStyles}
     buttonImageErrorStyles={chipsAddButtonErrorImageStyle}
     InputChipStyles="text-purple-900 [&_.input-chip-list]:justify-center [&_.input-chip-list]:rounded-md [&_.input-chip-list]:p-2 [&_.input-chip-list]:bg-purple-400 [&_.input-chip-list]:bg-opacity-50 [&_.input-chip-list]:max-h-24 [&_.input-chip-list]:overflow-auto !border-purple-300 border-2 !cursor-default hover:filter-none [&_input]: [&_input]:p-2 [&_input]:rounded-md [&_input]:bg-purple-200 hover:[&_input]:bg-purple-300 focus:[&_input]:bg-purple-300 [&_input]:transition-all [&_input]:border-b-2 [&_input]:border-purple-300 placeholder:[&_input]:text-purple-950"
-    chips="text-slate-950 bg-orange-300 hover:filter-none hover:bg-orange-400 focus:bg-orange-400  break-all whitespace-normal"
+    chips="text-slate-950 bg-orange-300 hover:filter-none hover:bg-orange-400 focus:bg-orange-400  break-all whitespace-pre-wrap"
     placeholder="Enter word variant..."
     rounded="rounded-md"
   />
@@ -53,7 +53,7 @@
     buttonImageBaseStyles={chipsAddButtonImageBaseStyles}
     buttonImageErrorStyles={chipsAddButtonErrorImageStyle}
     InputChipStyles="text-purple-900 [&_.input-chip-list]:justify-center [&_.input-chip-list]:rounded-md [&_.input-chip-list]:p-2 [&_.input-chip-list]:bg-purple-400 [&_.input-chip-list]:bg-opacity-50 [&_.input-chip-list]:max-h-24 [&_.input-chip-list]:overflow-auto !border-purple-300 border-2 !cursor-default hover:filter-none [&_input]: [&_input]:p-2 [&_input]:rounded-md [&_input]:bg-purple-200 hover:[&_input]:bg-purple-300 focus:[&_input]:bg-purple-300 [&_input]:transition-all [&_input]:border-b-2 [&_input]:border-purple-300 placeholder:[&_input]:text-purple-950"
-    chips="text-slate-950 bg-green-300 hover:filter-none hover:bg-green-400 focus:bg-green-400  break-all whitespace-normal"
+    chips="text-slate-950 bg-green-300 hover:filter-none hover:bg-green-400 focus:bg-green-400  break-all whitespace-pre-wrap"
     placeholder="Enter word translation..."
     rounded="rounded-md"
   />

@@ -23,7 +23,7 @@
     >
       {#each variants as variant}
         <span
-          class="chip bg-orange-300 cursor-default hover:filter-none hover:bg-orange-400 focus:bg-orange-400 break-all whitespace-normal"
+          class="chip bg-orange-300 cursor-default hover:filter-none hover:bg-orange-400 focus:bg-orange-400 break-all whitespace-pre-wrap"
           >{variant}</span
         >
       {/each}
@@ -35,7 +35,7 @@
     >
       {#each translations as variant}
         <span
-          class="chip bg-green-300 cursor-default hover:filter-none hover:bg-green-400 focus:bg-green-400 break-all whitespace-normal"
+          class="chip bg-green-300 cursor-default hover:filter-none hover:bg-green-400 focus:bg-green-400 break-all whitespace-pre-wrap"
           >{variant}</span
         >
       {/each}
@@ -44,7 +44,7 @@
   {#if description}
     <div class="p-2 rounded-md border-red-300 border-2">
       <div
-        class="w-full p-2 rounded-md bg-red-300 bg-opacity-50 break-all max-h-24 overflow-auto"
+        class="w-full p-2 rounded-md bg-red-300 bg-opacity-50 break-all max-h-24 overflow-auto whitespace-pre-wrap"
       >
         <div
           class="bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"
