@@ -8,6 +8,6 @@
   class="h-[calc(100%-85px)] w-full flex flex-col justify-evenly items-center text-center gap-5 absolute"
   transition:fade
 >
-  <StartWithSystemEnabler />
+  <!-- <StartWithSystemEnabler /> -->
   <StartAppAsMinimized />
 </div>
