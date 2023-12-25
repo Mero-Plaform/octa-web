@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex gap-2 flex-wrap justify-center">
-  <div class="text-xs   bg-white text-yellow-500 p-2 rounded-md cursor-default">Open app window at start</div>
+  <div class="text-xs   bg-white text-yellow-500 p-2 rounded-md cursor-default">Open app window at application start</div>
   <span
     class:opacity-50={$basicSettingsStore.openAppWindowAtStart}
     class="cursor-default text-xs bg-white rounded-md p-2 text-yellow-500"
