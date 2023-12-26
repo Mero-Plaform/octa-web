@@ -5,6 +5,11 @@ const appBasicSettingsInitialValues = {
   openAppWindowAtStart: true,
 } as const;
 
+const IdleModeSettingsInitialValues = {
+  isEnabled: false,
+  timer: "∞",
+} as const;
+
 const appPassivePracticeSettingsInitialValues = {
   enabled: false,
   soundNotification: true,
@@ -29,6 +34,7 @@ const appActivePracticeSettingsInitialValues = {
 
 const appSettingsInitialValues = {
   basic: appBasicSettingsInitialValues,
+  IdleModeSettings: IdleModeSettingsInitialValues,
   practice: {
     passive: appPassivePracticeSettingsInitialValues,
     active: appActivePracticeSettingsInitialValues,
