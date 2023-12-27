@@ -7,7 +7,8 @@ const appBasicSettingsInitialValues = {
 
 const IdleModeSettingsInitialValues = {
   isEnabled: false,
-  timer: "∞",
+  timerStart: 0,
+  timerValue: Infinity,
 } as const;
 
 const appPassivePracticeSettingsInitialValues = {
