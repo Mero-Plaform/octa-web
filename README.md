@@ -19,4 +19,4 @@
 
 Related to: <a href="https://github.com/Mero-Plaform/octa-electron"> Octa-electron </a>
 
-Demo: (Octa)[https://merovinggen.github.io/octa-web-build/]
+Demo: [Octa](https://merovinggen.github.io/octa-web-build/)
