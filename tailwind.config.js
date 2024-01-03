@@ -1,4 +1,4 @@
-const config = {
+export default {
   content: [
     "./src/**/*.{html,js,svelte,ts}",
     "./index.html",
@@ -65,5 +65,3 @@ const config = {
     "focus:bg-blue-500",
   ]
 };
-
-module.exports = config;
