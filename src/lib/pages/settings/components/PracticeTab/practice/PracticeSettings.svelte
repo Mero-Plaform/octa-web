@@ -22,8 +22,11 @@
   export let pickerStyles: {
     "--sdt-bg-main": string;
     "--sdt-color": string;
-    "--sdt-primary": string;
-    "--sdt-btn-header-bg-hover": string;
+    "--sdt-color-selected": string;
+    "--sdt-header-btn-bg-hover": string;
+    "--sdt-clock-selected-bg": string;
+    "--sdt-clock-time-bg-hover": string;
+    "--sdt-clock-color-hover": string;
   };
 
   const weekdaysStyles = `bg-${mainColor}-500`;
@@ -79,8 +82,11 @@
   style={`
     --sdt-bg-main: ${pickerStyles["--sdt-bg-main"]};
     --sdt-color: ${pickerStyles["--sdt-color"]};
-    --sdt-primary: ${pickerStyles["--sdt-primary"]};
-    --sdt-btn-header-bg-hover: ${pickerStyles["--sdt-btn-header-bg-hover"]};
+    --sdt-color-selected: ${pickerStyles["--sdt-color-selected"]};
+    --sdt-header-btn-bg-hover: ${pickerStyles["--sdt-header-btn-bg-hover"]};
+    --sdt-clock-selected-bg: ${pickerStyles["--sdt-clock-selected-bg"]};
+    --sdt-clock-time-bg-hover: ${pickerStyles["--sdt-clock-time-bg-hover"]};
+    --sdt-clock-color-hover: ${pickerStyles["--sdt-clock-color-hover"]};
   `}
 >
   <div

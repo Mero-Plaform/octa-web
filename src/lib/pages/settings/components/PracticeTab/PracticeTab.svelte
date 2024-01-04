@@ -8,6 +8,7 @@
   import { passivePracticeSettingsStore } from "../../stores/passivePractice/passivePracticeSettingsStore.js";
   import { updatedDayInPassivePracticeSettingsStore } from "../../stores/passivePractice/updatedDayInPassivePracticeSettingsStore.js";
   import PracticeSettings from "./practice/PracticeSettings.svelte";
+    import IdleMode from "./idleMode/IdleMode.svelte";
 
   const passivePracticeStore = {
     chosenPracticeDays: chosenPracticeDaysStore,
@@ -53,6 +54,14 @@
     >
       Active
     </Tab>
+    <Tab
+      bind:group={tabSet}
+      name="tab3"
+      value={2}
+      class="select-none bg-teal-400 border-b-2 border-teal-400 bg-opacity-20 text-teal-900"
+    >
+      Idle
+    </Tab>
     <svelte:fragment slot="panel">
       {#if tabSet === 0}
         <PracticeSettings
@@ -63,8 +72,11 @@
           pickerStyles={{
             "--sdt-bg-main": "#3b82f6",
             "--sdt-color": "#3b82f6",
-            "--sdt-primary": "#3b82f6",
-            "--sdt-btn-header-bg-hover": "#3f67a9",
+            "--sdt-color-selected": "white",
+            "--sdt-header-btn-bg-hover": "#3f67a9",
+            "--sdt-clock-selected-bg": "#3b82f6",
+            "--sdt-clock-time-bg-hover": "#3b82f6",
+            "--sdt-clock-color-hover": "white",
           }}
         />
       {:else if tabSet === 1}
@@ -76,10 +88,15 @@
           pickerStyles={{
             "--sdt-bg-main": "#8b5cf6",
             "--sdt-color": "#8b5cf6",
-            "--sdt-primary": "#8b5cf6",
-            "--sdt-btn-header-bg-hover": "#754ecf",
+            "--sdt-color-selected": "white",
+            "--sdt-header-btn-bg-hover": "#754ecf",
+            "--sdt-clock-selected-bg": "#8b5cf6",
+            "--sdt-clock-time-bg-hover": "#8b5cf6",
+            "--sdt-clock-color-hover": "white",
           }}
         />
+        {:else if tabSet === 2}
+        <IdleMode/>
       {/if}
     </svelte:fragment>
   </TabGroup>
