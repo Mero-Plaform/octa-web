@@ -6,6 +6,7 @@ import { transformHtmlPlugin } from './plugins/vite/HTMLPlugin/HTMLPlugin.js';
 import { appRootStyles } from './plugins/vite/HTMLPlugin/appRootStyles.js';
 import { loadingScreenTemplate } from './plugins/vite/HTMLPlugin/loadingScreenTemplate.js';
 import { removeUnusedCSS } from './plugins/vite/removeUnusedCSS/removeUnusedCSS.js';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 type ENV = {
   VITE_BUILD_PLATFORM: "desktop" | "web";
@@ -48,6 +49,7 @@ export default defineConfig(({ mode }) => {
       }),
       ViteMinifyPlugin(),
       removeUnusedCSS(),
+      ViteImageOptimizer(),
     ],
     base: "./",
     build: {
