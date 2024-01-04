@@ -35,6 +35,7 @@ export const loadingScreenTemplate = `
       top: 0;
       left: 0;
       transition: 1s;
+      pointer-events:none;
     "
   > 
     <img
