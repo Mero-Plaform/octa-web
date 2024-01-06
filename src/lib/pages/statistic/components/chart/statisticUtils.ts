@@ -1,3 +1,5 @@
+import { DBUtilsFacade } from "../../../../DB/DBUtilsFacade.js";
+import { getStatisticInitialValues } from "../../../../DB/initialData/statisticInitialValues.js";
 import { MONTHS } from '../../../../utils/helpers.js';
 import { type YearData } from '../../interfaces/StatisticStore.js';
 import { chartLabelsStore } from '../../stores/chartLabelsStore.js';
@@ -128,3 +130,22 @@ const onSpecificDate = (date: DateSelectStoreValue) => {
 
 export const filterByDate = (date: DateSelectStoreValue) =>
   date === "all" ? onDateAll() : onSpecificDate(date);
+
+/* -------------------------------------------------------------------------- */
+/*                              new year arrives                              */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * checking that the new year has arrived and creating it's data entry
+ */
+export const addingNewArrivedYearToStatisticIfNeeded = (currentStatisticData: YearData[]) => {
+  const currentYear = String((new Date()).getFullYear());
+
+  if (currentStatisticData.some(({ year }) => year === currentYear)) {
+    return;
+  }
+
+  const newYearStatistic = getStatisticInitialValues()[0];
+  currentStatisticData.push(newYearStatistic);
+  return DBUtilsFacade.updateStatistic(newYearStatistic);
+};

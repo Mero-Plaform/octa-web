@@ -1,3 +1,4 @@
+import { addingNewArrivedYearToStatisticIfNeeded } from "../pages/statistic/components/chart/statisticUtils.js";
 import { DBUtilsFacade } from './DBUtilsFacade.js';
 import { getAppSettingsInitialValues } from './initialData/appSettingsInitialValues.js';
 import { getIdleModeInitialValues } from "./initialData/idleModeInitialValues.js";
@@ -31,6 +32,8 @@ export const getDBData = async () => {
     statisticArr = getStatisticInitialValues();
     DBUtilsFacade.initStatisticData(statisticArr[0]);
   }
+
+  addingNewArrivedYearToStatisticIfNeeded(statisticArr);
 
   if (appSettings === undefined) {
     appSettings = getAppSettingsInitialValues();

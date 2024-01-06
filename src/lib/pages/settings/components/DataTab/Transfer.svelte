@@ -29,6 +29,8 @@
   import FileAngryWhiteIconUrl from "/src/assets/icons/file-angry-white.svg";
   import FileRemoveWhiteIconUrl from "/src/assets/icons/file-remove-white.svg";
   import FileSmileWhiteIconUrl from "/src/assets/icons/file-smile-white.svg";
+    import { addingNewArrivedYearToStatisticIfNeeded } from "../../../statistic/components/chart/statisticUtils.js";
+    import { get } from "svelte/store";
 
   const loadingDrawerSettings = {
     bgBackdropColor: "emerald",
@@ -104,6 +106,11 @@
     await basicSettingsStore.reInitFromDB();
     // appSettingsStore is derived from 3 stores above, so it will reinit automatically
     await statisticStore.reInitFromDB();
+
+    const statisticData = [...get(statisticStore).values()]
+    await addingNewArrivedYearToStatisticIfNeeded(statisticData);
+    statisticStore.reInit(statisticData);
+     
     const { timerValue } = await idleModeStore.reInitFromDB();
     idleModeCountdownStore.set(timerValue);
     initIdleTimerCountdown(timerValue);

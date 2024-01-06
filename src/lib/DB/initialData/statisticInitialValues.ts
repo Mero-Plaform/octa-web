@@ -1,6 +1,7 @@
 import type { YearData } from '../../pages/statistic/interfaces/StatisticStore.js';
 import { MonthData } from '../../pages/statistic/stores/statisticStore/MonthData.js';
 import { MONTHS } from '../../utils/helpers.js';
+import { DBUtilsFacade } from "../DBUtilsFacade.js";
 
 /**
  * returns new empty statistics for the current year
