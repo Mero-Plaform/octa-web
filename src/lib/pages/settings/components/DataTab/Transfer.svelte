@@ -15,8 +15,11 @@
   import { wordStore } from "../../../dictionary/stores/wordStore.js";
   import { settingsStore } from "../../../practice/stores/settingsStore.js";
   import { statisticStore } from "../../../statistic/stores/statisticStore/statisticStore.js";
+  import { initIdleTimerCountdown } from "../../modules/idleMode/idleTimerCountdown.js";
   import { activePracticeSettingsStore } from "../../stores/activePractice/activePracticeSettingsStore.js";
   import { basicSettingsStore } from "../../stores/basicSettingsStore.js";
+  import { idleModeCountdownStore } from "../../stores/idleModeSettings/idleModeCountdownStore.js";
+  import { idleModeStore } from "../../stores/idleModeSettings/idleModeStore.js";
   import { passivePracticeSettingsStore } from "../../stores/passivePractice/passivePracticeSettingsStore.js";
   import {
     transferActionStore,
@@ -101,9 +104,22 @@
     await basicSettingsStore.reInitFromDB();
     // appSettingsStore is derived from 3 stores above, so it will reinit automatically
     await statisticStore.reInitFromDB();
+    const { timerValue } = await idleModeStore.reInitFromDB();
+    idleModeCountdownStore.set(timerValue);
+    initIdleTimerCountdown(timerValue);
+
     initDBAppSettingsStoreListener();
     onRemoveImportFile();
-    closeLoadingDrawer();
+
+    // in desktop close drawer on desktopDB ready by ipc signal at channel `importDBDataFinished`
+    if (import.meta.env.VITE_BUILD_PLATFORM === "web") {
+      closeLoadingDrawer();
+    } else {
+      // mock answer for `DEV` in `desktop`
+      if (import.meta.env.DEV) {
+        closeLoadingDrawer();
+      }
+    }
   };
 
   const onExportAppData = async () => {
@@ -120,7 +136,7 @@
         color: "emerald",
         backdropActionName: "transferImportConfirmAnswer",
         response: transferActionStoreSet,
-      })
+      }),
     );
   };
 
@@ -139,7 +155,7 @@
     <FileDropzone
       name="importData"
       rounded="rounded-md"
-      class={isDragEnter && "bg-emerald-300"}
+      class="{isDragEnter && "bg-emerald-300"} {!importDataDisabled && "bg-emerald-200"}"
       bind:files
       on:change={onFileDropzoneChange}
       on:dragenter={onDragEnter}

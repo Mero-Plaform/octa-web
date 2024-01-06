@@ -1,5 +1,6 @@
 import { DBUtilsFacade } from './DBUtilsFacade.js';
 import { getAppSettingsInitialValues } from './initialData/appSettingsInitialValues.js';
+import { getIdleModeInitialValues } from "./initialData/idleModeInitialValues.js";
 import { getPracticeInitialValues } from './initialData/practiceInitialValues.js';
 import { getStatisticInitialValues } from './initialData/statisticInitialValues.js';
 
@@ -13,11 +14,12 @@ export const setupUtilDB = async () => {
  * return DB data & initialize it if needed
  */
 export const getDBData = async () => {
-  let [dictionaryArr, practiceData, statisticArr, appSettings] = await Promise.all([
+  let [dictionaryArr, practiceData, statisticArr, appSettings, idleMode] = await Promise.all([
     DBUtilsFacade.getDictionaryDataAsArray(),
     DBUtilsFacade.getPracticeData(),
     DBUtilsFacade.getStatisticDataAsArray(),
     DBUtilsFacade.getAppSettings(),
+    DBUtilsFacade.getIdleModeData(),
   ]);
 
   if (practiceData === undefined) {
@@ -35,5 +37,10 @@ export const getDBData = async () => {
     DBUtilsFacade.initAppSettingsData(appSettings);
   }
 
-  return [dictionaryArr, practiceData!, statisticArr, appSettings] as const;
+  if (idleMode === undefined) {
+    idleMode = getIdleModeInitialValues();
+    DBUtilsFacade.initIdleModeData(idleMode);
+  }
+
+  return [dictionaryArr, practiceData, statisticArr, appSettings, idleMode] as const;
 };

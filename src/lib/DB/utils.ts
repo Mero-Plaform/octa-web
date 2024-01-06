@@ -5,6 +5,7 @@ import type { SettingsStore } from '../pages/practice/interfaces/settings.js';
 import type { AppSettings } from '../pages/settings/interfaces/appSettings.js';
 import type { YearData } from '../pages/statistic/interfaces/StatisticStore.js';
 import { AppDB, appDB } from './AppDB.js';
+import type { IdleMode } from "../pages/settings/interfaces/idleMode.js";
 
 /* -------------------------------------------------------------------------- */
 /*                                 dictionary                                 */
@@ -40,7 +41,7 @@ export const onDictionaryClear = () => {
 /* -------------------------------------------------------------------------- */
 
 /**
- * the out-bound key for practiceSettings table only data
+ * the out-bound key for practiceSettings table single entry
  */
 const practiceSettingsDataKey = 0;
 
@@ -104,7 +105,7 @@ export const importAppDBData = async (file: File) => {
 /* -------------------------------------------------------------------------- */
 
 /**
- * the out-bound key for appSettings table only data
+ * the out-bound key for appSettings table single entry
  */
 const appSettingsDataKey = 0;
 
@@ -122,4 +123,29 @@ export const initAppSettingsData = (appSettingsInitialValues: AppSettings) => {
 
 export const updateAppSettingsData = (appSettingsData: AppSettings) => {
   return appDB.appSettings.update(appSettingsDataKey, appSettingsData);
+};
+
+/* -------------------------------------------------------------------------- */
+/*                                  idle mode                                 */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * the out-bound key for idleMode table single entry
+ */
+const idleModeDataKey = 0;
+
+export const getIdleModeData = () => {
+  return appDB.idleMode.get(idleModeDataKey);
+};
+
+export const initIdleModeData = (idleModeInitialValues: IdleMode) => {
+  return appDB.idleMode.put(
+    {
+      ...idleModeInitialValues,
+    }, idleModeDataKey
+  );
+};
+
+export const updateIdleModeData = (idleModeData: IdleMode) => {
+  return appDB.idleMode.update(idleModeDataKey, idleModeData);
 };

@@ -78,7 +78,7 @@
 
 <div
   transition:fade
-  class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-160px)] overflow-y-auto overflow-x-hidden p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
+  class="absolute max-w-md w-90% left-1/2 -translate-x-1/2 max-h-[calc(100vh-190px)] overflow-y-auto overflow-x-hidden p-2 border-2 rounded-md bg-{mainColor}-200 bg-opacity-50 text-{mainColor}-900"
   style={`
     --sdt-bg-main: ${pickerStyles["--sdt-bg-main"]};
     --sdt-color: ${pickerStyles["--sdt-color"]};

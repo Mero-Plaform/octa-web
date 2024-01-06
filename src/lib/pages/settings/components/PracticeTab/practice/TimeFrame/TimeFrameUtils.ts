@@ -11,7 +11,7 @@ export const errVariants = {
 export const checkTimeFramesOverlap = ({ from: newFrom, to: newTo, timeFrames }: TimeFrame & { timeFrames: TimeFrame[]; }) =>
   timeFrames.findIndex(({ from, to }) =>
     (newFrom >= from && newFrom <= to) ||
-      (newTo <= from && newTo >= to) ||
+      (newTo >= from && newTo <= to) ||
       (newFrom >= from && newTo <= to) ||
       (newFrom <= from && newTo >= to)
       ? true

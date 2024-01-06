@@ -100,7 +100,6 @@
 
   const onRemoveTimeFrame = (fromToRemove: string) => {
     const removedTimeFrameIndex = deleteTimeFrame(fromToRemove);
-
     if (timeFrames.length === 0) {
       hideAndResetError();
       return;
@@ -133,7 +132,7 @@
   <div>
     <button
       on:click={onAddTimeFrame}
-      class="btn bg-{mainColor}-500 text-white rounded-md focus:brightness-110"
+      class="btn bg-{mainColor}-500 text-white rounded-md focus:brightness-110 h-10"
     >
       Add time frame
     </button>

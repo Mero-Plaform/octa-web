@@ -1,11 +1,12 @@
 import type { Word } from '../pages/dictionary/interfaces/Word.js';
 import type { SettingsStore } from '../pages/practice/interfaces/settings.js';
 import type { AppSettings } from '../pages/settings/interfaces/appSettings.js';
+import type { IdleMode } from "../pages/settings/interfaces/idleMode.js";
 import type { YearData } from '../pages/statistic/interfaces/StatisticStore.js';
 import { sendToIpcMain } from '../shared/desktopAppBuild/ipcUtils.js';
 import type { Mutable } from '../shared/interfaces/basic.js';
 import { DBUtilsFacade } from './DBUtilsFacade.js';
-import { importAppDBData, initAppSettingsData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, updateAppSettingsData, updatePracticeData, updateStatistic } from './utils.js';
+import { importAppDBData, initAppSettingsData, initIdleModeData, initPracticeData, initStatisticData, onAddWord, onDeleteWord, onDictionaryClear, onEditWord, updateAppSettingsData, updateIdleModeData, updatePracticeData, updateStatistic } from './utils.js';
 
 /* -------------------------------------------------------------------------- */
 /*                             DB decorated utils                             */
@@ -61,6 +62,16 @@ const updateAppSettingsDataObservable = (appSettingsData: AppSettings) => {
   return updateAppSettingsData(appSettingsData);
 };
 
+const initIdleModeDataObservable = (idleModeInitialValues: IdleMode) => {
+  sendToIpcMain('initIdleModeData', idleModeInitialValues);
+  return initIdleModeData(idleModeInitialValues);
+};
+
+const updateIdleModeDataObservable = (idleModeData: IdleMode) => {
+  sendToIpcMain('updateIdleModeData', idleModeData);
+  return updateIdleModeData(idleModeData);
+};
+
 type ImportData = {
   tableName: string;
   rows: Array<unknown>;
@@ -89,5 +100,7 @@ export const initDBUtilsFacadeDesktopBuild = () => {
   (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updateStatistic = updateStatisticObservable;
   (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).initAppSettingsData = initAppSettingsDataObservable;
   (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updateAppSettingsData = updateAppSettingsDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).initIdleModeData = initIdleModeDataObservable;
+  (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).updateIdleModeData = updateIdleModeDataObservable;
   (DBUtilsFacade as Mutable<typeof DBUtilsFacade>).importAppDBData = importAppDBDataObservable;
 };

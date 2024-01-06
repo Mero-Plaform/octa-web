@@ -1,6 +1,7 @@
 import { modalStore } from '@skeletonlabs/skeleton';
 import { DBUtilsFacade } from '../../../../../DB/DBUtilsFacade.js';
 import { getAppSettingsInitialValues } from '../../../../../DB/initialData/appSettingsInitialValues.js';
+import { getIdleModeInitialValues } from "../../../../../DB/initialData/idleModeInitialValues.js";
 import { getPracticeInitialValues } from '../../../../../DB/initialData/practiceInitialValues.js';
 import { getStatisticInitialValues } from '../../../../../DB/initialData/statisticInitialValues.js';
 import { getConfirmModalSettings } from '../../../../../shared/components/ConfirmModal/ConfirmModalUtils.js';
@@ -8,9 +9,13 @@ import { closeLoadingDrawer, openLoadingDrawer } from '../../../../../shared/com
 import { wordStore } from '../../../../dictionary/stores/wordStore.js';
 import { settingsStore } from '../../../../practice/stores/settingsStore.js';
 import { statisticStore } from '../../../../statistic/stores/statisticStore/statisticStore.js';
+import { stopIdleTimerCountdown } from "../../../modules/idleMode/idleTimerCountdown.js";
 import { activePracticeSettingsStore } from '../../../stores/activePractice/activePracticeSettingsStore.js';
 import { basicSettingsStore } from '../../../stores/basicSettingsStore.js';
+import { idleModeCountdownStore } from "../../../stores/idleModeSettings/idleModeCountdownStore.js";
+import { idleModeStore } from "../../../stores/idleModeSettings/idleModeStore.js";
 import { passivePracticeSettingsStore } from '../../../stores/passivePractice/passivePracticeSettingsStore.js';
+
 
 const loadingDrawerSettings = {
   bgBackdropColor: "red",
@@ -78,12 +83,29 @@ export const onStatisticResetButtonClick = () => {
 /* -------------------------------------------------------------------------- */
 
 const appSettingsReset = async () => {
-  const initialData = getAppSettingsInitialValues();
-  passivePracticeSettingsStore.reInit(initialData.practice.passive);
-  activePracticeSettingsStore.reInit(initialData.practice.active);
-  basicSettingsStore.reInit(initialData.basic);
+  const appSettingsInitialData = getAppSettingsInitialValues();
+  passivePracticeSettingsStore.reInit(appSettingsInitialData.practice.passive);
+  activePracticeSettingsStore.reInit(appSettingsInitialData.practice.active);
+  basicSettingsStore.reInit(appSettingsInitialData.basic);
   // appSettingsStore is derived from 3 stores above, so it will reinit automatically
-  await DBUtilsFacade.initAppSettingsData(initialData);
+  await DBUtilsFacade.initAppSettingsData(appSettingsInitialData);
+};
+
+/* -------------------------------------------------------------------------- */
+/*                               idle mode reset                              */
+/* -------------------------------------------------------------------------- */
+
+const idleModeReset = async () => {
+  const idleModeInitialData = getIdleModeInitialValues();
+  idleModeStore.reInit(idleModeInitialData);
+  idleModeCountdownStore.set(idleModeInitialData.timerValue);
+  stopIdleTimerCountdown();
+  // the DB update will be done by idleModeStore subscription
+
+  if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+    const { sendToIpcMain } = (await import("../../../../../shared/desktopAppBuild/ipcUtils.js"));
+    sendToIpcMain("updateIdleModeStateMainWin", idleModeInitialData.isEnabled);
+  }
 };
 
 /* -------------------------------------------------------------------------- */
@@ -108,6 +130,7 @@ export const onAppReset = async (response: boolean) => {
   await practicePageSettingsReset();
   await statisticReset();
   await appSettingsReset();
+  await idleModeReset();
   closeLoadingDrawer();
 };
 

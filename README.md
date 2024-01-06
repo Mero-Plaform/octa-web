@@ -1,6 +1,6 @@
 <img src="./github extras/github repository poster.jpg">
 
-# Svelte based app for developing vocabulary
+# Svelte-based app for developing vocabulary
 
 ### Features
 
@@ -10,7 +10,7 @@
 *  practicing for random/worst words or a section (chosen amount in a row in a dictionary)
 *  passive and active practice scheduling 
 *  passive practice (window with a random word to practice by schedule)
-*  vocabulary & practice statistic for all time of use or certain year
+*  vocabulary & practice statistics for all times of use or certain year
 *  app data transferring by exporting as a file
 
 ### Tech stack
@@ -19,4 +19,4 @@
 
 Related to: <a href="https://github.com/Mero-Plaform/octa-electron"> Octa-electron </a>
 
-Demo: <a href="https://mero-plaform.github.io/octa-web-build/"> Octa </a>
+Demo: [Octa](https://merovinggen.github.io/octa-web-build/)

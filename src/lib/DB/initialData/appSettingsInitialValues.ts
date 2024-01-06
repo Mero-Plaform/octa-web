@@ -1,17 +1,24 @@
-import { cloneObject } from '../../utils/helpers.js';
+import type { AppSettings } from "../../pages/settings/interfaces/appSettings.js";
+import type { BasicSettings } from "../../pages/settings/interfaces/basicSettings.js";
+import type { PracticeSettings } from "../../pages/settings/interfaces/practice.js";
 
-const appBasicSettingsInitialValues = {
+const appBasicSettingsInitialValues: BasicSettings = {
   startWithSystem: true,
   openAppWindowAtStart: true,
 } as const;
 
-const IdleModeSettingsInitialValues = {
-  isEnabled: false,
-  timerStart: 0,
-  timerValue: Infinity,
+const appPassivePracticeSettingsInitialValues: PracticeSettings = {
+  enabled: false,
+  soundNotification: true,
+  daySettings: {
+    general: {
+      interval: "02:00",
+      timeFrames: []
+    }
+  },
 } as const;
 
-const appPassivePracticeSettingsInitialValues = {
+const appActivePracticeSettingsInitialValues: PracticeSettings = {
   enabled: false,
   soundNotification: true,
   daySettings: {
@@ -20,26 +27,14 @@ const appPassivePracticeSettingsInitialValues = {
       timeFrames: []
     }
   },
-};
+} as const;
 
-const appActivePracticeSettingsInitialValues = {
-  enabled: false,
-  soundNotification: true,
-  daySettings: {
-    general: {
-      interval: "02:00",
-      timeFrames: []
-    }
-  },
-};
-
-const appSettingsInitialValues = {
+const appSettingsInitialValues: AppSettings = {
   basic: appBasicSettingsInitialValues,
-  IdleModeSettings: IdleModeSettingsInitialValues,
   practice: {
     passive: appPassivePracticeSettingsInitialValues,
     active: appActivePracticeSettingsInitialValues,
   }
 } as const;
 
-export const getAppSettingsInitialValues = () => cloneObject(appSettingsInitialValues);
+export const getAppSettingsInitialValues = () => structuredClone(appSettingsInitialValues);

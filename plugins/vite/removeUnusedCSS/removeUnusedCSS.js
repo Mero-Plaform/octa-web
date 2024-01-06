@@ -6,7 +6,7 @@ export const removeUnusedCSS = () => {
       if (/.css$/.test(id)) {
         return {
           // removing ".dark" styles
-          code: src.replace(/(:is\()?.dark.*?}/gs, ""),
+          code: src.replace(/}(:is)?.dark.*?}/gs, "}"),
           map: null,
         };
       }

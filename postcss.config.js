@@ -1,6 +1,6 @@
-import tailwindcss from "tailwindcss";
 import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
+import tailwindcss from "tailwindcss";
 
 export default {
   plugins: [
@@ -10,6 +10,6 @@ export default {
     autoprefixer,
     cssnano({
       preset: 'default'
-    })  
+    })
   ],
 };

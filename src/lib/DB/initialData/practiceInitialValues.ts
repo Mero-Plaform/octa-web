@@ -1,5 +1,3 @@
-import { cloneObject } from '../../utils/helpers.js';
-
 const practiceInitialValues = {
   practiceTarget: "original",
   practiceType: "section",
@@ -7,4 +5,4 @@ const practiceInitialValues = {
   sectionSize: 10,
 } as const;
 
-export const getPracticeInitialValues = () => cloneObject(practiceInitialValues);
+export const getPracticeInitialValues = () => ({ ...practiceInitialValues });

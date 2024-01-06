@@ -31,8 +31,6 @@ export const getIconMaskStyes = (iconSrc: string) => {
   return `-webkit-mask: url(${iconSrc}) no-repeat center / contain; mask: url(${iconSrc}) no-repeat center / contain;`;
 };
 
-export const cloneObject = <T>(target: T): T => JSON.parse(JSON.stringify(target));
-
 /**
  * shuffle data to new array (not deep copy)
  */
@@ -222,4 +220,15 @@ export const checkElectronApiExist = () => {
   if (window.electron === undefined) {
     throw "electron API is missing in window";
   }
+};
+
+export const secondsToHHMMSS = (seconds: number) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+
+  const formattedHours = String(hours).padStart(2, '0');
+  const formattedMinutes = String(minutes).padStart(2, '0');
+  const formattedSeconds = String(seconds % 60).padStart(2, '0');
+
+  return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 };

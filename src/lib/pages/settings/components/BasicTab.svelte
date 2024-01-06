@@ -1,6 +1,5 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import StartWithSystemEnabler from "./BasicTab/StartWithSystemEnabler.svelte";
   import StartAppAsMinimized from "./BasicTab/StartAppAsMinimized.svelte";
 </script>
 
