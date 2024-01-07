@@ -1,5 +1,6 @@
 import { onAddWordModalClose, onAddWordModalCloseConfirmAnswer } from '../../../pages/dictionary/components/modals/AddWordModal/utils.js';
 import { wordPracticeModalClose, wordPracticeModalConfirmAnswer } from '../../../pages/dictionary/components/modals/WordPracticeModal/utils.js';
+import { checkForChangesToCancel, onEditWordModalCloseConfirmAnswer } from "../../../pages/dictionary/stores/editWordProgressStore.js";
 import { onAppReset, onDictionaryReset, onStatisticReset } from '../../../pages/settings/components/DataTab/Reset/resetUtils.js';
 import { onDayCopySettingsCallback } from '../../../pages/settings/components/PracticeTab/practice/CopySettings/utils.js';
 import { transferActionStoreSet } from '../../../pages/settings/stores/transferActionStore.js';
@@ -8,6 +9,8 @@ export type ModalsBackdropHandlersType = {
   readonly addWordModalClose: () => void;
   readonly addWordModalCloseConfirmAnswer: (closeAddWordModal: boolean) => void;
   readonly wordPracticeModalClose: () => void;
+  readonly checkForChangesToCancel: () => void;
+  readonly onEditWordModalCloseConfirmAnswer: (response: boolean) => void;
   readonly wordPracticeModalCloseConfirmAnswer: (confirmResult: boolean) => void;
   readonly transferImportConfirmAnswer: (action: boolean) => void;
   readonly dictionaryResetConfirmAnswer: (response: boolean) => Promise<void>;
@@ -22,6 +25,8 @@ export const initModalsBackdropHandlers = () => {
   modalsBackdropHandlers = {
     addWordModalClose: onAddWordModalClose,
     addWordModalCloseConfirmAnswer: onAddWordModalCloseConfirmAnswer,
+    checkForChangesToCancel,
+    onEditWordModalCloseConfirmAnswer,
     wordPracticeModalClose: wordPracticeModalClose,
     wordPracticeModalCloseConfirmAnswer: wordPracticeModalConfirmAnswer,
     transferImportConfirmAnswer: transferActionStoreSet,

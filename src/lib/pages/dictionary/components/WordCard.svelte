@@ -5,6 +5,7 @@
     getLearnSuccessActiveStyles,
   } from "../../../utils/helpers.js";
   import type { Word } from "../interfaces/Word.js";
+  import { editWordProgressStore } from "../stores/editWordProgressStore.js";
   import { editWordStore } from "../stores/editWordStore.js";
   import { removeWordStore } from "../stores/removeWordStore.js";
   import { wordPracticeStore } from "../stores/wordPracticeStore.js";
@@ -19,16 +20,28 @@
     modalStore.trigger({
       type: "component",
       component: "removeWord",
-      backdropClasses: "!bg-red-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
+      backdropClasses:
+        "!bg-red-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
+        (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
+          " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 
   const onWordEdit = () => {
     editWordStore.set(word);
+    editWordProgressStore.set({
+      ...word,
+      variantInputValue: "",
+      translationInputValue: "",
+    });
+    
     modalStore.trigger({
       type: "component",
       component: "editWord",
-      backdropClasses: "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
+      backdropClasses:
+        "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
+        (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
+          " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 
@@ -37,13 +50,16 @@
     modalStore.trigger({
       type: "component",
       component: "wordPractice",
-      backdropClasses: "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" + (import.meta.env.VITE_BUILD_PLATFORM === "desktop" && " h-[calc(100vh-24px)] bottom-0 top-auto"),
+      backdropClasses:
+        "!bg-pink-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
+        (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
+          " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
 </script>
 
-<div 
-  class="flex gap-2 bg-white bg-opacity-30 hover:bg-opacity-50 p-2 rounded-md  bg-[length:20%] bg-repeat-space transition-all"
+<div
+  class="flex gap-2 bg-white bg-opacity-30 hover:bg-opacity-50 p-2 rounded-md bg-[length:20%] bg-repeat-space transition-all"
   style={`background-image: url('${octaSlateIconUrl}')`}
 >
   <div
@@ -84,7 +100,7 @@
   <div class="flex flex-col items-center gap-2">
     <button
       class="rounded-md text-center text-xm px-2 leading-8 transition-all active:scale-90 {getLearnSuccessActiveStyles(
-        word.learnSuccess
+        word.learnSuccess,
       )}"
       on:click={onWordPractice}
     >

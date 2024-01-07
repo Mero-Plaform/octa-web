@@ -1,6 +1,11 @@
 <script lang="ts">
   import { modalStore } from "@skeletonlabs/skeleton";
+  import { setNewActionForModalsBackdropActionStore } from "../../../../shared/modalComponent/modalsBackdropHandlers/modalsBackdropActionStore.js";
   import CustomInputChip from "../../../../utils/components/customInputChip/CustomInputChip.svelte";
+  import {
+    checkForChangesToCancel,
+    editWordProgressStore,
+  } from "../../stores/editWordProgressStore.js";
   import { editWordStore } from "../../stores/editWordStore.js";
   import { wordStore } from "../../stores/wordStore.js";
 
@@ -10,31 +15,36 @@
   const chipsAddButtonImageBaseStyles = "bg-white";
   const chipsAddButtonErrorImageStyle = "";
 
-  let {
-    variants: editableWordVariantsList,
-    translations: editableWordTranslationsList,
-    description: editableWordDescription,
-  } = $editWordStore!;
+  let editableWordVariantsList = [...$editWordStore!.variants];
+  let editableWordTranslationsList = [...$editWordStore!.translations];
+  let editableWordDescription = $editWordStore!.description;
 
-  const onEditWord = () => {
+  const onSaveChanges = () => {
     wordStore.editWord($editWordStore!, {
       variants: editableWordVariantsList,
       translations: editableWordTranslationsList,
       description: editableWordDescription.trim(),
     });
+    $editWordProgressStore.variantInputValue = "";
+    $editWordProgressStore.translationInputValue = "";
     modalStore.close();
   };
+
+  $: $editWordProgressStore.variants = editableWordVariantsList;
+  $: $editWordProgressStore.translations = editableWordTranslationsList;
+  $: $editWordProgressStore.description = editableWordDescription.trim();
+
+  setNewActionForModalsBackdropActionStore("checkForChangesToCancel");
 </script>
 
 <div
   class="max-w-90% gap-5 flex flex-col text-center selection:text-white selection:bg-purple-500 overflow-hidden px-5 cursor-default"
 >
-  <div
-    class="select-none bg-purple-400 text-white rounded-md p-2"
-  >
+  <div class="select-none bg-purple-400 text-white rounded-md p-2">
     Edit word
   </div>
   <CustomInputChip
+    bind:chipCurValue={$editWordProgressStore.variantInputValue}
     bind:list={editableWordVariantsList}
     buttonBaseStyles={chipsAddButtonBaseStyles}
     buttonErrorStyles={chipsAddButtonErrorStyles}
@@ -47,6 +57,7 @@
   />
 
   <CustomInputChip
+    bind:chipCurValue={$editWordProgressStore.translationInputValue}
     bind:list={editableWordTranslationsList}
     buttonBaseStyles={chipsAddButtonBaseStyles}
     buttonErrorStyles={chipsAddButtonErrorStyles}
@@ -69,7 +80,7 @@
 
   <div>
     <button
-      on:click={onEditWord}
+      on:click={onSaveChanges}
       disabled={editableWordVariantsList.length === 0 ||
         editableWordTranslationsList.length === 0}
       class="btn disabled:bg-purple-300 bg-purple-400 hover:bg-purple-500 focus:bg-purple-500 rounded-md text-white"
@@ -77,7 +88,7 @@
       save
     </button>
     <button
-      on:click={() => modalStore.close()}
+      on:click={checkForChangesToCancel}
       class="btn bg-purple-400 hover:bg-purple-500 focus:bg-purple-500 rounded-md text-white"
     >
       cancel
