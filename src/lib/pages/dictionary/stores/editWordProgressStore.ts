@@ -1,6 +1,7 @@
 import { modalStore } from "@skeletonlabs/skeleton";
 import { get, writable } from 'svelte/store';
 import { getConfirmModalSettings } from "../../../shared/components/ConfirmModal/ConfirmModalUtils.js";
+import { openEditWordModal } from "../../../utils/helpers.js";
 import type { Word } from '../interfaces/Word.js';
 import { editWordStore } from "./editWordStore.js";
 
@@ -63,12 +64,5 @@ export const onEditWordModalCloseConfirmAnswer = (closeAddWordModal: boolean) =>
 
   didChanges = true;
   editWordStore.set(editWordData);
-  modalStore.trigger({
-    type: "component",
-    component: "editWord",
-    backdropClasses:
-      "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
-      (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
-        " h-[calc(100vh-24px)] bottom-0 top-auto"),
-  });
+  openEditWordModal();
 };

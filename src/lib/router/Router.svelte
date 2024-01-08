@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ComponentType } from "svelte";
-  import Exit from "../pages/Exit/Exit.svelte";
+  import Exit from "../pages/exit/Exit.svelte";
   import Dictionary from "../pages/dictionary/components/Dictionary.svelte";
   import Practice from "../pages/practice/components/Practice.svelte";
   import Settings from "../pages/settings/components/Settings.svelte";

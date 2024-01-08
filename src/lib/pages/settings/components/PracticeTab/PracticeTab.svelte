@@ -7,8 +7,8 @@
   import { chosenPracticeDaysStore } from "../../stores/passivePractice/chosenPracticeDaysStore.js";
   import { passivePracticeSettingsStore } from "../../stores/passivePractice/passivePracticeSettingsStore.js";
   import { updatedDayInPassivePracticeSettingsStore } from "../../stores/passivePractice/updatedDayInPassivePracticeSettingsStore.js";
+  import IdleMode from "./idleMode/IdleMode.svelte";
   import PracticeSettings from "./practice/PracticeSettings.svelte";
-    import IdleMode from "./idleMode/IdleMode.svelte";
 
   const passivePracticeStore = {
     chosenPracticeDays: chosenPracticeDaysStore,
@@ -95,8 +95,8 @@
             "--sdt-clock-color-hover": "white",
           }}
         />
-        {:else if tabSet === 2}
-        <IdleMode/>
+      {:else if tabSet === 2}
+        <IdleMode />
       {/if}
     </svelte:fragment>
   </TabGroup>

@@ -3,6 +3,7 @@
   import {
     getIconMaskStyes,
     getLearnSuccessActiveStyles,
+    openEditWordModal,
   } from "../../../utils/helpers.js";
   import type { Word } from "../interfaces/Word.js";
   import { editWordProgressStore } from "../stores/editWordProgressStore.js";
@@ -34,15 +35,8 @@
       variantInputValue: "",
       translationInputValue: "",
     });
-    
-    modalStore.trigger({
-      type: "component",
-      component: "editWord",
-      backdropClasses:
-        "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
-        (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
-          " h-[calc(100vh-24px)] bottom-0 top-auto"),
-    });
+
+    openEditWordModal();
   };
 
   const onWordPractice = () => {

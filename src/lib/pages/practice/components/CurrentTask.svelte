@@ -2,7 +2,13 @@
   import { RadioGroup, RadioItem } from "@skeletonlabs/skeleton";
   import { fade } from "svelte/transition";
   import type { ClickHandler } from "../../../shared/interfaces/basic.js";
+  import {
+    buttonBaseClasses,
+    zincButtonColorClasses,
+  } from "../../../shared/styleClassesDeclarations.js";
   import type { Word } from "../../dictionary/interfaces/Word.js";
+  import { practiceFinishStateTextStore } from "../stores/practiceFinishStateTextStore.js";
+  import { practiceTaskEnded } from "../stores/practiceTaskEnded.js";
   import { settingsStore } from "../stores/settingsStore.js";
   import TaskProgress from "./TaskProgress.svelte";
   import WordData from "./WordData.svelte";
@@ -13,7 +19,11 @@
   export let description: Word["description"];
   export let selectedTaskResult: null | boolean = null;
   export let onNext: ClickHandler;
-  export let onSettings: ClickHandler;
+
+  const onStop = () => {
+    practiceFinishStateTextStore.set("Practice stoped");
+    practiceTaskEnded.set(true);
+  };
 
   const resetShowPracticeTarget = () => {
     showPracticeTarget = false;
@@ -86,18 +96,18 @@
   <div>
     <button
       disabled={selectedTaskResult === null}
-      class="btn mr-2 text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
+      class="{buttonBaseClasses} {zincButtonColorClasses}"
       on:click={onNext}
       on:click={resetShowPracticeTarget}
     >
       next
     </button>
     <button
-      class="btn text-white bg-zinc-500 border-b-2 rounded-md hover:filter-none hover:bg-zinc-400 focus:bg-zinc-400"
-      on:click|once={onSettings}
+      class="{buttonBaseClasses} {zincButtonColorClasses}"
+      on:click={onStop}
     >
       stop
     </button>
   </div>
-  <TaskProgress wrapStyleClasses="mt-0"/>
+  <TaskProgress wrapStyleClasses="mt-0" />
 </div>

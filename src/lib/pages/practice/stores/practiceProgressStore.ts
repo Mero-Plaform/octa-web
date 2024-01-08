@@ -5,7 +5,7 @@ export type PracticeProgressData = {
   totalCount: number;
   successCount: number;
   wordIds: Word["id"][];
-  stats: boolean[];
+  stats: boolean[]; // selected task result (true for success, flse for fail)
 };
 
 let wordIds: Word["id"][] = [];

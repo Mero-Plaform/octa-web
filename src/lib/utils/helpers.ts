@@ -13,6 +13,17 @@ export const openAddWordModal = () => {
   });
 };
 
+export const openEditWordModal = () => {
+  modalStore.trigger({
+    type: "component",
+    component: "editWord",
+    backdropClasses:
+      "!bg-purple-200 !bg-opacity-50 backdrop-blur-sm cursor-pointer !z-40" +
+      (import.meta.env.VITE_BUILD_PLATFORM === "desktop" &&
+        " h-[calc(100vh-24px)] bottom-0 top-auto"),
+  });
+};
+
 export const createDebounce = (callback: (...params: unknown[]) => unknown, timeout: number) => {
   let timerID: NodeJS.Timeout;
   return (...params: unknown[]) => {

@@ -2,6 +2,7 @@
   //@ts-ignore
   import Carousel from "svelte-carousel";
   import { scale } from "svelte/transition";
+  import { buttonBaseClasses } from "../../../../../shared/styleClassesDeclarations.js";
   import { onIdleModeCountdownStart } from "../../../modules/idleMode/idleTimerCountdown.js";
   import {
     timerValueToSecondsAmount,
@@ -87,7 +88,7 @@
   </Carousel>
 
   <button
-    class="btn text-white bg-teal-500 border-b-2 mt-2 rounded-md hover:filter-none hover:bg-teal-400 focus:bg-teal-400"
+    class="{buttonBaseClasses} mt-2 bg-teal-500 hover:bg-teal-400 focus:bg-teal-400"
     on:click={onSetClick}
   >
     Set

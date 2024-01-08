@@ -1,6 +1,7 @@
 <script lang="ts">
   import { FileDropzone, modalStore } from "@skeletonlabs/skeleton";
   import { onMount } from "svelte";
+  import { get } from "svelte/store";
   import { DBUtilsFacade } from "../../../../DB/DBUtilsFacade.js";
   import {
     initDBAppSettingsStoreListener,
@@ -14,6 +15,7 @@
   import { getIconMaskStyes } from "../../../../utils/helpers.js";
   import { wordStore } from "../../../dictionary/stores/wordStore.js";
   import { settingsStore } from "../../../practice/stores/settingsStore.js";
+  import { addingNewArrivedYearToStatisticIfNeeded } from "../../../statistic/components/chart/statisticUtils.js";
   import { statisticStore } from "../../../statistic/stores/statisticStore/statisticStore.js";
   import { initIdleTimerCountdown } from "../../modules/idleMode/idleTimerCountdown.js";
   import { activePracticeSettingsStore } from "../../stores/activePractice/activePracticeSettingsStore.js";
@@ -29,8 +31,9 @@
   import FileAngryWhiteIconUrl from "/src/assets/icons/file-angry-white.svg";
   import FileRemoveWhiteIconUrl from "/src/assets/icons/file-remove-white.svg";
   import FileSmileWhiteIconUrl from "/src/assets/icons/file-smile-white.svg";
-    import { addingNewArrivedYearToStatisticIfNeeded } from "../../../statistic/components/chart/statisticUtils.js";
-    import { get } from "svelte/store";
+
+  const btnCssClasses =
+    "btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110";
 
   const loadingDrawerSettings = {
     bgBackdropColor: "emerald",
@@ -107,10 +110,10 @@
     // appSettingsStore is derived from 3 stores above, so it will reinit automatically
     await statisticStore.reInitFromDB();
 
-    const statisticData = [...get(statisticStore).values()]
+    const statisticData = [...get(statisticStore).values()];
     await addingNewArrivedYearToStatisticIfNeeded(statisticData);
     statisticStore.reInit(statisticData);
-     
+
     const { timerValue } = await idleModeStore.reInitFromDB();
     idleModeCountdownStore.set(timerValue);
     initIdleTimerCountdown(timerValue);
@@ -162,7 +165,8 @@
     <FileDropzone
       name="importData"
       rounded="rounded-md"
-      class="{isDragEnter && "bg-emerald-300"} {!importDataDisabled && "bg-emerald-200"}"
+      class="{isDragEnter && 'bg-emerald-300'} {!importDataDisabled &&
+        'bg-emerald-200'}"
       bind:files
       on:change={onFileDropzoneChange}
       on:dragenter={onDragEnter}
@@ -189,23 +193,17 @@
       </svelte:fragment>
     </FileDropzone>
     <div class="flex flex-col gap-2 w-1/2">
-      <button
-        on:click={onRemoveImportFile}
-        class="btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110"
-      >
+      <button on:click={onRemoveImportFile} class={btnCssClasses}>
         Remove chosen file
       </button>
       <button
         on:click={onImportButtonClick}
         disabled={importDataDisabled}
-        class="btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110"
+        class={btnCssClasses}
       >
         Import app data
       </button>
-      <button
-        class="btn grow bg-emerald-300 text-emerald-900 rounded-md focus:brightness-110"
-        on:click={onExportAppData}
-      >
+      <button class={btnCssClasses} on:click={onExportAppData}>
         Export app data
       </button>
     </div>

@@ -17,6 +17,7 @@
     checkTimeFramesOverlap,
     errVariants,
   } from "./TimeFrameUtils.js";
+    import { buttonBaseClasses } from "../../../../../../shared/styleClassesDeclarations.js";
 
   export let settingKey: PracticeStoreValueKeys;
 
@@ -132,7 +133,7 @@
   <div>
     <button
       on:click={onAddTimeFrame}
-      class="btn bg-{mainColor}-500 text-white rounded-md focus:brightness-110 h-10"
+      class="{buttonBaseClasses} bg-{mainColor}-500 hover:!brightness-110 focus:brightness-110 h-10"
     >
       Add time frame
     </button>

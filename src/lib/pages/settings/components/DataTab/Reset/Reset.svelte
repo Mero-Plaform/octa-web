@@ -4,6 +4,8 @@
     onDictionaryResetButtonClick,
     onStatisticResetButtonClick,
   } from "./resetUtils.js";
+
+  const btnCssClasses = "btn bg-red-300 rounded-md grow focus:brightness-110";
 </script>
 
 <div
@@ -15,22 +17,13 @@
     Reset
   </div>
   <div class="flex gap-2 pt-2 flex-wrap justify-center">
-    <button
-      on:click={onDictionaryResetButtonClick}
-      class="btn bg-red-300 rounded-md grow focus:brightness-110"
-    >
+    <button on:click={onDictionaryResetButtonClick} class={btnCssClasses}>
       Dictionary reset
     </button>
-    <button
-      on:click={onStatisticResetButtonClick}
-      class="btn bg-red-300 rounded-md grow focus:brightness-110"
-    >
+    <button on:click={onStatisticResetButtonClick} class={btnCssClasses}>
       Statistic reset
     </button>
-    <button
-      on:click={onAppResetButtonClick}
-      class="btn bg-red-300 rounded-md grow focus:brightness-110"
-    >
+    <button on:click={onAppResetButtonClick} class={btnCssClasses}>
       App reset
     </button>
   </div>
