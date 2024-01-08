@@ -4,6 +4,7 @@
     getIconMaskStyes,
     getLearnSuccessActiveStyles,
     openEditWordModal,
+    showToast,
   } from "../../../utils/helpers.js";
   import type { Word } from "../interfaces/Word.js";
   import { editWordProgressStore } from "../stores/editWordProgressStore.js";
@@ -50,21 +51,34 @@
           " h-[calc(100vh-24px)] bottom-0 top-auto"),
     });
   };
+
+  const copyChipData = ({
+    target,
+  }: MouseEvent & { currentTarget: HTMLElement }) => {
+    if (!(target as HTMLSpanElement).classList.contains("chip")) {
+      return;
+    }
+
+    navigator.clipboard.writeText((target as HTMLSpanElement).textContent!);
+    showToast("Copied to clipboard", "bg-cyan-400", 2000);
+  };
 </script>
 
 <div
   class="flex gap-2 bg-white bg-opacity-30 hover:bg-opacity-50 p-2 rounded-md bg-[length:20%] bg-repeat-space transition-all"
   style={`background-image: url('${octaSlateIconUrl}')`}
 >
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
     class="inline-flex flex-col justify-center grow gap-2 max-w-xs box-border rounded-md"
+    on:click={copyChipData}
   >
     <div
       class="flex flex-wrap gap-2 p-2 max-h-28 overflow-auto bg-orange-300 bg-opacity-50 rounded-md"
     >
       {#each word.variants as variant}
         <span
-          class="chip bg-orange-300 hover:filter-none grow break-all whitespace-pre-wrap cursor-default"
+          class="chip bg-orange-300 grow break-all whitespace-pre-wrap"
           >{variant}</span
         >
       {/each}
@@ -74,14 +88,14 @@
     >
       {#each word.translations as translation}
         <span
-          class="chip bg-green-300 hover:filter-none grow break-all whitespace-pre-wrap cursor-default"
+          class="chip bg-green-300 grow break-all whitespace-pre-wrap"
           >{translation}</span
         >
       {/each}
     </div>
     {#if word.description}
       <div
-        class="max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all whitespace-pre-wrap"
+        class="description max-h-24 overflow-auto w-full p-2 rounded-md bg-sky-300 bg-opacity-50 break-all whitespace-pre-wrap pointer-events-none"
       >
         <div
           class="bg-sky-300 rounded-md text-xs p-2 cursor-default text-center"

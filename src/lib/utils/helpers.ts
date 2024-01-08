@@ -34,6 +34,8 @@ export const createDebounce = (callback: (...params: unknown[]) => unknown, time
 
 const TOAST_OCTA_ICON = `<img class='h-8' src='${OctaIConURL}' alt='octa icon'/>`;
 
+const TOAST_STYLES = "break-all text-white cursor-default !rounded-md [&_.text-base]:flex [&_.text-base]:gap-4 [&_.text-base]:items-center";
+
 export const ERR_TOAST_STYLES = "break-all bg-red-400 text-white cursor-default !rounded-md [&_.text-base]:flex [&_.text-base]:gap-4 [&_.text-base]:items-center";
 
 export const WARN_TOAST_STYLES = "break-all bg-yellow-500 text-white cursor-default !rounded-md [&_.text-base]:flex [&_.text-base]:gap-4 [&_.text-base]:items-center";
@@ -183,6 +185,14 @@ const preventStandardContextMenu = (e: Event) => {
 
 export const disableStandardContextMenu = () => {
   document.addEventListener("contextmenu", preventStandardContextMenu);
+};
+
+export const showToast = (msg: string, cssClasses?: string, timeout?: number) => {
+  toastStore.trigger({
+    message: TOAST_OCTA_ICON + `<div>${msg}</div>`,
+    background: `${TOAST_STYLES} ${cssClasses}`,
+    timeout,
+  });
 };
 
 /* -------------------------------------------------------------------------- */
