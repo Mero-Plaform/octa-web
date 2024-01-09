@@ -1,5 +1,5 @@
 <script lang="ts">
-  import OctaIconURL from "../../../../assets/icons/octopus-white.svg";
+  import OctaIconURL from "../../../../assets/icons/octa-swim.svg";
 
   const onAnimationend = ({ target }: AnimationEvent) => {
     (target as HTMLImageElement).style.left =
@@ -18,14 +18,21 @@
   <img
     on:animationiteration={onAnimationend}
     class="absolute h-4 opacity-40 animate-lift top-6"
-    style="left:30%"
+    style="left:25%"
     src={OctaIconURL}
     alt="octa icon"
   />
   <img
     on:animationiteration={onAnimationend}
     class="absolute h-4 opacity-40 animate-lift top-6"
-    style="left:60%"
+    style="left:45%"
+    src={OctaIconURL}
+    alt="octa icon"
+  />
+  <img
+    on:animationiteration={onAnimationend}
+    class="absolute h-4 opacity-40 animate-lift top-6"
+    style="left:70%"
     src={OctaIconURL}
     alt="octa icon"
   />
@@ -40,9 +47,12 @@
 
 <style>
   img:nth-child(2) {
-    animation-delay: 2s;
+    animation-delay: -2s;
   }
   img:nth-child(3) {
+    animation-delay: 2s;
+  }
+  img:nth-child(4) {
     animation-delay: 5s;
   }
   img:nth-child(4) {
