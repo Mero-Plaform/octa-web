@@ -5,6 +5,10 @@ import { InputHardHandler, type ConstructorParams } from './inputHardHandler.js'
 
 /* --------------------------------- general -------------------------------- */
 
+export const random = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
+
+export const randomFromArr = <T>(arr: readonly T[]) => arr[random(0, arr.length)];
+
 export const openAddWordModal = () => {
   modalStore.trigger({
     type: "component",

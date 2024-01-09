@@ -7,8 +7,9 @@
   import MenuButton from "./lib/shared/components/AppMenu/MenuButton.svelte";
   import Drawer from "./lib/shared/components/Drawer/Drawer.svelte";
   import Popups from "./lib/shared/components/Popups.svelte";
-  import { modalOnBackdropHandler } from "./lib/shared/modalComponent/modalsBackdropHandlers/modalOnBackdropHandler.js";
   import { modalComponentRegistry } from "./lib/shared/modalComponent/modalComponentRegistry.js";
+  import { modalOnBackdropHandler } from "./lib/shared/modalComponent/modalsBackdropHandlers/modalOnBackdropHandler.js";
+  import BgOctaAnimation from "./lib/utils/components/BgOctaAnimation/BgOctaAnimation.svelte";
 
   // initial page
   $routerStore = "/dictionary";
@@ -38,6 +39,8 @@
 {#if import.meta.env.VITE_BUILD_PLATFORM === "desktop"}
   <Header />
 {/if}
+
+<BgOctaAnimation octaNumber={5} />
 
 <!-- render app content -->
 <Router />
