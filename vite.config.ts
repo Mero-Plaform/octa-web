@@ -49,7 +49,9 @@ export default defineConfig(({ mode }) => {
       }),
       ViteMinifyPlugin(),
       removeUnusedCSS(),
-      ViteImageOptimizer(),
+      ViteImageOptimizer({
+        exclude: ["octa-swim.svg"]
+      }),
     ],
     base: "./",
     build: {

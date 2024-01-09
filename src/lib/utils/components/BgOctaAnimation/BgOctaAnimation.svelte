@@ -24,7 +24,6 @@
   const getLeftPos = () => random(5, 90) + "%";
 
   const onAnimationend = ({ target }: AnimationEvent) => {
-    console.log(target);
     (target as HTMLImageElement).style.left = getLeftPos();
   };
 </script>
