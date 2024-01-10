@@ -40,7 +40,7 @@
   <Header />
 {/if}
 
-<BgOctaAnimation octaNumber={5} />
+<BgOctaAnimation octaNumber={7} />
 
 <!-- render app content -->
 <Router />

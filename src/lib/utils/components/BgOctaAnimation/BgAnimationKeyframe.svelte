@@ -27,7 +27,9 @@
   };
   const reCalcStyleOnWindowResize = createDebounce(reCalcStyle, 2000);
 
-  window.addEventListener("DOMContentLoaded", reCalcStyle, { once: true });
+  document.readyState === "loading"
+    ? window.addEventListener("DOMContentLoaded", reCalcStyle, { once: true })
+    : reCalcStyle();
 </script>
 
 <svelte:window on:resize={reCalcStyleOnWindowResize} />
