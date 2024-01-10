@@ -32,11 +32,11 @@
   {#each octaImgs as _}
     <div
       on:dragstart|preventDefault
-      class="appScreenBgAnimation absolute h-6 w-6 -bottom-6 opacity-30"
-      style="left:{getLeftPos()}; animation-delay: {random(
-        -35000,
-        35000,
-      )}ms; {getIconMaskStyes(
+      class="appScreenBgAnimation absolute h-6 w-6 bottom-0 translate-y-[101%] opacity-30"
+      style="left:{getLeftPos()}; scale: {random(
+        1,
+        5,
+      )}; animation-delay: {random(-35000, 35000)}ms; {getIconMaskStyes(
         OctaSwimIconURL,
       )} background-color: {currentOctaColor};"
     />

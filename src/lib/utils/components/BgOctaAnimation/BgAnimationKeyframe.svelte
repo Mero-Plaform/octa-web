@@ -13,8 +13,11 @@
 
     keyframes.textContent = `
       @keyframes appScreenBgAnimation {
+        from {
+          transform: translateY(101%);
+        }
         to {
-          transform: translateY(-${appHeight + 30}px);
+          transform: translateY(-${appHeight + 10}px);
         }
       }
       .appScreenBgAnimation {
@@ -24,7 +27,7 @@
   };
   const reCalcStyleOnWindowResize = createDebounce(reCalcStyle, 2000);
 
-  reCalcStyle();
+  window.addEventListener("DOMContentLoaded", reCalcStyle, { once: true });
 </script>
 
 <svelte:window on:resize={reCalcStyleOnWindowResize} />
