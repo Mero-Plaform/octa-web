@@ -1,5 +1,6 @@
 import { DBUtilsFacade } from "../../../../DB/DBUtilsFacade.js";
 import { initDBIdleModeStoreListener } from "../../../../DB/storesListeners/idleModeStoreListener.js";
+import { getIdleModeData } from "../../../../DB/utils.js";
 import type { CustomWritableStore } from "../../../../utils/customStores/CustomWritableStore.js";
 import { CustomWritableStoreFactory } from "../../../../utils/customStores/CustomWritableStoreFactory.js";
 import type { IdleMode } from "../../interfaces/idleMode.js";
@@ -29,6 +30,7 @@ const buildIdleModeStore = (initialValue: IdleMode) => {
 
   idleModeCountdownStore.set(initialValue.timerValue);
   initDBIdleModeStoreListener();
+  initIdleModeVisibilityChangeHandler();
 };
 
 /**
@@ -45,7 +47,7 @@ export const createIdleModeStore = (initialValue: IdleMode) => {
       );
       return;
     } else {
-      onIdleModeInitialData(undefined, initialValue.isEnabled, initialValue.timerStart, initialValue.timerValue)
+      onIdleModeInitialData(undefined, initialValue.isEnabled, initialValue.timerStart, initialValue.timerValue);
       return;
     }
   }
@@ -81,4 +83,29 @@ export const onUpdateIdleModeSignal = (_: unknown, isEnabled: IdleMode["isEnable
   idleModeCountdownStore.set(timerValue);
 
   onIdleModeStateStoreChange(isEnabled, timerValue);
+};
+
+/* ---------------------------- visibility change --------------------------- */
+
+const onVisibilityChange = async () => {
+  if (document.hidden) { return; }
+  const idleModeData = (await getIdleModeData())!;
+
+  if (idleModeData.isEnabled) {
+    if (import.meta.env.VITE_BUILD_PLATFORM === "desktop") {
+      import("../../../../shared/desktopAppBuild/ipcUtils.js").then(
+        ({ sendToIpcMain }) => {
+          sendToIpcMain("getIdleModeMainWin");
+        },
+      );
+      return;
+    } else {
+      onUpdateIdleModeSignal(undefined, idleModeData.isEnabled, idleModeData.timerStart, idleModeData.timerValue);
+      return;
+    }
+  }
+};
+
+export const initIdleModeVisibilityChangeHandler = () => {
+  document.addEventListener("webkitvisibilitychange", onVisibilityChange);
 };

@@ -45,7 +45,7 @@ setupUtilDB()
     initDBStatisticStoreListener();
     initDBAppSettingsStoreListener();
     // initDBIdleModeStoreListener called in idleModeStore file (should wait till answer from ipcMain if idleMode is enabled)
-    // initIdleTimerCountdownStoreListener same as the prev line
+    // initIdleModeVisibilityChangeHandler same as the prev line
 
     if (import.meta.env.VITE_BUILD_PLATFORM === "web") {
       initIdleModeCountdownStoreSaveOnWindowClose();
